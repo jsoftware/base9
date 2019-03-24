@@ -71,7 +71,7 @@ name=. ;i{'j.dll';'libj.dylib';'libj.so'
 bname=. '~bin/',name
 if. FHS*.UNAME-:'Linux' do.
   v=. ({.~i.&'/')}.9!:14''
-  sub=. '.',({.v),'.',}.v    NB. x j805 -> libj.so.8.05
+  sub=. '.',({.v),'.',}.v    NB. x j901 -> libj.so.9.01
   if. fexist '/etc/redhat-release' do.
     d1=. IF64{::'/usr/lib/';'/usr/lib64/'
   else.
