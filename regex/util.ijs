@@ -28,7 +28,8 @@ lastpattern=: y
 msg=. ,2
 off=. ,2
 flg=. PCRE2_MULTILINE*RX_OPTIONS_MULTILINE
-lastcomp=: 0 pick jpcre2_compile (,y);(#y);flg;msg;off;<<0
+lastcomp=: 0 pick rc=. jpcre2_compile (,y);(#y);flg;msg;off;<<0
+'msg off'=. 3 4{rc
 if. 0=lastcomp do. regerror msg,off end.
 lasthandle=: 0
 lastmatch=: 0 pick jpcre2_match_data_create_from_pattern (<lastcomp);<<0
