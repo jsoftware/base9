@@ -1,0 +1,22 @@
+NB. project: Main/main
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+sysenv.ijs
+configure.ijs
+unxlib.ijs
+android.ijs
+stdlib.ijs
+colib.ijs
+coutil.ijs
+dll.ijs
+break.ijs
+dates.ijs
+debug.ijs
+dir.ijs
+files.ijs
+jal.ijs
+strings.ijs
+text.ijs
+ios.ijs

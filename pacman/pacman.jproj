@@ -1,0 +1,24 @@
+NB. project: Main/pacman
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+util.ijs
+busybox.ijs
+check.ijs
+depend.ijs
+gitrepo.ijs
+httpget.ijs
+install.ijs
+manifest.ijs
+show.ijs
+remove.ijs
+log.ijs
+read.ijs
+refresh.ijs
+select.ijs
+runs.ijs
+je_update.ijs
+stdlib.ijs
+zfns.ijs

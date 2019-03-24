@@ -1,0 +1,15 @@
+#!/bin/sh
+# compiles and runs c programs built by J sym2ijs
+# creates netdefs_UNAME.ijs from netdefs.c
+# creates hostdefs_UNMAE.ijs from hostdefs.c
+
+un=`uname`
+
+rm netdefs_$un.ijs hostdefs_$un.ijs
+
+cc -D`uname` netdefs.c -o temp
+./temp >netdefs_$un.ijs
+cc -D`uname` hostdefs.c -o temp
+./temp >hostdefs_$un.ijs
+
+rm temp

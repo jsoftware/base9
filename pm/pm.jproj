@@ -1,0 +1,17 @@
+NB. project: Main/pm
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+defs.ijs
+util.ijs
+format.ijs
+detail.ijs
+maskit.ijs
+names.ijs
+read.ijs
+rep.ijs
+showdet.ijs
+showtot.ijs
+total.ijs
+usage.ijs

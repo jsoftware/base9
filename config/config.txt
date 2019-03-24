@@ -1,0 +1,10 @@
+This directory contains configuration files.
+
+These files are not required, and are read only if present.
+Default configuration files are in system/config.
+
+User Configurable
+-----------------
+base.cfg           base configuration
+folders.ijs        folder definitions
+startup.ijs        startup script

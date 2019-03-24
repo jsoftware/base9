@@ -1,0 +1,13 @@
+NB. project: Main/pp
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+defs.ijs
+vocab.ijs
+util.ijs
+pp.ijs
+pplint.ijs
+ppval.ijs
+qt.ijs

@@ -1,0 +1,170 @@
+/* extracted from pcre.h v10.31
+
+/* The following option bits can be passed to pcre2_compile(), pcre2_match(),
+or pcre2_dfa_match(). PCRE2_NO_UTF_CHECK affects only the function to which it
+is passed. Put these bits at the most significant end of the options word so
+others can be added next to them */
+
+#define PCRE2_ANCHORED            0x80000000u
+#define PCRE2_NO_UTF_CHECK        0x40000000u
+#define PCRE2_ENDANCHORED         0x20000000u
+
+/* The following option bits can be passed only to pcre2_compile(). However,
+they may affect compilation, JIT compilation, and/or interpretive execution.
+The following tags indicate which:
+
+C   alters what is compiled by pcre2_compile()
+J   alters what is compiled by pcre2_jit_compile()
+M   is inspected during pcre2_match() execution
+D   is inspected during pcre2_dfa_match() execution
+*/
+
+#define PCRE2_ALLOW_EMPTY_CLASS   0x00000001u  /* C       */
+#define PCRE2_ALT_BSUX            0x00000002u  /* C       */
+#define PCRE2_AUTO_CALLOUT        0x00000004u  /* C       */
+#define PCRE2_CASELESS            0x00000008u  /* C       */
+#define PCRE2_DOLLAR_ENDONLY      0x00000010u  /*   J M D */
+#define PCRE2_DOTALL              0x00000020u  /* C       */
+#define PCRE2_DUPNAMES            0x00000040u  /* C       */
+#define PCRE2_EXTENDED            0x00000080u  /* C       */
+#define PCRE2_FIRSTLINE           0x00000100u  /*   J M D */
+#define PCRE2_MATCH_UNSET_BACKREF 0x00000200u  /* C J M   */
+#define PCRE2_MULTILINE           0x00000400u  /* C       */
+#define PCRE2_NEVER_UCP           0x00000800u  /* C       */
+#define PCRE2_NEVER_UTF           0x00001000u  /* C       */
+#define PCRE2_NO_AUTO_CAPTURE     0x00002000u  /* C       */
+#define PCRE2_NO_AUTO_POSSESS     0x00004000u  /* C       */
+#define PCRE2_NO_DOTSTAR_ANCHOR   0x00008000u  /* C       */
+#define PCRE2_NO_START_OPTIMIZE   0x00010000u  /*   J M D */
+#define PCRE2_UCP                 0x00020000u  /* C J M D */
+#define PCRE2_UNGREEDY            0x00040000u  /* C       */
+#define PCRE2_UTF                 0x00080000u  /* C J M D */
+#define PCRE2_NEVER_BACKSLASH_C   0x00100000u  /* C       */
+#define PCRE2_ALT_CIRCUMFLEX      0x00200000u  /*   J M D */
+#define PCRE2_ALT_VERBNAMES       0x00400000u  /* C       */
+#define PCRE2_USE_OFFSET_LIMIT    0x00800000u  /*   J M D */
+#define PCRE2_EXTENDED_MORE       0x01000000u  /* C       */
+#define PCRE2_LITERAL             0x02000000u  /* C       */
+
+/* An additional compile options word is available in the compile context. */
+
+#define PCRE2_EXTRA_ALLOW_SURROGATE_ESCAPES  0x00000001u  /* C */
+#define PCRE2_EXTRA_BAD_ESCAPE_IS_LITERAL    0x00000002u  /* C */
+#define PCRE2_EXTRA_MATCH_WORD               0x00000004u  /* C */
+#define PCRE2_EXTRA_MATCH_LINE               0x00000008u  /* C */
+
+/* These are for pcre2_jit_compile(). */
+
+#define PCRE2_JIT_COMPLETE        0x00000001u  /* For full matching */
+#define PCRE2_JIT_PARTIAL_SOFT    0x00000002u
+#define PCRE2_JIT_PARTIAL_HARD    0x00000004u
+
+/* These are for pcre2_match(), pcre2_dfa_match(), and pcre2_jit_match(). Note
+that PCRE2_ANCHORED and PCRE2_NO_UTF_CHECK can also be passed to these
+functions (though pcre2_jit_match() ignores the latter since it bypasses all
+sanity checks). */
+
+#define PCRE2_NOTBOL              0x00000001u
+#define PCRE2_NOTEOL              0x00000002u
+#define PCRE2_NOTEMPTY            0x00000004u  /* ) These two must be kept */
+#define PCRE2_NOTEMPTY_ATSTART    0x00000008u  /* ) adjacent to each other. */
+#define PCRE2_PARTIAL_SOFT        0x00000010u
+#define PCRE2_PARTIAL_HARD        0x00000020u
+
+/* These are additional options for pcre2_dfa_match(). */
+
+#define PCRE2_DFA_RESTART         0x00000040u
+#define PCRE2_DFA_SHORTEST        0x00000080u
+
+/* These are additional options for pcre2_substitute(), which passes any others
+through to pcre2_match(). */
+
+#define PCRE2_SUBSTITUTE_GLOBAL           0x00000100u
+#define PCRE2_SUBSTITUTE_EXTENDED         0x00000200u
+#define PCRE2_SUBSTITUTE_UNSET_EMPTY      0x00000400u
+#define PCRE2_SUBSTITUTE_UNKNOWN_UNSET    0x00000800u
+#define PCRE2_SUBSTITUTE_OVERFLOW_LENGTH  0x00001000u
+
+/* A further option for pcre2_match(), not allowed for pcre2_dfa_match(),
+ignored for pcre2_jit_match(). */
+
+#define PCRE2_NO_JIT              0x00002000u
+
+/* Options for pcre2_pattern_convert(). */
+
+#define PCRE2_CONVERT_UTF                    0x00000001u
+#define PCRE2_CONVERT_NO_UTF_CHECK           0x00000002u
+#define PCRE2_CONVERT_POSIX_BASIC            0x00000004u
+#define PCRE2_CONVERT_POSIX_EXTENDED         0x00000008u
+#define PCRE2_CONVERT_GLOB                   0x00000010u
+#define PCRE2_CONVERT_GLOB_NO_WILD_SEPARATOR 0x00000030u
+#define PCRE2_CONVERT_GLOB_NO_STARSTAR       0x00000050u
+
+/* Newline and \R settings, for use in compile contexts. The newline values
+must be kept in step with values set in config.h and both sets must all be
+greater than zero. */
+
+#define PCRE2_NEWLINE_CR          1
+#define PCRE2_NEWLINE_LF          2
+#define PCRE2_NEWLINE_CRLF        3
+#define PCRE2_NEWLINE_ANY         4
+#define PCRE2_NEWLINE_ANYCRLF     5
+#define PCRE2_NEWLINE_NUL         6
+
+#define PCRE2_BSR_UNICODE         1
+#define PCRE2_BSR_ANYCRLF         2
+
+/* "Expected" matching error codes: no match and partial match. */
+
+#define PCRE2_ERROR_NOMATCH          (-1)
+#define PCRE2_ERROR_PARTIAL          (-2)
+
+/* Request types for pcre2_pattern_info() */
+
+#define PCRE2_INFO_ALLOPTIONS            0
+#define PCRE2_INFO_ARGOPTIONS            1
+#define PCRE2_INFO_BACKREFMAX            2
+#define PCRE2_INFO_BSR                   3
+#define PCRE2_INFO_CAPTURECOUNT          4
+#define PCRE2_INFO_FIRSTCODEUNIT         5
+#define PCRE2_INFO_FIRSTCODETYPE         6
+#define PCRE2_INFO_FIRSTBITMAP           7
+#define PCRE2_INFO_HASCRORLF             8
+#define PCRE2_INFO_JCHANGED              9
+#define PCRE2_INFO_JITSIZE              10
+#define PCRE2_INFO_LASTCODEUNIT         11
+#define PCRE2_INFO_LASTCODETYPE         12
+#define PCRE2_INFO_MATCHEMPTY           13
+#define PCRE2_INFO_MATCHLIMIT           14
+#define PCRE2_INFO_MAXLOOKBEHIND        15
+#define PCRE2_INFO_MINLENGTH            16
+#define PCRE2_INFO_NAMECOUNT            17
+#define PCRE2_INFO_NAMEENTRYSIZE        18
+#define PCRE2_INFO_NAMETABLE            19
+#define PCRE2_INFO_NEWLINE              20
+#define PCRE2_INFO_DEPTHLIMIT           21
+#define PCRE2_INFO_RECURSIONLIMIT       21  /* Obsolete synonym */
+#define PCRE2_INFO_SIZE                 22
+#define PCRE2_INFO_HASBACKSLASHC        23
+#define PCRE2_INFO_FRAMESIZE            24
+#define PCRE2_INFO_HEAPLIMIT            25
+#define PCRE2_INFO_EXTRAOPTIONS         26
+
+/* Request types for pcre2_config(). */
+
+#define PCRE2_CONFIG_BSR                     0
+#define PCRE2_CONFIG_JIT                     1
+#define PCRE2_CONFIG_JITTARGET               2
+#define PCRE2_CONFIG_LINKSIZE                3
+#define PCRE2_CONFIG_MATCHLIMIT              4
+#define PCRE2_CONFIG_NEWLINE                 5
+#define PCRE2_CONFIG_PARENSLIMIT             6
+#define PCRE2_CONFIG_DEPTHLIMIT              7
+#define PCRE2_CONFIG_RECURSIONLIMIT          7  /* Obsolete synonym */
+#define PCRE2_CONFIG_STACKRECURSE            8  /* Obsolete */
+#define PCRE2_CONFIG_UNICODE                 9
+#define PCRE2_CONFIG_UNICODE_VERSION        10
+#define PCRE2_CONFIG_VERSION                11
+#define PCRE2_CONFIG_HEAPLIMIT              12
+#define PCRE2_CONFIG_NEVER_BACKSLASH_C      13
+#define PCRE2_CONFIG_COMPILED_WIDTHS        14

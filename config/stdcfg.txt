@@ -1,0 +1,52 @@
+directory: system/config
+
+This directory contains scripts used in configuration.
+
+config.ijs
+==========
+This script defines the standard configuration.
+
+The configuration file defines:
+
+FIXFONTJ fixed font for Java
+PROFONTJ proportional font for Java
+FIXFONTW fixed font for Windows
+PROFONTW proportional font for Windows
+
+PRINTERFONT printer font
+PRINTOPT print options
+P2UPFONT 2-up print font
+
+SMCOLOR color definitions
+SMCOLORID color id
+SMINIT initial session position
+SMPRINT session manager print function
+SMSIZE new window size
+
+BoxPos boxed output positioning
+Browser browser, used in Help
+Browser_nox browser (without X), used in Help
+CONFIRMCLOSE 1 if confirm on close J
+DirTreeX exclusion list for dirtree
+DisplayForm output display form
+EPSReader reading encapsulated postscript files
+FKEYS function key definitions
+FORMAT configure Format Script menu item
+FORMSIZES form sizes
+MemoryLimit memory limit
+NEWUSER if newuser
+Output output definition
+ImageViewer viewing image files
+ImageViewer_nox viewing image files (without X)
+PDFReader reading Adobe pdf files
+PDFReader_nox reading Adobe pdf files (without X)
+PRINTPREC print precision
+READONLY open file read state
+SHOWSIP if show soft keyboard on PPC
+SKEYS menu shortcut key definitions
+STARTUP user's start up file
+STATUSBAR if show statusbar (not used in J5)
+UserFolders user folders
+USERSUBFOLDERS user subfolders
+XDiff external differencing program
+XNAMES if explicit argument names y. are permitted

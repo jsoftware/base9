@@ -1,0 +1,12 @@
+NB. project: Main/compare
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+util.ijs
+comp.ijs
+compare.ijs
+end.ijs
+lcs.ijs
+zdefs.ijs

@@ -1,0 +1,16 @@
+NB. project: Main/project
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+util.ijs
+nouns.ijs
+dir.ijs
+files.ijs
+folders.ijs
+git.ijs
+methods.ijs
+snapshot.ijs
+source.ijs
+standalone.ijs

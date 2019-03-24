@@ -1,0 +1,15 @@
+NB. project: Main/jade
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+util.ijs
+browser.ijs
+pdfreader.ijs
+nouns.ijs
+folders.ijs
+load.ijs
+xedit.ijs
+viewimage.ijs
+jade.ijs

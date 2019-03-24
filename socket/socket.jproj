@@ -1,0 +1,10 @@
+NB. project: Main/socket
+NB.
+NB. defines list of source files.
+NB. path defaults to project directory.
+
+init.ijs
+sockapi.ijs
+sockerror.ijs
+sockmain.ijs
+fini.ijs
