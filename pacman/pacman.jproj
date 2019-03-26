@@ -5,7 +5,6 @@ NB. path defaults to project directory.
 
 init.ijs
 util.ijs
-busybox.ijs
 check.ijs
 depend.ijs
 gitrepo.ijs

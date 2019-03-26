@@ -91,17 +91,9 @@ if. IFUNIX do.
     HTTPCMD=: 'wget ',nc,' -O %O -o %L -t %t %U'
   end.
 else.
-  busybox=. 0
-  if. fexist exe=. jpath '~tools/ftp/wget.exe' do. exe=. '"',exe,'"'
-  elseif. fexist exe=. jpath '~tools/ftp/busybox.exe' do. exe=. '"',exe,'" wget' [ busybox=. 1
-  elseif. do. exe=. '' end.
-  if. #exe do.
-    try. nc=. nc #~ 1 e. nc E. shell exe,' --help' catch. nc=. '' end.
-    HTTPCMD=: exe,' ',nc,busybox{::' -O %O -o %L -t %t -T %T %U';' -q -O %O %U'
-  end.
-  if. fexist UNZIP=: jpath '~tools/zip/unzip.exe' do. UNZIP=: '"',UNZIP,'" -o -C '
-  elseif. fexist UNZIP=: jpath '~tools/ftp/busybox.exe' do. UNZIP=: '"',UNZIP,'" unzip -q -o '
-  elseif. do. UNZIP=: 'unzip.exe -o -C ' end.
+  bbx=. '"','"',~jpath '~tools/ftp/busybox.exe'
+  HTTPCMD=: bbx,' wget -q -O %O %U'
+  UNZIP=: bbx,' unzip -q -o '
 end.
 )
 

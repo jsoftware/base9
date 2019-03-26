@@ -51,11 +51,7 @@ NB. =========================================================
 NB. y is url[;outfile]
 gitrepoget=: 3 : 0
 'f p'=. 2 {. (boxxopen y),a:
-if. IFWIN do.
-  busyboxget f;p
-else.
-  httpget f;3;p
-end.
+httpget f;3;p
 )
 
 NB. =========================================================

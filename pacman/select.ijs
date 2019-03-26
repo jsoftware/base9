@@ -67,4 +67,3 @@ end.
 msk=. masklib y
 (msk#y) ; <(-.msk)#y
 )
-
