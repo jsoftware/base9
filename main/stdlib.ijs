@@ -25,7 +25,7 @@ NB.*Debug n debug flag, initialized to 0
 'TAB LF FF CR DEL EAV'=: 9 10 12 13 127 255{a.
 LF2=: LF,LF
 CRLF=: CR,LF
-EMPTY=: i.0 0
+EMPTY=: 0 0$0
 Debug=: 0
 'noun adverb conjunction verb monad dyad'=: 0 1 2 3 3 4
 
@@ -171,7 +171,7 @@ NB.*each a each (&.>)
 each=: &.>
 
 NB. =========================================================
-NB.*empty v return empty result (i.0 0)
+NB.*empty v return empty result (0 0$0)
 empty=: EMPTY"_
 
 NB. =========================================================
