@@ -69,6 +69,7 @@ NB.*JCHAR4 n 262144
 NB.*JSTR4 n _1,JCHAR4
 NB.*JTYPES n JB01,JCHAR,JINT,JPTR,JFL,JCMPX,JBOXED,JSB,JCHAR2,JCHAR4
 NB.*JSIZES n size in bytes of corresponding JTYPES
+NB.*SZI n size in bytes of integer
 
 JB01=: 1
 JCHAR=: 2
@@ -85,6 +86,7 @@ JCHAR4=: 262144
 JSTR4=: _1,JCHAR4
 JTYPES=: JB01,JCHAR,JINT,JPTR,JFL,JCMPX,JBOXED,JSB,JCHAR2,JCHAR4
 JSIZES=: >IF64{1 1 4 4 8 16 4 4 2 4;1 1 8 8 8 16 8 8 2 4
+SZI=: IF64{4 8
 
 NB. =========================================================
 NB.*ic v integer conversion
