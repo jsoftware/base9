@@ -101,7 +101,7 @@ NB. Linux sporadic problem in non-English locale
 NB. ---------------------------------------------------------
 if. notdef 'IFRASPI' do.
   if. UNAME -: 'Linux' do.
-    cpu=. 2!:0 'cat /proc/cpuinfo'
+    cpu=. 2!:0 ::(''"_) 'cat /proc/cpuinfo'
     IFRASPI=: (1 e. 'BCM2708' E. cpu) +. (1 e. 'BCM2709' E. cpu) +. 1 e. 'BCM2710' E. cpu
   else.
     IFRASPI=: 0
