@@ -82,14 +82,14 @@ NB.*dbctx v display context as character matrix
 NB.-Display context as character matrix
 NB.- y is ignored
 NB.-x is the number of lines before and after the current stop
-NB.      default to 3 3
-dbctx=: 3 3&$: : (4 : 0)
+NB.      default to 10 10
+dbctx=: 10 10&$: : (4 : 0)
 if. -.13!:17'' do. 0 0$'' return. end.
 NB. avoid possible argument error
 try.
-  'before after'=. 2{. <. , x, 3 3
+  'before after'=. 2{. <. , x, 10 10
 catch.
-  'before after'=. 3 3
+  'before after'=. 10 10
 end.
 if. 0= #d=. 13!:13'' do. 0 0$'' return. end.
 if. '*' -.@e. sus=. >{:"1 d do. 0 0$'' return. end.
