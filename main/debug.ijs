@@ -261,31 +261,31 @@ f is the name of a verb
       dbss 'f :2'  dyadic line 2
       dbss 'f *:*' all lines
 
-dbr     reset, set suspension mode (0=disable, 1=enable)
-dbs     display stack
-dbsq    stop query
-dbss    stop set
-dbrun   run again (from current stop)
-dbnxt   run next (skip line and run)
-dbret   exit and return argument
-dbjmp   jump to line number
-dbsig   signal error
-dbrr    re-run with specified arguments
-dbrrx   re-run with specified executed arguments
-dberr   last error number
-dberm   last error message
-dbstk   call stack
-dblxq   latent expression query
-dblxs   latent expression set
-dbtrace trace control
-dbq     queries suspension mode (set by dbr)
-dbst    returns stack text
+dbr     13!:0  reset, set suspension mode (0=disable, 1=enable)
+dbs     13!:1  display stack
+dbsq    13!:2  stop query
+dbss    13!:3  stop set
+dbrun   13!:4  run again (from current stop)
+dbnxt   13!:5  run next (skip line and run)
+dbret   13!:6  exit and return argument
+dbjmp   13!:7  jump to line number
+dbsig   13!:8  signal error
+dbrr    13!:9  re-run with specified arguments
+dbrrx   13!:10 re-run with specified executed arguments
+dberr   13!:11 last error number
+dberm   13!:12 last error message
+dbstk   13!:13 call stack
+dblxq   13!:14 latent expression query
+dblxs   13!:15 latent expression set
+dbtrace 13!:16 trace control
+dbq     13!:17 queries suspension mode (set by dbr)
+dbst    13!:18 returns stack text
 (these 4 verbs are subject to change without notice)
-dbcut   cut back
-dbover  step over
-dbinto  step into
-dbout   step out
-
+dbcut   13!:19 cut back
+dbover  13!:20 step over (13!:20'' or moveline 13!:20'')
+dbinto  13!:21 step into ...
+dbout   13!:22 step out  ...
+(utilities)
 dbctx       display context
 dbg         turn debug window on/off
 dblocals    display local names on stack
@@ -294,5 +294,5 @@ dbstop      add stop definitions
 dbstops     set all stop definitions
 dbstopme    stop current definition
 dbstopnext  stop current definition at next line
-dbview      view stack
+dbview      (GUI only) view stack
 )
