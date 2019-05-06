@@ -78,14 +78,14 @@ NB.-
 NB.-See also [boxxopen](#boxxopen).
 NB.-
 NB.-Use [cutopen](#cutopen) to allow multiple arguments.
-boxopen=: <^:(L.=0:)
+boxopen=: <^:(0&(>: L.))
 
 NB. =========================================================
 NB.*boxxopen v box argument if open and not empty
 NB.-Box argument if open and not empty.
 NB.-
 NB.-See also [boxopen](#boxopen).
-boxxopen=: <^:(L.<*@#)
+boxxopen=: <^:((> L.)~ *@#)
 
 NB. =========================================================
 NB.*bx v indices of 1's in boolean (same as I.)
@@ -102,7 +102,7 @@ clear=: 3 : 0
 
 NB. =========================================================
 NB.*cutLF v cut text on LF, removing empties
-cutLF=: 3 : 'if. L. y do. y else. a: -.~ <;._2 y,LF end.'
+cutLF=: 3 : 'if. 0 (<L.) y do. y else. a: -.~ <;._2 y,LF end.'
 
 NB. =========================================================
 NB.*cutopen v cut argument if open
@@ -125,7 +125,7 @@ NB.+   script 'work.ijs util.ijs'
 cutopen=: 3 : 0
 y cutopen~ (' ',LF) {~ LF e. ,y
 :
-if. L. y do. y return. end.
+if. 0 (<L.) y do. y return. end.
 if. 1 < #$y do. <"_1 y return. end.
 (<'') -.~ (y e.x) <;._2 y=. y,1{.x
 )

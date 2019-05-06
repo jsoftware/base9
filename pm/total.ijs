@@ -120,6 +120,7 @@ NB. (avoids duplicate counts for recursive calls)
 f=. 1: = [: +/\ (- (0: , 1: - }:))
 msk=. f each ndx < /. bgn
 
+dat =. dat - <./ dat  NB. remove some upper significance
 ada=. ndx < /. dat * _1 ^ bgn
 
 all=. msk +/@# &> ada
@@ -187,9 +188,9 @@ NB. ---------------------------------------------------------
 sum=. str , edr , spc , spcr
 her=. (nub i. {."1 sum) +/ /. {:"1 sum
 
-if. x=0 do.
-  assert *./ all >: her
-end.
+NB. fails if adds reordered if. x=0 do.
+NB.   assert *./ all >: her
+NB. end.
 
 |: req # all ,. her ,. rep
 )
