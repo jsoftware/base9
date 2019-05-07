@@ -228,7 +228,7 @@ NB.-syntax:
 NB.+(old;new) fstringreplace file
 fstringreplace=: 4 : 0
 nf=. 'no match found'
-y=. boxopen y
+y=. fboxname y
 try. size=. 1!:4 y catch. nf return. end.
 if. size=0 do. nf return. end.
 old=. freads y
@@ -351,4 +351,3 @@ NB.-example:
 NB.+   undquote '"Pete""s Place"'
 NB.+Pete"s Place
 undquote=: (#~ -.@('""'&E.))@}:@}.^:(('"' = {.) *. '"' = {:)
-

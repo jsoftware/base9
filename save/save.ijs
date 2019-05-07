@@ -1,7 +1,9 @@
 NB. main save
+NB.
+NB. ~install should be writable by the current user
 
 cocurrent 'jpsave'
-hostcmd_j_ 'rm -rf ',jpath '~Main/release'
+rmdir_j_ jpath '~Main/release'
 mkdir_j_ jpath '~Main/release/install/system/main'
 
 f=. 3 : 0
@@ -37,8 +39,14 @@ dat=. dat, 'cocurrent <''base'''
 
 dat fwritenew jpath '~Main/release/install/system/main/stdlib.ijs'
 
-(jpath '~Main/release/install/breaker.ijs') fcopynew jpath '~Main/main/breaker.ijs'
+'~Main/release/install/breaker.ijs' fcopynew '~Main/main/breaker.ijs'
+'~install/breaker.ijs' fcopynew '~Main/main/breaker.ijs'
 
-NB. copy may fail if ~install is not writable by the current user
-(2!:0 ::0:) 'cp -r "',(jpath '~Main/release/install/system'),'" "',(jpath '~install'),'/."'
-(2!:0 ::0:) 'cp "',(jpath '~Main/release/install/breaker.ijs'),'" "',(jpath '~install'),'/."'
+3 : 0''
+if. IFWIN do.
+  require 'pacman'
+  dircopy_jpacman_ (jpath '~Main/release/install/system');jpath '~install/system'
+else.
+  (2!:0 ::0:) 'cp -r "',(jpath '~Main/release/install/system'),'" "',(jpath '~install'),'/."'
+end.
+)
