@@ -29,6 +29,7 @@ i.0 0
 
 NB. set first or new ~break file and delete unused ~break files
 setbreak=: 3 : 0
+if. (-.IFQT)*.y-:'default' do. i.0 0 return. end. NB. only for qt and not default
 try.
  assert #y
  q=. jpath '~break/'
@@ -64,7 +65,7 @@ breakclean_j_=: 3 : 0
   p=. (fs i:each '.'){.each fs
   p=. (>:;p i:each'/')}.each p
   for_i. i.#fs do.
-   try. spawn_jtask_ 'lsof -p ',(;i{p) ,' "',(;i{fs),'"'
+   try. spawn_jtask_ 'lsof -p ',(;i{p) ,' "',(;i{fs),'" 2>/dev/null'
    catch. ferase i{fs end.
   end.
  end.
