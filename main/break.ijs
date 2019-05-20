@@ -47,9 +47,9 @@ breakhelp_j_=: 0 : 0
    break ''    NB. break to all default class tasks
    break '...' NB. break to all ... class tasks
    break pid   NB. break to that pid
- 
+
 1st break stops execution at line start
-2nd break stops execution mid-line, 6!:3 , socket select 
+2nd break stops execution mid-line, 6!:3 , socket select
 
    setbreak'default' NB. task start creates pid.default file in ~break
    setbreak'...'     NB. change break file class
@@ -69,4 +69,3 @@ breakclean_j_=: 3 : 0
   end.
  end.
 )
-
