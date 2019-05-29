@@ -1,8 +1,8 @@
 cocurrent'z'
 
 break=: 3 : 0
-breakclean_j_''
 if. y-:0 do. breakhelp_j_ return. end.
+breakclean_j_''
 p=. jpath'~break/'
 fs=.  ((<p),each{."1[1!:0 p,'*')-.<9!:46''
 pc=. (>:;fs i:each'/')}.each fs
@@ -27,7 +27,7 @@ end.
 i.0 0
 )
 
-NB. set first or new ~break file and delete unused ~break files
+NB. set first or new break file
 setbreak=: 3 : 0
 if. (-.IFQT)*.y-:'default' do. i.0 0 return. end. NB. only for qt and not default
 try.
@@ -42,6 +42,21 @@ try.
 catch. 13!:12'' end.
 )
 
+NB. erase orphan break files
+breakclean_j_=: 3 : 0
+q=. jpath '~break/'
+fs=. ((<q),each{."1[1!:0 q,'*')-.9!:46''
+if. UNAME-:'Win' do.
+ ferase fs NB. windows erase has not effect while file is in use
+else.
+ d=.  dltb each}.<;._2 spawn_jtask_'ps -e'
+ allpids=. ;0".each (d i.each ' '){.each d
+ pc=. (>:;fs i:each'/')}.each fs
+ pids=. ;_1".each (;pc i.each'.'){.each pc
+ ferase (-.pids e. allpids)#fs
+end.
+)
+
 breakhelp_j_=: 0 : 0
    break 0     NB. help
    break 1     NB. list other ~break pids and classes
@@ -52,21 +67,7 @@ breakhelp_j_=: 0 : 0
 1st break stops execution at line start
 2nd break stops execution mid-line, 6!:3 , socket select
 
-   setbreak'default' NB. task start creates pid.default file in ~break
-   setbreak'...'     NB. change break file class
-)
+profile does setbreak'default' (does nothing unless Jqt)
 
-breakclean_j_=: 3 : 0
- q=. jpath '~break/'
- fs=. (<q),each{."1[1!:0 q,'*'
- if. UNAME-:'Win' do.
-  ferase fs
- else.
-  p=. (fs i:each '.'){.each fs
-  p=. (>:;p i:each'/')}.each p
-  for_i. i.#fs do.
-   try. spawn_jtask_ 'lsof -p ',(;i{p) ,' "',(;i{fs),'" 2>/dev/null'
-   catch. ferase i{fs end.
-  end.
- end.
+   setbreak'...'     NB. change break file class
 )
