@@ -504,12 +504,12 @@ tolist=: }.@;@:(LF&,@,@":&.>)
 NB. =========================================================
 NB.*tolower v convert text to lower case
 NB.*toupper v convert text to upper case
-tolower=: 3 : 0
+tolower=: 3 : 0`((((97+i.26){a.)(65+i.26)}a.) {~ a. i. ])@.(2 = 3!:0)
 x=. I. 26 > n=. ((65+i.26){a.) i. t=. ,y
 ($y) $ ((x{n) { (97+i.26){a.) x}t
 )
 
-toupper=: 3 : 0
+toupper=: 3 : 0`((((65+i.26){a.)(97+i.26)}a.) {~ a. i. ])@.(2 = 3!:0)
 x=. I. 26 > n=. ((97+i.26){a.) i. t=. ,y
 ($y) $ ((x{n) { (65+i.26){a.) x}t
 )
