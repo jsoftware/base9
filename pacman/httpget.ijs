@@ -15,7 +15,13 @@ t=. ":{.t,3
 ferase p;q
 fail=. 0
 cmd=. HTTPCMD rplc '%O';(dquote p);'%L';(dquote q);'%t';t;'%T';(":TIMEOUT);'%U';f
-if. ''-:HTTPCMD do.
+if. UNAME-:'Android' do.
+  try.
+    (<p) 1!:2~ (11!:4000) f
+  catch.
+    fail=. 1 [ (<q) 1!:2~ (11!:0) 'qer'
+  end.
+elseif. ''-:HTTPCMD do.
   require 'socket'
   1!:55 ::0: <p
   rc=. 0 [ e=. pp=. ''
