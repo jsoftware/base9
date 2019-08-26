@@ -17,12 +17,11 @@ if. IF64 do.
  t=. httpget path,plat,'/j64'
  if. 1=;{.t do. 'update - read jengine folder failed' return end.
  a=. fread '~temp/j64'   
- i=. >:('>libj' E. a)#i.#a
+ i=. >:((;(UNAME-:'Win'){'>libj';'>j') E. a)#i.#a
  a=. i}.each (#i)#<a
  a=. (a i.each'<'){.each a NB. hardware binaries available
  a=. a}.~each a i.each 'j'
  a=. }.each a{.~each a i.each '.'
-
  try. t7=. 2!:7'' catch. t7=. '' end.
  a=. 'j',;{:(a e. ;:t7)#a NB. best of those we can run
  i=. name i.'.'
