@@ -44,11 +44,11 @@ if. UNAME-:'Win' do.
  if. -.OLD frename DLL do. 'update failed - rename j.dll to j.dll.old' return. end.
  if. -.DLL frename NEW do. 'update failed - rename j.dll.new to j.dll' return. end.
 else.
-  ferase DLL
-  DLL frename NEW
+  if. -.ferase DLL do. 'update failed - ferase libj.so.old - exit all J sessions and try again' return. end.
+  if. -.DLL frename NEW do. 'update failed - rename libj.so.new to libj.so' return. end.
   if. FHS*.UNAME-:'Linux' do.
-    2!:0 'chmod 644 "',OLD,'"'
-    2!:0 'chown root:root "',OLD,'"'
+    2!:0 'chmod 644 "',DLL,'"'
+    2!:0 'chown root:root "',DLL,'"'
     2!:0 'ldconfig'
   end.
 end.
