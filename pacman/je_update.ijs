@@ -13,7 +13,7 @@ OLD=. hostpathsep jpath bname,'.old'
 NEW=. hostpathsep jpath bname,'.new'
 if. 1~:ftype bname do. 'update not supported for this type of install' return. end.
 
-if. IF64 do.
+if. IF64 > IFRASPI do.
  t=. httpget path,plat,'/j64'
  if. 1=;{.t do. 'update - read jengine folder failed' return end.
  a=. fread '~temp/j64'   
@@ -26,6 +26,8 @@ if. IF64 do.
  a=. 'j',;{:(a e. ;:t7)#a NB. best of those we can run
  i=. name i.'.'
  name=. <(}:i{.name),a,i}.name
+else.
+ name=. <name
 end. 
 
 arg=. (<jxxx),(<br),(<platform),(<3{.jbithw),name
