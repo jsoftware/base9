@@ -49,7 +49,7 @@ IF64=: 16={:$3!:3[2
 IFBE=: 'a'~:{.2 (3!:4) a.i.'a'
 'IFUNIX IFWIN IFWINCE'=: 5 6 7 = 9!:12''
 IFJHS=: 0
-IFWINE=: (0 ~: 'ntdll wine_get_version >+ x'&(15!:0)) ::0:`0:@.IFUNIX ''
+IFWINE=: (0 ~: 'ntdll wine_get_version >+ x'&(15!:0)) ::0:@(15!:10)`0:@.IFUNIX ''
 
 NB. ---------------------------------------------------------
 if. notdef 'IFIOS' do.
@@ -96,7 +96,7 @@ end.
 
 NB. ---------------------------------------------------------
 NB. Linux sporadic problem in non-English locale
-'libc.so.6 setlocale > x i *c'&(15!:0) ::0:^:(UNAME-:'Linux') 1;,'C'
+'libc.so.6 setlocale > x i *c'&(15!:0) ::0:@(15!:10)@(''"_)^:(UNAME-:'Linux') 1;,'C'
 
 NB. ---------------------------------------------------------
 if. notdef 'IFRASPI' do.
