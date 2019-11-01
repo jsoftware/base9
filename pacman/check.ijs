@@ -153,7 +153,11 @@ end.
 if. 0 = libupm do.
   msg,LF,'The base library is up to date.'
 else.
-  msg,LF,'There is a newer version of the base library.'
+  if. JLIB -: CRLF -.~ fread '~system/config/version.txt' do.
+    msg,LF,'There is a newer version of the base library.'
+  else.
+    msg,LF,'Restart J to get the latest version of the base library.'
+  end.
 end.
 )
 
