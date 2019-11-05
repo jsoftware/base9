@@ -22,7 +22,6 @@ sdgetsockname
 sdgethostbyname
 sdgethostbyaddr
 sdgetsockets
-sdasync
 sdcleanup
 sdcheck
 sderror
