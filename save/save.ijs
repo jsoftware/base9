@@ -2,6 +2,9 @@ NB. main save
 NB.
 NB. ~install should be writable by the current user
 
+require 'pacman'
+'install'jpkg'dev/fold'
+
 cocurrent 'jpsave'
 rmdir_j_ jpath '~Main/release'
 mkdir_j_ jpath '~Main/release/install/system/main'
@@ -35,6 +38,7 @@ compare
 )
 
 dat=. ; freads each (<jpath '~Main/release/') ,each F , each <'.ijs'
+dat=. dat, freads '~addons/dev/fold/fold.ijs'
 dat=. dat, 'cocurrent <''base'''
 
 dat fwritenew jpath '~Main/release/install/system/main/stdlib.ijs'
