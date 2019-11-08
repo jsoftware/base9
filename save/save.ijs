@@ -43,9 +43,6 @@ dat=. dat, 'cocurrent <''base'''
 
 dat fwritenew jpath '~Main/release/install/system/main/stdlib.ijs'
 
-'~Main/release/install/breaker.ijs' fcopynew '~Main/main/breaker.ijs'
-'~install/breaker.ijs' fcopynew '~Main/main/breaker.ijs'
-
 3 : 0''
 if. IFWIN do.
   require 'pacman'
