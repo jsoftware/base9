@@ -3,7 +3,7 @@ NB.%break.ijs - break utilities
 NB.-This script defines break utilities and is included in the J standard library.
 NB.-Definitions are loaded into the z locale.
 NB.-
-NB.-`setbreak 'default'` is done by the profile.
+NB.-`setbreak 'default'` is done by profile for Jqt. JHS and jconsole can use ctrl+c. 
 NB.-
 NB.-setbreak creates file `~break/Pid.Class` and writes 0 to the first byte.
 NB.-
@@ -17,11 +17,13 @@ NB.-Another task writes 1 or 2 to the file for attention/break.
 NB.-
 NB.-9!:46 returns the filename.
 NB.-
-NB.-`break` y sets break for JEs with class y.
+NB.-`break 'abc'` sets break for JEs with class abc.
 NB.-
 NB.-JEs with the same class all get the break. A non-default class protects JE from the default break.
 NB.-
 NB.- A new setbreak replaces the old.
+NB.-
+NB.-`break 0'` shows breakhelp
 
 cocurrent'z'
 
@@ -39,8 +41,8 @@ pids=. _1".each i{.each pc
 classes=. (>:i)}.each pc
 if. y-:1 do. /:~(>":each pids),.>' ',each classes return. end.
 'no task to break'assert #fs
-if. 2=3!:0 y do.
-  b=. classes= (''-:y){y;'default'
+if. (0=#y)+.2=3!:0 y do.
+  b=. classes= (0=#y){y;'default'
   'bad class'assert +/b
   fs=. (<p),each (":each b#pids),each '.',each b#classes
 else.
@@ -102,7 +104,10 @@ breakhelp_j_=: 0 : 0
 1st break stops execution at line start
 2nd break stops execution mid-line, 6!:3 , socket select
 
-profile does setbreak'default' (does nothing unless Jqt)
+profile does setbreak'default' for Jqt
+profile does not do it for jconsole or JHS (use ctrl+c)
 
-   setbreak'...'     NB. change break file class
+   setbreak'abc' NB. set break file for this pid and class abc
+
+https://code.jsoftware.com/wiki/Standard_Library/break
 )
