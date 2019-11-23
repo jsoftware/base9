@@ -58,7 +58,7 @@ case. 'history';'manifest' do.
   x showfiles_console y
 case. 'install' do.
   if. -. HASFILEACCESS*.HASADDONSDIR do. 'file permission error' return. end.
-  install_console y
+  if. '*'-:y do. installer'' else. install_console y end.
 case. 'reinstall' do.
   if. -. HASFILEACCESS*.HASADDONSDIR do. 'file permission error' return. end.
   remove_console y
@@ -76,8 +76,8 @@ case. 'upgrade' do.  NB. upgrades previously installed packages to latest versio
   upgrade_console y
 case. do.
   msg=. 'Valid options are:',LF
-  msg=. msg,'  history, install, manifest, remove, reinstall, show, search,',LF
-  msg=. msg,'  showinstalled, shownotinstalled, showupgrade, status,',LF
-  msg,'  update, upgrade'
+  msg=. msg,'  history, install, manifest, remove, reinstall, search,',LF
+  msg=. msg,'  show, showinstalled, shownotinstalled, showupgrade,',LF
+  msg,'  status, update, upgrade'
 end.
 )
