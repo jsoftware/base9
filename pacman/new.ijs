@@ -9,7 +9,7 @@ do_install'qtide'
 echo '*** next step updates JE'
 echo je_update''
 echo '*** next step creates desktop J launch icons'
-if. 2~:ftype jpath'~/Desktopp' do.
+if. 2~:ftype jpath'~/Desktop' do.
  echo '~/Desktop folder does not exist for shortcuts'
  echo 'perhaps create ~/Desktop as link to your Desktop folder and rerun'
  assert 0
