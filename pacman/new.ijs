@@ -7,7 +7,7 @@ echo '*** next step updates addons and base library'
 echo '*** next step updates Jqt ide'
 do_install'qtide'
 echo '*** next step updates JE'
-echo je_update''
+'upgrade'jpkg'je'
 echo '*** next step creates desktop J launch icons'
 if. 2~:ftype jpath'~/Desktop' do.
  echo '~/Desktop folder does not exist for shortcuts'

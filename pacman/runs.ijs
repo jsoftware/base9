@@ -46,6 +46,15 @@ if. y -: 'server' do. res=. getserver'' end.
 res
 )
 
+man=: 0 : 0
+Valid options are:
+ history, install, manifest, remove, reinstall, search,
+ show, showinstalled, shownotinstalled, showupgrade,
+ status, update, upgrade
+
+https://code.jsoftware.com/wiki/JAL/Package_Manager/jpkg
+)
+
 NB. =========================================================
 jpkg=: 4 : 0
 if. -.INITDONE_jpacman_ do.
@@ -73,11 +82,8 @@ case. 'update' do.
   updatejal ''
 case. 'upgrade' do.  NB. upgrades previously installed packages to latest versions
   if. -. HASFILEACCESS*.HASADDONSDIR do. 'file permission error' return. end.
-  upgrade_console y
+  if. 'je'-:y do. je_update'' else. upgrade_console y end.
 case. do.
-  msg=. 'Valid options are:',LF
-  msg=. msg,'  history, install, manifest, remove, reinstall, search,',LF
-  msg=. msg,'  show, showinstalled, shownotinstalled, showupgrade,',LF
-  msg,'  status, update, upgrade'
+  man
 end.
 )
