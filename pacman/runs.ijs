@@ -82,7 +82,7 @@ case. 'update' do.
   updatejal ''
 case. 'upgrade' do.  NB. upgrades previously installed packages to latest versions
   if. -. HASFILEACCESS*.HASADDONSDIR do. 'file permission error' return. end.
-  if. 'je'-:y do. je_update'' else. upgrade_console y end.
+  if. 'jengine'-:y do. je_update'' else. upgrade_console y end.
 case. do.
   man
 end.
