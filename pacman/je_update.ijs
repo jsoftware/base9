@@ -1,7 +1,7 @@
 NB. update JE in place - updates JE (beta or release) to latest version at web site
 NB. je_update_jpacman_''
 
-NB. should have been called je_upgrade 
+NB. should have been called je_upgrade
 je_update=: 3 : 0
 if. IFIOS+.UNAME-:'Android' do. log'upgrade not supported for this platform' return. end.
 'jxxx jbithw platform br comm web dt'=. <;._1 '/',9!:14''
@@ -17,7 +17,7 @@ if. 1~:ftype bname do. log'upgrade not supported for this type of install' retur
 if. IF64 > IFRASPI do.
  t=. httpget path,plat,'/j64'
  if. 1=;{.t do. log'upgrade - read jengine folder failed' return end.
- a=. fread '~temp/j64'   
+ a=. fread '~temp/j64'
  i=. >:((;(UNAME-:'Win'){'>libj';'>j') E. a)#i.#a
  a=. i}.each (#i)#<a
  a=. (a i.each'<'){.each a NB. hardware binaries available
@@ -29,7 +29,7 @@ if. IF64 > IFRASPI do.
  name=. <(}:i{.name),a,i}.name
 else.
  name=. <name
-end. 
+end.
 
 arg=. (<jxxx),(<br),(<platform),(<3{.jbithw),name
 r=. je_get arg
