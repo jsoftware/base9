@@ -4,6 +4,11 @@ echo '*** next step updates addons and base library'
 'update'jpkg''
 'upgrade'jpkg'all'
 'install'jpkg {."1'shownotinstalled'jpkg''
+if. IFIOS +. UNAME-:'Android' do.
+ echo LF,'ALL DONE!',LF,'exit this J session and start new session'
+ i.0 0
+ return.
+end.
 echo '*** next step updates Jqt ide'
 do_install'qtide'
 echo '*** next step updates JE'
