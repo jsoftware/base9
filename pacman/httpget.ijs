@@ -13,15 +13,17 @@ if. 0=#p do. p=. jpath '~temp/',n end.
 q=. jpath '~temp/httpget.log'
 t=. ":{.t,3
 ferase p;q
-fail=. 0
+retry=. fail=. 0
 cmd=. HTTPCMD rplc '%O';(dquote p);'%L';(dquote q);'%t';t;'%T';(":TIMEOUT);'%U';f
 if. UNAME-:'Android' do.
   try.
     (<p) 1!:2~ (11!:4000) f
   catch.
-    fail=. 1 [ (<q) 1!:2~ (11!:0) 'qer'
+    retry=. fail=. 1 [ (<q) 1!:2~ (11!:0) 'qer'
   end.
-elseif. ''-:HTTPCMD do.
+end.
+if. ((UNAME-:'Android' ) < ''-:HTTPCMD) +. ((UNAME-:'Android') *. retry *. ''-:HTTPCMD) do.
+  fail=. 0
   require 'socket'
   1!:55 ::0: <p
   rc=. 0 [ e=. pp=. ''
@@ -49,7 +51,7 @@ elseif. ''-:HTTPCMD do.
   else.
     if. 0~:rc do. e=. sderror_jsocket_ rc end.
   end.
-elseif. do.
+elseif. (UNAME-.@-:'Android') do.
   try.
     fail=. _1-: e=. shellcmd cmd
   catch. fail=. 1 end.
