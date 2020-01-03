@@ -15,14 +15,14 @@ t=. ":{.t,3
 ferase p;q
 retry=. fail=. 0
 cmd=. HTTPCMD rplc '%O';(dquote p);'%L';(dquote q);'%t';t;'%T';(":TIMEOUT);'%U';f
-if. UNAME-:'Android' do.
+if. IFJA do.
   try.
     (<p) 1!:2~ (11!:4000) f
   catch.
     retry=. fail=. 1 [ (<q) 1!:2~ (11!:0) 'qer'
   end.
 end.
-if. ((UNAME-:'Android' ) < ''-:HTTPCMD) +. ((UNAME-:'Android') *. retry *. ''-:HTTPCMD) do.
+if. (IFJA < ''-:HTTPCMD) +. (IFJA *. retry *. ''-:HTTPCMD) do.
   fail=. 0
   require 'socket'
   1!:55 ::0: <p
