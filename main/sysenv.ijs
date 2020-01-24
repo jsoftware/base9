@@ -96,7 +96,8 @@ end.
 
 NB. ---------------------------------------------------------
 NB. Linux sporadic problem in non-English locale
-'libc.so.6 setlocale > x i *c'&(15!:0) ::(0:@(15!:10)@(''"_))^:(UNAME-:'Linux') 1;,'C'
+NB. but setlocale is thread unsafe
+NB.'libc.so.6 setlocale > x i *c'&(15!:0) ::(0:@(15!:10)@(''"_))^:(UNAME-:'Linux') 1;,'C'
 
 NB. ---------------------------------------------------------
 if. notdef 'IFRASPI' do.
