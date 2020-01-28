@@ -63,6 +63,9 @@ case. 'Win' do. ''
 case. 'Darwin' do. 'open'
 case. do.
   try.
+    2!:0'which xdg-open 2>/dev/null'
+    'xdg-open' return. catch. end.
+  try.
     2!:0'which eog 2>/dev/null'
     'eog' return. catch. end.
   '' return.
