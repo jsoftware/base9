@@ -83,7 +83,7 @@ if. IFUNIX do.
       2!:0'which curl 2>/dev/null'
       IFCURL=. 1 catch. end.
   end.
-  if. IFCURL>IFWGET do.
+  if. IFCURL do.
     HTTPCMD=: 'curl -L -o %O --stderr %L -f -s -S %U'
   elseif. IFWGET do.
     if. 'Android'-:UNAME do. nc=. ''

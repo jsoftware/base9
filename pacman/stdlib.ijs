@@ -43,7 +43,10 @@ smoutput 'Installing ',bin,'..'
 if. 'Linux'-:UNAME do.
   if. IFRASPI do.
     z=. 'jqt-',((y-:'slim') pick 'raspi';'raspislim'),'-',(IF64 pick '32';'64'),'.tar.gz'
-  else.
+  elseif. 0 [ fexist '/etc/redhat-release' do.
+NB. provision for jqt-rhel7-x64.tar.gz jqt-rhel7slim-x64.tar.gz
+    z=. 'jqt-',((y-:'slim') pick 'rhel7';'rhel7slim'),'-',(IF64 pick '32';'64'),'.tar.gz'
+  elseif. do.
     z=. 'jqt-',((y-:'slim') pick 'linux';'slim'),'-',(IF64 pick 'x86';'x64'),'.tar.gz'
   end.
   z1=. 'libjqt.so'
