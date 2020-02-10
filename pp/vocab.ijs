@@ -7,13 +7,13 @@ arguments=: 'm n u v x y'
 t=. '= < <. <: > >. >: _: + +. +: * *. *: - -. -: % %. %: ^ ^.'
 t=. t,' $ $. $: ~. ~: | |. |: , ,. ,: ; ;: # #. #: ! /: \: [ [: ]'
 t=. t,' { {. {: {:: }. }: ". ": ? ?.'
-t=. t,' A. c. C. e. E. i. i: I. j. L. o. p. p: q: r. s: u: x:'
+t=. t,' A. c. C. e. E. i. i: I. j. L. o. p. p: q: r. s: u: x: Z:'
 t=. t,' _9: _8: _7: _6: _5: _4: _3: _2: _1:'
 t=. t,' 0: 1: 2: 3: 4: 5: 6: 7: 8: 9:'
 verbs=: t
 
 t=. '^: . .. .: :  :. :: ;. !. !: " ` `: @ @. @: & &. &: &.:'
-t=. t,' d. D. D: H. L: S: T.'
+t=. t,' d. D. D: F. F.. F.: F: F:. F:: H. L: S: T.'
 conjunctions=: t
 
 t=. 'assert. break. case. catch. catchd. catcht. continue. do.'
