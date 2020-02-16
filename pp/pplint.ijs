@@ -17,7 +17,7 @@ NB.      new text
 NB. or   line number;error message
 
 pplint=: 3 : 0
-dat=. ucp y
+dat=. y  NB. ucp y
 
 'fmt wid rms exp sel'=. Format_j_
 if. wid=0 do. spc=. TAB else. spc=. wid#' ' end.
@@ -149,5 +149,5 @@ NB. ---------------------------------------------------------
 dat=. ; dat ,each LF
 dat=. (- -.iftermLF) }. dat
 
-utf8 dat
+dat  NB. utf8 dat
 )
