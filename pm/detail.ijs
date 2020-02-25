@@ -221,7 +221,7 @@ bgn=. lns = _1
 end=. lns = _2
 hit=. ind = ndx
 msk=. 1 < bgn usage end
-her=. 2 >: bgn usage end
+her =. 1 = +/\ bgn - end  NB. we are not here for the first sample of a called function; back here for the last sample of a function that returns to us
 bgn=. msk *. bgn
 end=. msk *. end
 
