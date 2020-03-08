@@ -30,6 +30,7 @@ cd -
 [ "$(id -u)" = "0" ] || { echo "need sudo" ; exit 1; }
 
 mkdir -p /usr/share/j/9.01/addons/ide || { echo "can not create directory" ; exit 1; }
+chmod 755 /usr/share/j || { echo "can not set permission" ; exit 1; }
 mkdir -p /etc/j/9.01 || { echo "can not create directory" ; exit 1; }
 chmod 755 /etc/j || { echo "can not set permission" ; exit 1; }
 rm -rf /usr/share/j/9.01/system
@@ -59,11 +60,11 @@ update-alternatives --install /usr/bin/ijconsole ijconsole /usr/bin/ijconsole-9.
 if [ "$cpu" = "intel64" ] ; then
  if [ -d "/usr/lib/x86_64-linux-gnu" ] ; then
   cp libj.so /usr/lib/x86_64-linux-gnu/libj.so.9.01
-  chmod 644 /usr/lib/x86_64-linux-gnu/libj.so.9.01
+  chmod 755 /usr/lib/x86_64-linux-gnu/libj.so.9.01
  else
   if [ -d "/usr/lib64" ] ; then
    cp libj.so /usr/lib64/libj.so.9.01
-   chmod 644 /usr/lib64/libj.so.9.01
+   chmod 755 /usr/lib64/libj.so.9.01
   else
    echo "can not find lib directory"
    exit 1
@@ -73,11 +74,11 @@ fi
 if [ "$cpu" = "arm64" ] ; then
  if [ -d "/usr/lib/aarch64-linux-gnu" ] ; then
   cp libj.so /usr/lib/aarch64-linux-gnu/libj.so.9.01
-  chmod 644 /usr/lib/aarch64-linux-gnu/libj.so.9.01
+  chmod 755 /usr/lib/aarch64-linux-gnu/libj.so.9.01
  else
   if [ -d "/usr/lib64" ] ; then
    cp libj.so /usr/lib64/libj.so.9.01
-   chmod 644 /usr/lib64/libj.so.9.01
+   chmod 755 /usr/lib64/libj.so.9.01
   else
    echo "can not find lib directory"
    exit 1
@@ -87,11 +88,11 @@ fi
 if [ "$cpu" = "intel32" ] ; then
  if [ -d "/usr/lib/i386-linux-gnu" ] ; then
   cp libj.so /usr/lib/i386-linux-gnu/libj.so.9.01
-  chmod 644 /usr/lib/i386-linux-gnu/libj.so.9.01
+  chmod 755 /usr/lib/i386-linux-gnu/libj.so.9.01
  else
   if [ -d "/usr/lib" ] ; then
    cp libj.so /usr/lib/libj.so.9.01
-   chmod 644 /usr/lib/libj.so.9.01
+   chmod 755 /usr/lib/libj.so.9.01
   else
    echo "can not find lib directory"
    exit 1
@@ -101,11 +102,11 @@ fi
 if [ "$cpu" = "arm32" ] ; then
  if [ -d "/usr/lib/arm-linux-gnueabihf" ] ; then
   cp libj.so /usr/lib/arm-linux-gnueabihf/libj.so.9.01
-  chmod 644 /usr/lib/arm-linux-gnueabihf/libj.so.9.01
+  chmod 755 /usr/lib/arm-linux-gnueabihf/libj.so.9.01
  else
   if [ -d "/usr/lib" ] ; then
    cp libj.so /usr/lib/libj.so.9.01
-   chmod 644 /usr/lib/libj.so.9.01
+   chmod 755 /usr/lib/libj.so.9.01
   else
    echo "can not find lib directory"
    exit 1
