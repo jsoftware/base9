@@ -31,13 +31,14 @@ cd -
 
 mkdir -p /usr/share/j/9.01/addons/ide || { echo "can not create directory" ; exit 1; }
 mkdir -p /etc/j/9.01 || { echo "can not create directory" ; exit 1; }
+chmod 755 /etc/j || { echo "can not set permission" ; exit 1; }
 rm -rf /usr/share/j/9.01/system
 cp -r ../system /usr/share/j/9.01/.
 rm -rf /usr/share/j/9.01/tools
 cp -r ../tools /usr/share/j/9.01/.
 rm -rf /usr/share/j/9.01/icons
 cp -r icons /usr/share/j/9.01/.
-rm -rf /usr/share/j/9.01/addons/ide/jhs 
+rm -rf /usr/share/j/9.01/addons/ide/jhs
 cp -r ../addons/ide/jhs /usr/share/j/9.01/addons/ide/.
 find /usr/share/j/9.01 -type d -exec chmod a+rx {} \+
 find /usr/share/j/9.01 -type f -exec chmod a+r {} \+
@@ -51,7 +52,9 @@ mv ijconsole.sh /usr/bin/.
 chmod 755 /usr/bin/ijconsole.sh
 cp jconsole /usr/bin/ijconsole-9.01
 chmod 755 /usr/bin/ijconsole-9.01
-(cd /usr/bin && ln -sf ijconsole-9.01 ijconsole)
+rm -f /usr/bin/ijconsole
+update-alternatives --install /usr/bin/ijconsole ijconsole /usr/bin/ijconsole-9.01 901
+# (cd /usr/bin && ln -sf ijconsole-9.01 ijconsole)
 
 if [ "$cpu" = "intel64" ] ; then
  if [ -d "/usr/lib/x86_64-linux-gnu" ] ; then
