@@ -84,7 +84,7 @@ if. _1=r do. 0;~sdsockerror'' else. 0;r end.
 
 NB. =========================================================
 NB.*sdcleanup v close all sockets
-sdcleanup=: 3 : '0[(sdclose ::0:@] shutdownJ@(;&2)"0)^:(*@#) SOCKETS_jsocket_'
+sdcleanup=: 3 : '0[(sdclose ::0:"0@[ shutdownJ@(;&2)"0)^:(*@#)SOCKETS_jsocket_'
 
 NB. =========================================================
 NB.*sdinit v initialize
