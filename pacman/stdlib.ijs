@@ -101,7 +101,11 @@ smoutput m
 
 NB. ---------------------------------------------------------
 NB. install Qt library:
-if. 'Linux'-:UNAME do. return. end.
+if. 'Linux'-:UNAME do.
+  smoutput 'if libjqt can not be loaded, see this guide for installing Qt library'
+  smoutput 'https://code.jsoftware.com/wiki/Guides/Linux_Installation'
+  return.
+end.
 
 tgt=. jpath IFWIN{::'~install/Qt';'~bin/Qt5Core.dll'
 y=. (*#y){::0;y
