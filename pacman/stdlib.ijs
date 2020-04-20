@@ -102,7 +102,7 @@ smoutput m
 NB. ---------------------------------------------------------
 NB. install Qt library:
 if. 'Linux'-:UNAME do.
-  smoutput 'if libjqt can not be loaded, see this guide for installing Qt library'
+  smoutput 'If libjqt cannot be loaded, see this guide for installing the Qt library'
   smoutput 'https://code.jsoftware.com/wiki/Guides/Linux_Installation'
   return.
 end.
