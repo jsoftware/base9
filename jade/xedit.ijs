@@ -29,6 +29,18 @@ if. UNAME-:'Android' do.
 end.
 editor=. (Editor_j_;Editor_nox_j_){::~ nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
 if. 0=#editor do. EMPTY return. end.
+nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
+if. (UNAME-:'Linux')>nox do.
+  if. 1 e. r=. 'term' E. editor do.
+    if. '-e ' -: 3{. editor=. dlb (}.~ i.&' ') ({.I.r)}.editor do.
+      editor=. TermEmu, (('gnome-terminal'-:TermEmu){::' -e ';' -- '), dlb 3}.editor
+    else.
+      editor=. TermEmu, ' ', editor
+    end.
+  else.
+    editor=. TermEmu, (('gnome-terminal'-:TermEmu){::' -e ';' -- '), editor
+  end.
+end.
 if. 1 e. '%f' E. editor do.
   cmd=. editor stringreplace~ '%f';(dquote >@fboxname file);'%l';(":>:row)
 else.
@@ -41,7 +53,7 @@ try.
     else.
 NB. vi needs terminal for working
 NB. ok if terminal is provided as in 'x-terminal-emulator -e vi ... '
-      2!:1 cmd, (0=nox+.(1 -.@e. 'term' E. editor)*.(1 e. '/vi' E. editor)+.'vi'-:2{.editor)#' &'
+      2!:1 cmd, (0=nox)#' 1>/dev/null &'
     end.
   else.
     (x{0 _1) fork_jtask_ cmd
@@ -52,5 +64,36 @@ catch.
   smoutput msg
 end.
 EMPTY
+)
+
+linux_terminal=: <;._2]0 :0
+gnome-terminal
+konsole
+xterm
+urxvt
+rxvt
+lxterminal
+xfce4-terminal
+eterm
+terminator
+terminology
+st
+x-terminal-emulator
+)
+
+NB. =========================================================
+NB. dflttermemu ''
+NB.     return default TermEmu, or ''
+dflttermemu=: verb define
+nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
+if. ((UNAME-:'Linux') > nox) *. ''-: te=. nox{::TermEmu_j_;TermEmu_nox_j_ do.
+  for_t. linux_terminal do.
+    try. 2!:0'which ',(>t),' 2>/dev/null'
+      te=. >t
+      break.
+    catch. end.
+  end.
+end.
+te
 )
 

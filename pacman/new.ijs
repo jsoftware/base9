@@ -117,9 +117,8 @@ create it with: sudo update-alternatives --config x-terminal-emulator
 )
 
 get_terminal=: 3 : 0
-t=. 'x-terminal-emulator'
-if. 0=shell :: 0:'which ',t do. echo lter end.
-t
+if. 0=#TermEmu_j_ do. echo lter end.
+TermEmu_j_
 )
 
 Linux=: 3 : 0
@@ -157,7 +156,11 @@ else.
  if. type-:'jqt' do.
   e=. '"',c,'"'
  else.
-  e=. '<T> -e "\"<C>\"<A>"'rplc '<T>';(get_terminal'');'<C>';c;'<A>';arg
+  if. 'gnome-terminal' -: TermEmu=. get_terminal'' do.
+   e=. '<T> -- "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+  else.
+   e=. '<T> -e "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+  end.
  end.
 end.
 

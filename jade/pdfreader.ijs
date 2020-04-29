@@ -15,8 +15,7 @@ elseif. IFIOS do.
   jh '<a href="',(file2url cmd),'"</a>'
   EMPTY return.
 end.
-nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
-PDFReader=. nox{::PDFReader_j_;PDFReader_nox_j_
+PDFReader=. PDFReader_j_
 select. UNAME
 case. 'Win' do.
   ShellExecute=. 'shell32 ShellExecuteW > i x *w *w *w *w i'&cd
@@ -31,9 +30,6 @@ case. 'Win' do.
 case. 'Android' do.
   android_exec_host 'android.intent.action.VIEW';(utf8 ('file://'&,)@abspath^:(-.@isURL) cmd);'application/pdf';0
 case. do.
-  if. 0 = #PDFReader do.
-    PDFReader=. dfltpdfreader''
-  end.
   PDFReader=. dquote PDFReader
   cmd=. PDFReader,' ',(dquote cmd),' &'
   try.
@@ -50,32 +46,33 @@ end.
 EMPTY
 )
 
+linux_pdfreader=: <;._2]0 :0
+xdg-open
+evince
+kpdf
+xpdf
+okular
+acroread
+)
+
 NB. =========================================================
 NB. dfltpdfreader ''
 NB.     return default PDFReader, or ''
 dfltpdfreader=: verb define
 select. UNAME
+case. 'Android' do. ''
 case. 'Win' do. ''
 case. 'Darwin' do. 'open'
 case. do.
-  try.
-    2!:0'which xdg-open 2>/dev/null'
-    'xdg-open' return. catch. end.
-  try.
-    2!:0'which evince 2>/dev/null'
-    'evince' return. catch. end.
-  try.
-    2!:0'which kpdf 2>/dev/null'
-    'kpdf' return. catch. end.
-  try.
-    2!:0'which xpdf 2>/dev/null'
-    'xpdf' return. catch. end.
-  try.
-    2!:0'which okular 2>/dev/null'
-    'okular' return. catch. end.
-  try.
-    2!:0'which acroread 2>/dev/null'
-    'acroread' return. catch. end.
-  '' return.
+  nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
+  if. ((UNAME-:'Linux') > nox) *. ''-: te=. nox{::PDFReader_j_;PDFReader_nox_j_ do.
+    for_t. linux_pdfreader do.
+      try. 2!:0'which ',(>t),' 2>/dev/null'
+        te=. >t
+        break.
+      catch. end.
+    end.
+  end.
+  te
 end.
 )
