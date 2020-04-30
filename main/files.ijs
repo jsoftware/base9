@@ -49,7 +49,7 @@ f2utf8=: ]
 
 NB. =========================================================
 NB.*fboxname v fix and box filename
-fboxname=: <@(fixdotdot^:IFIOS)@jpath_j_@(8 u: >) ::]
+fboxname=: <@(fixdotdot^:IFIOS)@jpath_j_@(8 u: >) ::]`]@.(32 2 131027 262144 -.@e.~ 3!:0)
 
 NB. =========================================================
 NB.*fappend v append text to file
