@@ -67,9 +67,9 @@ EMPTY
 )
 
 linux_terminal=: <;._2]0 :0
+x-terminal-emulator
 gnome-terminal
 konsole
-xterm
 urxvt
 rxvt
 lxterminal
@@ -78,7 +78,7 @@ eterm
 terminator
 terminology
 st
-x-terminal-emulator
+xterm
 )
 
 NB. =========================================================
@@ -96,4 +96,3 @@ if. ((UNAME-:'Linux') > nox) *. ''-: te=. nox{::TermEmu_j_;TermEmu_nox_j_ do.
 end.
 te
 )
-
