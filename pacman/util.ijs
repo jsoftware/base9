@@ -323,7 +323,7 @@ end.
 NB. =========================================================
 NB. read version from jqt binary
 getjqtversion=: 3 : 0
-suffix=. (IFUNIX>'/'e.LIBFILE)#'-9.01'  NB. deb install
+suffix=. (IFUNIX>'/'e.LIBFILE)#'-9.02'  NB. deb install
 dat=. fread '~bin/jqt',suffix,IFWIN#'.exe'
 if. dat-:_1 do. '' return. end.
 ndx=. I. 'jqtversion:' E. dat

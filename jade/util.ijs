@@ -309,7 +309,7 @@ f=. jpath '~addons/docs/help/',y
 if. fexist ({.~ i:&'#') f do.
   browse file2url f
 else.
-  f=. 'http://www.jsoftware.com/docs/help', '901'
+  f=. 'http://www.jsoftware.com/docs/help', '902'
   browse f,'/',y
 end.
 )
