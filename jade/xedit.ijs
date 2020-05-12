@@ -69,6 +69,7 @@ EMPTY
 linux_terminal=: <;._2]0 :0
 x-terminal-emulator
 gnome-terminal
+mate-terminal
 konsole
 urxvt
 rxvt
