@@ -29,7 +29,18 @@ end.
 getqtbin y
 msg=. (+/ 2 1 * IFWIN,'Darwin'-:UNAME) pick 'jqt.sh';'the jqt icon';'jqt.cmd'
 if. '/usr/share/j/' -: 13{. jpath'~install' do. msg=. 'jqt' end.
+if. 'Linux'-:UNAME do. qt_ldd_test'' end.
 smoutput 'Exit and restart J using ',msg
+)
+
+NB. =========================================================
+qt_ldd_test=: 3 : 0
+d=. <;._2 shell'ldd ',jpath'~bin/jqt'
+b=. d#~;+./each (<'not found') E. each d
+if. #b do.
+  echo'jqt dependencies not found - jqt will not start until these are resolved'
+  echo >b
+end.
 )
 
 NB. =========================================================
