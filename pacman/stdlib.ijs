@@ -29,14 +29,18 @@ end.
 getqtbin y
 msg=. (+/ 2 1 * IFWIN,'Darwin'-:UNAME) pick 'jqt.sh';'the jqt icon';'jqt.cmd'
 if. '/usr/share/j/' -: 13{. jpath'~install' do. msg=. 'jqt' end.
-if. 'Linux'-:UNAME do. qt_ldd_test'' end.
 smoutput 'Exit and restart J using ',msg
 )
 
 NB. =========================================================
 qt_ldd_test=: 3 : 0
-d=. <;._2 shell'ldd ',jpath'~bin/jqt'
-d=. d,<;._2 shell'ldd ',jpath'~bin/libjqt.so'
+if. '/usr/share/j/' -: 13{. jpath'~install' do.
+  d=. <;._2 hostcmd_jpacman_ 'ldd /usr/bin/jqt-9.02'
+  d=. d,<;._2 hostcmd_jpacman_ 'ldd ',y,'/libjqt.so.9.02'
+else.
+  d=. <;._2 hostcmd_jpacman_ 'ldd ',jpath'~bin/jqt'
+  d=. d,<;._2 hostcmd_jpacman_ 'ldd ',jpath'~bin/libjqt.so'
+end.
 b=. d#~;+./each (<'not found') E. each d
 if. #b do.
   echo'jqt dependencies not found - jqt will not start until these are resolved'
@@ -91,8 +95,8 @@ else.
       end.
       echo 'install libjqt.so to ',d1
       hostcmd_jpacman_ 'rm -f /usr/bin/jqt'
-      echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && chmod 644 libjqt.so && cp libjqt.so ',d1,'/libjqt.so.9.02 && ldconfig'
-      hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && chmod 644 libjqt.so && cp libjqt.so ',d1,'/libjqt.so.9.02 && ldconfig'
+      echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && cp libjqt.so ',d1,'/libjqt.so.9.02 && chmod 755 ',d1,'/libjqt.so.9.02 && ldconfig'
+      hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && cp libjqt.so ',d1,'/libjqt.so.9.02 && chmod 755 ',d1,'/libjqt.so.9.02 && ldconfig'
       echo 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 902'
       hostcmd_jpacman_ 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 902'
     else.
@@ -114,6 +118,7 @@ smoutput m
 NB. ---------------------------------------------------------
 NB. install Qt library:
 if. 'Linux'-:UNAME do.
+  qt_ldd_test d1
   smoutput 'If libjqt cannot be loaded, see this guide for installing the Qt library'
   smoutput 'https://code.jsoftware.com/wiki/Guides/Linux_Installation'
   return.
