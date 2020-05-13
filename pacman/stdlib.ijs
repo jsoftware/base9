@@ -36,10 +36,11 @@ smoutput 'Exit and restart J using ',msg
 NB. =========================================================
 qt_ldd_test=: 3 : 0
 d=. <;._2 shell'ldd ',jpath'~bin/jqt'
+d=. d,<;._2 shell'ldd ',jpath'~bin/libjqt.so'
 b=. d#~;+./each (<'not found') E. each d
 if. #b do.
   echo'jqt dependencies not found - jqt will not start until these are resolved'
-  echo >b
+  echo >~.b
 end.
 )
 
