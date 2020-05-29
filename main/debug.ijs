@@ -139,11 +139,14 @@ NB.-If indices is empty, defaults to all
 NB.-example:
 NB.+ dblocals ''            NB. display all local names in stack
 NB.+'abc Z' dblocals i.5    NB. display names abc and Z where found in first 5 definitions on stack
+NB.+      0 dblocals i.5    NB. display names (name only) found in first 5 definitions on stack
 dblocals=: _1&$: : (4 : 0)
 stk=. }. 13!:13''
 if. 0=#y do. y=. a: else. y=. (y e. i.#stk) # y end.
 loc=. (<y ; 0 7) { stk
-if. -. x-:_1 do.
+if. x-: 0 do.
+  {."1 &.>@:{:"1 loc
+elseif. -. x-:_1 do.
   t=. ;: ::] x
   f=. ({."1 e. t"_) # ]
   ({."1 loc) ,. f &.> {:"1 loc
