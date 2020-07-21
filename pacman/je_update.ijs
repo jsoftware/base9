@@ -4,7 +4,7 @@ NB. je_update_jpacman_''
 NB. should have been called je_upgrade
 je_update=: 3 : 0
 if. IFIOS+.UNAME-:'Android' do. log'upgrade not supported for this platform' return. end.
-'jxxx jbithw platform br comm web dt'=. <;._1 '/',9!:14''
+'jxxx jbithw platform br comm web dt'=. 7 {. <;._1 '/',9!:14''
 if. -.(comm-:'commercial')*.web-:'www.jsoftware.com' do. log'upgrade not possible for this install' return. end.
 br=. (br i.'-'){.br
 path=. 'http://www.jsoftware.com/download/jengine/',jxxx,'-',br,'/'

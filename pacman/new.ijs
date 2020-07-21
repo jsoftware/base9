@@ -29,7 +29,7 @@ i.0 0
 
 NB. shortcut 'jc' or 'jhs' or 'jqt' - create desktop launch icon
 shortcut=: 3 : 0
-try. ".UNAME,' y' catchd. echo 'create ',y,' launch icon failed' end. 
+try. ".UNAME,' y' catchd. echo 'create ',y,' launch icon failed' end.
 )
 
 defaults=: 3 : 0
@@ -62,7 +62,7 @@ Winx=: 3 : 0
 select. y
 case.'jc' do.
  win'jc' ;'jconsole';'jgray.ico';LIB
-case. 'jhs' do. 
+case. 'jhs' do.
  win'jhs';'jconsole';'jblue.ico';LIB,A
 case. 'jqt' do.
  win'jqt';'jqt'     ;'jgreen.ico';LIB
@@ -130,7 +130,7 @@ Linuxx=: 3 : 0
 select. y
 case.'jc' do.
  linux'jc' ;'jconsole';'jgray.png';LIB
-case. 'jhs' do. 
+case. 'jhs' do.
  linux'jhs';'jconsole';'jblue.png';LIB,A
 case. 'jqt' do.
  linux'jqt';'jqt'     ;'jgreen.png';LIB
@@ -145,7 +145,7 @@ linux=: 3 : 0
 n=. type,N
 f=. L,type,N,DS
 c=. hostpathsep jpath '~bin/',bin
-rh=. 1<#fread '/etc/redhat-release' 
+rh=. 1<#fread '/etc/redhat-release'
 if. rh do.
  if. type-:'jqt' do.
   e=. c
@@ -208,7 +208,7 @@ Darwinx=: 3 : 0
 select. y
 case.'jc' do.
  darwin'jc' ;'jconsole';'jgray.icns';LIB
-case. 'jhs' do. 
+case. 'jhs' do.
  darwin'jhs';'jconsole';'jblue.icns';LIB,A
 case. 'jqt' do.
  darwin'jqt';'jqt'     ;'jgreen.icns';LIB
@@ -241,7 +241,7 @@ r fwrite f,'/Contents/MacOS/apprun'
 2!:0'chmod -R +x ',f
 )
 
-new_launch=: 0 : 0 
+new_launch=: 0 : 0
 #!/bin/sh
 echo '#!/bin/sh' > "<COM>"
 echo '"<C>" <A>' >> "<COM>"
