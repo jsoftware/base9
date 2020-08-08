@@ -6,7 +6,7 @@ NB. build adverbs
 select. UNAME
 case. 'Win' do.
   c=. >IFWINCE{'wsock32';'winsock'
-  ccdm=: 1 : ('(''"',c,,'" '',x)&(15!:0)')
+  ccdm=: 1 : ('(''"',c,,'" '',u)&(15!:0)')
   ncdm=: ccdm
   scdm=: ccdm
   wcdm=: ccdm
@@ -15,7 +15,7 @@ case. 'Win' do.
   ioctlsocketJ=: 'ioctlsocket i i i *i' scdm
 case. do.
   c=. unxlib 'c'
-  ccdm=: 1 : ('(''"',c,'" '',x)&(15!:0)')
+  ccdm=: 1 : ('(''"',c,'" '',u)&(15!:0)')
   ncdm=: ccdm
   scdm=: ccdm
   wcdm=: 1 : ']'
