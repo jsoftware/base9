@@ -67,7 +67,7 @@ NB.*bind c binds argument to a monadic verb
 NB.-binds monadic verb to an argument creating a new verb
 NB.-that ignores its argument.
 NB.-e.g.  fini=: sminfo bind 'finished...'
-bind=: 2 : 'x@(y"_)'
+bind=: 2 : 'u@(v"_)'
 
 NB. =========================================================
 NB.*boxopen v box argument if open
@@ -568,7 +568,7 @@ NB.*toHOST v converts character strings to Host delimiter
 NB.*toJ v converts character strings to J delimiter (linefeed)
 3 : 0''
 h=. 9!:12''
-subs=. 2 : 'x I. @(e.&y)@]} ]'
+subs=. 2 : 'm I. @(e.&n)@]} ]'
 toJ=: (LF subs CR) @: (#~ -.@(CRLF&E.@,))
 toCRLF=: 2&}. @: ; @: (((CR&,)&.>)@<;.1@(LF&,)@toJ)
 if. h=5 do.
