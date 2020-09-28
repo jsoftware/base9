@@ -566,12 +566,11 @@ NB. =========================================================
 NB.*toCRLF v converts character strings to CRLF delimiter
 NB.*toHOST v converts character strings to Host delimiter
 NB.*toJ v converts character strings to J delimiter (linefeed)
-3 : 0''
-h=. 9!:12''
-subs=. 2 : 'm I. @(e.&n)@]} ]'
-toJ=: (LF subs CR) @: (#~ -.@(CRLF&E.@,))
+toJ=: (LF I.@(CR=])}]) @: (#~ -.@(CRLF&E.@,))
 toCRLF=: 2&}. @: ; @: (((CR&,)&.>)@<;.1@(LF&,)@toJ)
-if. h=5 do.
+
+3 : 0''
+if. 5=9!:12'' do.
   toHOST=: ]
 else.
   toHOST=: toCRLF

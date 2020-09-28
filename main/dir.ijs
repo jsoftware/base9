@@ -145,7 +145,7 @@ if. +/ # &> c do.
 
 end.
 
-if. 0=#;res do. r=. r,'no difference',LF end.
+if. 0=+/# S:0 res do. r=. r,'no difference',LF end.
 
 }:r
 )
