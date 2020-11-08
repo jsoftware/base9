@@ -151,8 +151,8 @@ if. #sd do.
     sd=. s
   end.
   dat=. dat,fd
-  b=. dat e. fd
-  c=. dat e. sd
+  b=. dat = fd
+  c=. +./ (,sd) =/ dat
   d=. ~:/\ c                       NB. mask inside sds
   fmsk=. b > d                     NB. end of fields
   smsk=. (> (0 , }:)) c            NB. first in group of sds
