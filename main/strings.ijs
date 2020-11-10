@@ -138,7 +138,7 @@ NB.+┌───────────┬─┬────┐
 NB.+│hello|world│4│84.3│
 NB.+└───────────┴─┴────┘
 chopstring=: 3 : 0
-(' ';'""') chopstring y
+(' ';'"') chopstring y
 :
 dat=. y
 'fd sd'=. 2{. boxopen x
@@ -152,7 +152,7 @@ if. #sd do.
   end.
   dat=. dat,fd
   b=. dat = fd
-  c=. +./ (,sd) =/ dat
+  c=. dat = {.sd
   d=. ~:/\ c                       NB. mask inside sds
   fmsk=. b > d                     NB. end of fields
   smsk=. (> (0 , }:)) c            NB. first in group of sds
