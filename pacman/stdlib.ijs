@@ -35,8 +35,8 @@ smoutput 'Exit and restart J using ',msg
 NB. =========================================================
 qt_ldd_test=: 3 : 0
 if. '/usr/share/j/' -: 13{. jpath'~install' do.
-  d=. <;._2 hostcmd_jpacman_ 'ldd /usr/bin/jqt-9.02'
-  d=. d,<;._2 hostcmd_jpacman_ 'ldd ',y,'/libjqt.so.9.02'
+  d=. <;._2 hostcmd_jpacman_ 'ldd /usr/bin/jqt-9.03'
+  d=. d,<;._2 hostcmd_jpacman_ 'ldd ',y,'/libjqt.so.9.03'
 else.
   d=. <;._2 hostcmd_jpacman_ 'ldd ',jpath'~bin/jqt'
   d=. d,<;._2 hostcmd_jpacman_ 'ldd ',jpath'~bin/libjqt.so'
@@ -95,10 +95,10 @@ else.
       end.
       echo 'install libjqt.so to ',d1
       hostcmd_jpacman_ 'rm -f /usr/bin/jqt'
-      echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && cp libjqt.so ',d1,'/libjqt.so.9.02 && chmod 755 ',d1,'/libjqt.so.9.02 && ldconfig'
-      hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && cp libjqt.so ',d1,'/libjqt.so.9.02 && chmod 755 ',d1,'/libjqt.so.9.02 && ldconfig'
-      echo 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 903'
-      hostcmd_jpacman_ 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 903'
+      echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.03 && cp libjqt.so ',d1,'/libjqt.so.9.03 && chmod 755 ',d1,'/libjqt.so.9.03 && ldconfig'
+      hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.03 && cp libjqt.so ',d1,'/libjqt.so.9.03 && chmod 755 ',d1,'/libjqt.so.9.03 && ldconfig'
+      echo 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.03 903'
+      hostcmd_jpacman_ 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.03 903'
     else.
       hostcmd_jpacman_ 'cd ',(dquote d),' && tar xzf ',(dquote p)
     end.
