@@ -303,18 +303,6 @@ res
 )
 
 NB. =========================================================
-NB. htmlhelp v open file in browser
-htmlhelp=: 3 : 0
-f=. jpath '~addons/docs/help/',y
-if. fexist ({.~ i:&'#') f do.
-  browse file2url f
-else.
-  f=. 'http://www.jsoftware.com/docs/help', '902'
-  browse f,'/',y
-end.
-)
-
-NB. =========================================================
 NB. browseref v open j dictionary in browser
 browseref=: 3 : 0
 htmlhelp 'dictionary/',y

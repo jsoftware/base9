@@ -24,7 +24,7 @@ else
 fi
 
 cd ..
-[ "j902" = ${PWD##*/} ] || { echo "directory not j902" ; exit 1; }
+[ "j903" = ${PWD##*/} ] || { echo "directory not j903" ; exit 1; }
 cd -
 
 [ "$(id -u)" = "0" ] || { echo "need sudo" ; exit 1; }
@@ -54,7 +54,7 @@ chmod 755 /usr/bin/ijconsole.sh
 cp jconsole /usr/bin/ijconsole-9.02
 chmod 755 /usr/bin/ijconsole-9.02
 rm -f /usr/bin/ijconsole
-update-alternatives --install /usr/bin/ijconsole ijconsole /usr/bin/ijconsole-9.02 902
+update-alternatives --install /usr/bin/ijconsole ijconsole /usr/bin/ijconsole-9.02 903
 # (cd /usr/bin && ln -sf ijconsole-9.02 ijconsole)
 
 if [ "$cpu" = "intel64" ] ; then

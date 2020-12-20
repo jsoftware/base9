@@ -73,7 +73,7 @@ elseif. do.
   z=. 'jqt-mac',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
   z1=. 'libjqt.dylib'
 end.
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j902/qtide/',z
+'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j903/qtide/',z
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
@@ -97,8 +97,8 @@ else.
       hostcmd_jpacman_ 'rm -f /usr/bin/jqt'
       echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && cp libjqt.so ',d1,'/libjqt.so.9.02 && chmod 755 ',d1,'/libjqt.so.9.02 && ldconfig'
       hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt /usr/bin/jqt-9.02 && cp libjqt.so ',d1,'/libjqt.so.9.02 && chmod 755 ',d1,'/libjqt.so.9.02 && ldconfig'
-      echo 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 902'
-      hostcmd_jpacman_ 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 902'
+      echo 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 903'
+      hostcmd_jpacman_ 'update-alternatives --install /usr/bin/jqt jqt /usr/bin/jqt-9.02 903'
     else.
       hostcmd_jpacman_ 'cd ',(dquote d),' && tar xzf ',(dquote p)
     end.
@@ -133,7 +133,7 @@ if. IFWIN do.
 else.
   z=. 'qt512-mac-',((y-:'slim')#'slim-'),(IF64 pick 'x86';'x64'),'.zip'
 end.
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j902/qtlib/',z
+'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j903/qtlib/',z
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
