@@ -55,7 +55,7 @@ else.
     2!:0 'ldconfig'
   end.
 end.
-'upgrade installed - shutdown, restart, and check JVERSION'
+'upgrade installed - restart J, and check JVERSION'
 )
 
 NB. y is 'j903';'beta';'linux';'j64';'libjavx.so'
