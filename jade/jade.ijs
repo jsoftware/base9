@@ -98,7 +98,7 @@ j=. '((1<#$t)#(":$t),''$''),":,t'
 j=. 'if. L. t=. ".y do. 5!:5 <y return. end.';j
 j=. 'if. 0~:4!:0 <y do. 5!:5 <y return. end.';j
 a=. (,&'=: ',sub @ (3 : j)) each y
-; ((wid <. #&> a) {.each a) ,each LF
+}: ; ((wid <. #&> a) {.each a) ,each LF
 )
 
 NB. =========================================================
