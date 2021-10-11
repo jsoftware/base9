@@ -20,6 +20,7 @@ data sdsendto        socket, flags, family, address, port    send SOCK_DGRAM soc
      sdgethostbyname name                           get an address from a name.
      sdgethostbyaddr AF_INET, address_name          get a name from an address.
      sdgetsockets                                   get result code and all socket numbers.
+     sdasync         socket                         set asynchronous socket
      sdcleanup                                      close all sockets and reset
      sdcheck         returncode;result              check return code for errors
      sderror         returncode                     get error message from error number

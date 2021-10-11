@@ -155,6 +155,15 @@ rc0 bindJ (>{.y);(sockaddr_in y);sockaddr_in_sz
 )
 
 NB. =========================================================
+NB.*sdasync v set up async connection for the socket
+sdasync=: 3 : 0"0
+if. IFUNIX do. 'not implemented under Unix - please use sdselect' assert 0 end.
+flags=. OR/ FD_READ,FD_WRITE,FD_OOB,FD_ACCEPT,FD_CONNECT,FD_CLOSE
+if. 0= hwnd=. ".@:wd ::0:'qhwndx' do. 'sdasync not implemented - please use sdselect' assert 0 end.
+if. >{.WSAAsyncSelectJ ({.y);hwnd;(16b8000+629);flags do. sdsockerror '' else. 0 end.
+)
+
+NB. =========================================================
 NB.*sdlisten v set up listener for the socket
 NB. y - socket;queue_length
 NB. SOMAXCONN - The maximum length of the queue of pending connections
