@@ -95,8 +95,8 @@ else.
     end.
     echo 'install libjqt.',suffix,' to ',d1
     hostcmd_jpacman_ 'rm -f ',BINPATH,'/jqt'
-    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',suffix,'.9.03 && chmod 755 ',d1,'/libjqt.',suffix,'.9.03 && ',('Darwin'-:UNAME){::'ldconfig';'update_dyld_shared_cache'
-    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',suffix,'.9.03 && chmod 755 ',d1,'/libjqt.',suffix,'.9.03 && ',('Darwin'-:UNAME){::'ldconfig';'update_dyld_shared_cache'
+    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',suffix,'.9.03 && chmod 755 ',d1,'/libjqt.',suffix,'.9.03', ('Linux'-:UNAME)#' && ldconfig'
+    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',suffix,'.9.03 && chmod 755 ',d1,'/libjqt.',suffix,'.9.03', ('Linux'-:UNAME)#' && ldconfig'
     if. 'Linux'-:UNAME do.
       echo 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.03 903'
       hostcmd_jpacman_ 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.03 903'

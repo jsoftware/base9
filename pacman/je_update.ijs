@@ -53,7 +53,7 @@ else.
     2!:0 'chmod 755 "',DLL,'"'
     if. 'root'-: user=. 2!:5'user' do.
       2!:0 'chown ',user,':',user,' "',DLL,'"'
-      2!:0 ('Darwin'-:UNAME){::'ldconfig';'update_dyld_shared_cache'
+      2!:0^:('Linux'-:UNAME) 'ldconfig'
     end.
   end.
 end.
