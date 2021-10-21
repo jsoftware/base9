@@ -67,13 +67,13 @@ NB. provision for jqt-rhel7-x64.tar.gz jqt-rhel7slim-x64.tar.gz
   elseif. do.
     z=. 'jqt-',((y-:'slim') pick 'linux';'slim'),'-',(IF64 pick 'x86';'x64'),'.tar.gz'
   end.
-  z1=. 'libjqt.so'
+  z1=. 'libjqt.',suffix=. 'so'
 elseif. IFWIN do.
   z=. 'jqt-win',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
-  z1=. 'jqt.dll'
+  z1=. 'jqt.',suffix=. 'dll'
 elseif. do.
   z=. 'jqt-mac',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
-  z1=. 'libjqt.dylib'
+  z1=. 'libjqt.',suffix=. 'dylib'
 end.
 'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j903/qtide/',z
 if. rc do.
@@ -86,7 +86,7 @@ else.
   if. FHS do.
     if. 'Darwin'-:UNAME do.
       d1=. (({.~ i:&'/')BINPATH),'/lib/'
-    elseif IFRASPI do.
+    elseif. IFRASPI do.
       d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/arm-linux-gnueabihf/';'/lib/aarch64-linux-gnu/'
     elseif. do.
       if. -.fexist d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/i386-linux-gnu/';'/lib/x86_64-linux-gnu/' do.

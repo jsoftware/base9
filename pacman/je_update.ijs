@@ -57,7 +57,7 @@ else.
     end.
   end.
 end.
-'upgrade installed - restart J, and check JVERSION'
+'upgrade installed - exit, restart J, and check JVERSION'
 )
 
 NB. y is 'j903';'beta';'linux';'j64';'libjavx.so'
@@ -80,7 +80,7 @@ if. FHS*.IFUNIX do.
   sub=. '.',({.v),'.',}.v    NB. x j903 -> libj.so.9.03
   if. 'Darwin'-:UNAME do.
     d1=. (({.~ i:&'/')BINPATH),'/lib/'
-  elseif IFRASPI do.
+  elseif. IFRASPI do.
     d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/arm-linux-gnueabihf/';'/lib/aarch64-linux-gnu/'
   elseif. do.
     if. -.fexist d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/i386-linux-gnu/';'/lib/x86_64-linux-gnu/' do.
