@@ -11,7 +11,7 @@ NB. create SystemFolders
 bin=. BINPATH
 install=. (bin i: '/'){.bin
 fhs=. (FHS"_)^:(0=4!:0<'FHS')(5=systype)*.0=#1!:0<BINPATH,'/../system/util/boot.ijs'
-install=. (0&~:fhs){::install;omitversion{::'/usr/share/j/9.03';'/usr/share/j/0'
+install=. (0&~:fhs){::install;install,'/share/j/',omitversion{::'9.03';'0'
 install=. (INSTALLROOT"_)^:(0=4!:0<'INSTALLROOT') install
 addons=. install,'/addons'
 system=. install,'/system'

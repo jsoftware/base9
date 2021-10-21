@@ -49,10 +49,12 @@ if. UNAME-:'Win' do.
 else.
   if. -.ferase DLL do. log'upgrade failed - ferase libj.so.old - exit all J sessions and try again' return. end.
   if. -.DLL frename NEW do. log'upgrade failed - rename libj.so.new to libj.so' return. end.
-  if. FHS*.UNAME-:'Linux' do.
-    2!:0 'chmod 644 "',DLL,'"'
-    2!:0 'chown root:root "',DLL,'"'
-    2!:0 'ldconfig'
+  if. FHS*.IFUNIX do.
+    2!:0 'chmod 755 "',DLL,'"'
+    if. 'root'-: user=. 2!:5'user' do.
+      2!:0 'chown ',user,':',user,' "',DLL,'"'
+      2!:0 ('Darwin'-:UNAME){::'ldconfig';'update_dyld_shared_cache'
+    end.
   end.
 end.
 'upgrade installed - restart J, and check JVERSION'
@@ -73,16 +75,16 @@ i=. ('Win';'Darwin')i.<UNAME
 plat=. ;i{'windows';'darwin';IFRASPI{::'linux';'raspberry'
 name=. ;i{'j.dll';'libj.dylib';'libj.so'
 bname=. '~bin/',name
-if. FHS*.UNAME-:'Linux' do.
+if. FHS*.IFUNIX do.
   v=. ({.~i.&'/')}.9!:14''
   sub=. '.',({.v),'.',}.v    NB. x j903 -> libj.so.9.03
-  if. fexist '/etc/redhat-release' do.
-    d1=. IF64{::'/usr/lib/';'/usr/lib64/'
-  else.
-    if. IFRASPI do.
-      d1=. IF64{::'/usr/lib/arm-linux-gnueabihf/';'/usr/lib/aarch64-linux-gnu/'
-    elseif. do.
-      d1=. IF64{::'/usr/lib/i386-linux-gnu/';'/usr/lib/x86_64-linux-gnu/'
+  if. 'Darwin'-:UNAME do.
+    d1=. (({.~ i:&'/')BINPATH),'/lib/'
+  elseif IFRASPI do.
+    d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/arm-linux-gnueabihf/';'/lib/aarch64-linux-gnu/'
+  elseif. do.
+    if. -.fexist d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/i386-linux-gnu/';'/lib/x86_64-linux-gnu/' do.
+      d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/';'/lib64/'
     end.
   end.
   bname=. d1,name,sub
