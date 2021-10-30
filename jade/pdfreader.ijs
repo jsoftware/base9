@@ -60,8 +60,8 @@ NB. dfltpdfreader ''
 NB.     return default PDFReader, or ''
 dfltpdfreader=: verb define
 select. UNAME
-case. 'Android' do. ''
 case. 'Win' do. ''
+case. 'Android' do. ''
 case. 'Darwin' do. 'open'
 case. do.
   nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'

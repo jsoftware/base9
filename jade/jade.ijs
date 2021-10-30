@@ -113,7 +113,7 @@ NB.-example:
 NB.+   wcsize''
 NB.+79 24
 wcsize=: 3 : 0
-if. (-.IFQT+.IFJNET+.IFJHS+.IFIOS) *. UNAME-:'Linux' do.
+if. (IFQT+.IFJNET+.IFJHS+.IFIOS+.UNAME-:'Android') < IFUNIX do.
   |.@".@(-.&LF)@(2!:0) :: (Cwh_j_"_) '/bin/stty size 2>/dev/null'
 else.
   (Cwh_j_"_)`((0 ". wd) :: (Cwh_j_"_))@.IFQT 'sm get termcwh'

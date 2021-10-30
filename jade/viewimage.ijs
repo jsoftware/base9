@@ -58,8 +58,8 @@ NB. dfltimageviewer ''
 NB.     return default imageviewer, or ''
 dfltimageviewer=: verb define
 select. UNAME
-case. 'Android' do. ''
 case. 'Win' do. ''
+case. 'Android' do. ''
 case. 'Darwin' do. 'open'
 case. do.
   try.
