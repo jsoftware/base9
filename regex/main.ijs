@@ -75,7 +75,9 @@ pat=. >{.x
 new=. {:x
 if. L. pat do. 'pat ndx'=. pat else. ndx=. ,0 end.
 if. 1 ~: #$ ndx do. 13!:8[3 end.
-mat=. ({.ndx) {"2 pat rxmatches y
+m=. pat rxmatches y
+if. 0 e. $m do. y return. end.
+mat=. ({.ndx) {"2 m
 new mat rxmerge y
 )
 
