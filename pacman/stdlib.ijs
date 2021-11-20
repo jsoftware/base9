@@ -116,7 +116,7 @@ smoutput m
 
 NB. ---------------------------------------------------------
 NB. install Qt library:
-if. IFUNIX do.
+if. 'Linux'-:UNAME do.
   qt_ldd_test d1
   smoutput 'If libjqt cannot be loaded, see this guide for installing the Qt library'
   smoutput 'https://code.jsoftware.com/wiki/Guides/Linux_Installation'
