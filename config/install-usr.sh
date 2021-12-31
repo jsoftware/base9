@@ -25,6 +25,7 @@ cd -
 
 if [ "Darwin" = "$(uname)" ]; then
 EXT=dylib
+VEXT=9.03.dylib
 if [ "arm64" = "$cpu" ]; then
  BIN=/opt/homebrew/bin
  ETC=/opt/homebrew/etc
@@ -38,6 +39,7 @@ else
 fi
 else
 EXT=so
+VEXT=so.9.03
 BIN=/usr/bin
 ETC=/etc
 SHR=/usr/share
@@ -48,8 +50,10 @@ elif [ "arm32" = "$cpu" ]; then
 elif [ "x86_64" = "$cpu" ]; then
  if [ -d /usr/lib/x86_64-linux-gnu ]; then
  LIB=/usr/lib/x86_64-linux-gnu
- else
+ elif [ -d /usr/lib64 ]; then
  LIB=/usr/lib64
+ else
+ LIB=/usr/lib
  fi
 else
  if [ -d /usr/lib/i686-linux-gnu ]; then
@@ -96,11 +100,11 @@ else
 fi
 
 if [ -d "$LIB" ] ; then
-if [ -f "$LIB/libj.$EXT.9.03" ] ; then
-mv "$LIB/libj.$EXT.9.03" /tmp/libj.$EXT.9.03.old
+if [ -f "$LIB/libj.$VEXT" ] ; then
+mv "$LIB/libj.$VEXT" /tmp/libj.$VEXT.old
 fi
-cp libj.$EXT $LIB/libj.$EXT.9.03
-chmod 755 $LIB/libj.$EXT.9.03
+cp libj.$EXT "$LIB/libj.$VEXT"
+chmod 755 "$LIB/libj.$VEXT"
 fi
 
 if [ "Linux" = "$(uname)" ]; then

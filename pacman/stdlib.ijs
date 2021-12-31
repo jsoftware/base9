@@ -36,9 +36,10 @@ NB. =========================================================
 qt_ldd_test=: 3 : 0
 ldd=. ('Darwin'-:UNAME){::'ldd';'otool -L'
 suffix=. ('Darwin'-:UNAME){::'so';'dylib'
+vsuffix=. ('Darwin'-:UNAME){::'so.9.03';'9.03.dylib'
 if. FHS*.IFUNIX do.
   d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-9.03'
-  d=. d,<;._2 hostcmd_jpacman_ ldd,' ',y,'/libjqt.',suffix,'.9.03'
+  d=. d,<;._2 hostcmd_jpacman_ ldd,' ',y,'/libjqt.',vsuffix
 else.
   d=. <;._2 hostcmd_jpacman_ ldd,' ',jpath'~bin/jqt'
   d=. d,<;._2 hostcmd_jpacman_ ldd,' ',jpath'~bin/libjqt.',suffix
@@ -95,8 +96,8 @@ else.
     end.
     echo 'install libjqt.',suffix,' to ',d1
     hostcmd_jpacman_ 'rm -f ',BINPATH,'/jqt'
-    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',suffix,'.9.03 && chmod 755 ',d1,'/libjqt.',suffix,'.9.03', ('Linux'-:UNAME)#' && ldconfig'
-    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',suffix,'.9.03 && chmod 755 ',d1,'/libjqt.',suffix,'.9.03', ('Linux'-:UNAME)#' && ldconfig'
+    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ('Linux'-:UNAME)#' && ldconfig'
+    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ('Linux'-:UNAME)#' && ldconfig'
     if. 'Linux'-:UNAME do.
       echo 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.03 903'
       hostcmd_jpacman_ 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.03 903'
