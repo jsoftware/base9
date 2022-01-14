@@ -109,7 +109,7 @@ if. def e.~ <,':' do.
 end.
 min=. 0>.ln-before [ max=. (<:#def)<.ln+after
 ctx=. ((,.ln=range){' >'),"1 '[',"1 (":,.range) ,"1 ('] ') ,"1 >def{~range=. min + i. >:max-min
-> (<'@@ ', name, '[', (dyad#':'), (":ln) ,'] *', (nc{' acv'),' @@ ', src), def0, <"1 ctx
+; ,&LF&.> (<'@@ ', name, '[', (dyad#':'), (":ln) ,'] *', (nc{' acv'),' @@ ', src), def0, <@dtb "1 ctx
 )
 
 NB. =========================================================
