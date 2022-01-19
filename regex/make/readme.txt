@@ -1,4 +1,4 @@
-These are the shell scripts used to build the J903 pcre2 shared libraries.
+These are the shell scripts used to build the J904 pcre2 shared libraries.
 
 In each case, check the paths set in each script for R and S are correct.
 

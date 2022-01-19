@@ -60,8 +60,8 @@ end.
 'upgrade installed - exit, restart J, and check JVERSION'
 )
 
-NB. y is 'j903';'beta';'linux';'j64';'libjavx.so'
-NB. https://www.jsoftware.com/download/jengine/j903-beta/linux/j64/libj.so
+NB. y is 'j904';'beta';'linux';'j64';'libjavx.so'
+NB. https://www.jsoftware.com/download/jengine/j904-beta/linux/j64/libj.so
 je_get=: 3 : 0
 'jxxx br plat bits name'=. y
 arg=. 'http://www.jsoftware.com/download/jengine/',jxxx,'-',br,'/',plat,'/',bits,'/',name
@@ -77,7 +77,7 @@ name=. ;i{'j.dll';'libj.dylib';'libj.so'
 bname=. '~bin/',name
 if. FHS*.IFUNIX do.
   v=. ({.~i.&'/')}.9!:14''
-  sub=. '.',({.v),'.',}.v    NB. x j903 -> libj.so.9.03
+  sub=. '.',({.v),'.',}.v    NB. x j904 -> libj.so.9.04
   if. 'Darwin'-:UNAME do.
     d1=. (({.~ i:&'/')BINPATH),'/lib/'
   elseif. IFRASPI do.

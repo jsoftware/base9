@@ -10,7 +10,7 @@ At the top level is:
 * library
   library_6.01.002_linux.tar.gz 835671
 
-Each J version has a subdirectory (e.g. j903) with text files:
+Each J version has a subdirectory (e.g. j904) with text files:
 
 * addons
   math/fftw 1.0.0
@@ -37,7 +37,7 @@ Note 'local'
 * revision.txt - revision number (single number)
 
 * jtree.txt - j tree (e.g. stable/current/beta, local)
-  j903 stable (need both to avoid problems with user changing
+  j904 stable (need both to avoid problems with user changing
 
 * zips.txt - zip files
 )

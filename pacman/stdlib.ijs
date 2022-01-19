@@ -36,9 +36,9 @@ NB. =========================================================
 qt_ldd_test=: 3 : 0
 ldd=. ('Darwin'-:UNAME){::'ldd';'otool -L'
 suffix=. ('Darwin'-:UNAME){::'so';'dylib'
-vsuffix=. ('Darwin'-:UNAME){::'so.9.03';'9.03.dylib'
+vsuffix=. ('Darwin'-:UNAME){::'so.9.04';'9.04.dylib'
 if. FHS*.IFUNIX do.
-  d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-9.03'
+  d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-9.04'
   d=. d,<;._2 hostcmd_jpacman_ ldd,' ',y,'/libjqt.',vsuffix
 else.
   d=. <;._2 hostcmd_jpacman_ ldd,' ',jpath'~bin/jqt'
@@ -76,7 +76,7 @@ elseif. do.
   z=. 'jqt-mac',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
   z1=. 'libjqt.',suffix=. 'dylib'
 end.
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j903/qtide/',z
+'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j904/qtide/',z
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
@@ -96,11 +96,11 @@ else.
     end.
     echo 'install libjqt.',suffix,' to ',d1
     hostcmd_jpacman_ 'rm -f ',BINPATH,'/jqt'
-    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ('Linux'-:UNAME)#' && ldconfig'
-    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.03 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ('Linux'-:UNAME)#' && ldconfig'
+    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.04 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ('Linux'-:UNAME)#' && ldconfig'
+    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.04 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ('Linux'-:UNAME)#' && ldconfig'
     if. 'Linux'-:UNAME do.
-      echo 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.03 903'
-      hostcmd_jpacman_ 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.03 903'
+      echo 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.04 904'
+      hostcmd_jpacman_ 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.04 904'
     end.
   else.
     hostcmd_jpacman_ 'cd ',(dquote d),' && tar xzf ',(dquote p)
@@ -124,16 +124,16 @@ if. 'Linux'-:UNAME do.
   return.
 end.
 
-tgt=. jpath IFWIN{::'~install/Qt';'~bin/Qt5Core.dll'
+tgt=. jpath IFWIN{::'~install/Qt';'~bin/Qt6Core.dll'
 y=. (*#y){::0;y
 
 smoutput 'Installing Qt library...'
 if. IFWIN do.
-  z=. 'qt515-win-',((y-:'slim')#'slim-'),(IF64 pick 'x86';'x64'),'.zip'
+  z=. 'qt62-win-',((y-:'slim')#'slim-'),(IF64 pick 'x86';'x64'),'.zip'
 else.
-  z=. 'qt515-mac-',((y-:'slim')#'slim-'),(IF64 pick 'x86';'x64'),'.zip'
+  z=. 'qt62-mac-',((y-:'slim')#'slim-'),(IF64 pick 'x86';'x64'),'.zip'
 end.
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j903/qtlib/',z
+'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j904/qtlib/',z
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
