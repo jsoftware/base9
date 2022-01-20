@@ -231,11 +231,7 @@ case.'jc' do.
 case. 'jhs' do.
  r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB,A
 case. 'jqt' do.
- if. 'arm64'-:9!:56'cpu' do.
-  r=.'#!/bin/sh',LF,'arch -arm64 "',c,'.command" ',LIB
- else.
-  r=.'#!/bin/sh',LF,'"',c,'.command" ',LIB
- end.
+ r=.'#!/bin/sh',LF,'"',c,'.command" ',LIB
 end.
 fpathcreate f,'/Contents/MacOS'
 fpathcreate f,'/Contents/Resources'

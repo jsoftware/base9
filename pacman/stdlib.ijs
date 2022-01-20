@@ -36,7 +36,7 @@ NB. =========================================================
 qt_ldd_test=: 3 : 0
 ldd=. ('Darwin'-:UNAME){::'ldd';'otool -L'
 suffix=. ('Darwin'-:UNAME){::'so';'dylib'
-vsuffix=. ('Darwin'-:UNAME){::'so.9.04';'9.04.dylib'
+vsuffix=. ('Darwin'-:UNAME){::'so.2.0.1';'2.0.1.dylib'
 if. FHS*.IFUNIX do.
   d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-9.04'
   d=. d,<;._2 hostcmd_jpacman_ ldd,' ',y,'/libjqt.',vsuffix
