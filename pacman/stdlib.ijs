@@ -1,6 +1,8 @@
 NB. stdlib definitions
 NB.-This definitions are called from the standard library
 
+JQTVERSION=: '2.0.2'
+
 NB. =========================================================
 NB. do_install v install from jal
 NB. y is one of:
@@ -36,7 +38,7 @@ NB. =========================================================
 qt_ldd_test=: 3 : 0
 ldd=. ('Darwin'-:UNAME){::'ldd';'otool -L'
 suffix=. ('Darwin'-:UNAME){::'so';'dylib'
-vsuffix=. ('Darwin'-:UNAME){::'so.2.0.2';'2.0.2.dylib'
+vsuffix=. ('Darwin'-:UNAME){::*('so.',JQTVERSION);(JQTVERSION,'.dylib')
 if. FHS*.IFUNIX do.
   d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-9.04'
   d=. d,<;._2 hostcmd_jpacman_ ldd,' ',y,'/libjqt.',vsuffix
@@ -45,7 +47,7 @@ else.
   d=. d,<;._2 hostcmd_jpacman_ ldd,' ',jpath'~bin/libjqt.',suffix
 end.
 b=. d#~;+./each (<'not found') E. each d
-if. #b do.
+if. ('Darwin'-:UNAME)<*#b do.
   echo'jqt dependencies not found - jqt will not start until these are resolved'
   echo >~.b
 end.
@@ -57,6 +59,8 @@ do_getqtbin=: 3 : 0
 
 bin=. 'JQt ',(((y-:'slim')#'slim ')),'binaries.'
 
+suffix=. IFUNIX{::'dll';('Darwin'-:UNAME){::'so';'dylib'
+vsuffix=. IFUNIX{::(JQTVERSION,'.dll');('Darwin'-:UNAME){::*('so.',JQTVERSION);(JQTVERSION,'.dylib')
 NB. ---------------------------------------------------------
 smoutput 'Installing ',bin,'..'
 if. 'Linux'-:UNAME do.
@@ -68,13 +72,13 @@ NB. provision for jqt-rhel7-x64.tar.gz jqt-rhel7slim-x64.tar.gz
   elseif. do.
     z=. 'jqt-',((y-:'slim') pick 'linux';'slim'),'-',(IF64 pick 'x86';'x64'),'.tar.gz'
   end.
-  z1=. 'libjqt.',suffix=. 'so'
+  z1=. 'libjqt.',suffix
 elseif. IFWIN do.
   z=. 'jqt-win',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
-  z1=. 'jqt.',suffix=. 'dll'
+  z1=. 'jqt.',suffix
 elseif. do.
   z=. 'jqt-mac',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
-  z1=. 'libjqt.',suffix=. 'dylib'
+  z1=. 'libjqt.',suffix
 end.
 'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j904/qtide/',z
 if. rc do.
