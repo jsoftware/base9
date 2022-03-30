@@ -1,7 +1,7 @@
 NB. stdlib definitions
 NB.-This definitions are called from the standard library
 
-JQTVERSION=: '2.0.2'
+JQTVERSION=: '2.0.3'
 
 NB. =========================================================
 NB. do_install v install from jal
