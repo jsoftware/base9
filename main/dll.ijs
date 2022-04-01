@@ -44,8 +44,8 @@ NB. 15!:14 - get address of data for name
 NB. 15!:16 - toggle native front end (nfe) state
 NB. 15!:17 - return x callback arguments
 NB. 15!:18 - return last jsto output
-gh=. 15!:8
-fh=. 15!:9
+NB. gh=. 15!:8
+NB. fh=. 15!:9
 symget=: 15!:6
 symset=: 15!:7
 symdat=: 15!:14
