@@ -60,7 +60,7 @@ do_getqtbin=: 3 : 0
 bin=. 'JQt ',(((y-:'slim')#'slim ')),'binaries.'
 
 suffix=. IFUNIX{::'dll';('Darwin'-:UNAME){::'so';'dylib'
-vsuffix=. IFUNIX{::(JQTVERSION,'.dll');('Darwin'-:UNAME){::*('so.',JQTVERSION);(JQTVERSION,'.dylib')
+vsuffix=. IFUNIX{::(JQTVERSION,'.dll');('Darwin'-:UNAME){::('so.',JQTVERSION);(JQTVERSION,'.dylib')
 NB. ---------------------------------------------------------
 smoutput 'Installing ',bin,'..'
 if. 'Linux'-:UNAME do.
