@@ -514,6 +514,14 @@ x=. I. 26 > n=. ((97+i.26){a.) i. t=. ,y
 ($y) $ ((x{n) { (65+i.26){a.) x}t
 )
 
+3 : 0''  NB. if available
+try.
+  tolower=: 0&(3!:12)
+  toupper=: 1&(3!:12)
+catch. end.
+''
+)
+
 NB. =========================================================
 NB.*type v object type
 t=. <;._1 '/invalid name/not defined/noun/adverb/conjunction/verb/unknown'
