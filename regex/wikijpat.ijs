@@ -1,6 +1,8 @@
 NB. wiki j patterns.
 
-show=: showmatches_jregex_
+cocurrent 'jregex'
+
+show=: showmatches
 
 Jname show '10 myverb_myloc_ i.10'
 Jnumitem show '10 myverb 123e10, dat'

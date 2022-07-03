@@ -38,7 +38,7 @@ compare
 )
 
 dat=. ; freads each (<jpath '~Main/release/') ,each F , each <'.ijs'
-dat=. dat, freads '~addons/dev/fold/fold.ijs'
+dat=. dat, freads '~addons/dev/fold/foldr.ijs'
 dat=. dat, 'cocurrent <''base'''
 
 dat fwritenew jpath '~Main/release/install/system/main/stdlib.ijs'
