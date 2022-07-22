@@ -75,7 +75,7 @@ NB.*ljust v left justify
 NB.*rjust v right justify
 NB.*ss v string search
 
-cut=: ' '&$: :([: -.&a: <;._2@,~)
+cut=: ' '&$: :([:-.&a:<;._2@,~) :.(;:inv@] : [:)
 deb=: #~ (+. 1: |. (> </\))@(' '&~:)
 debc=: #~"1 [: (+. (1: |. (> </\))) ' '&(+./ .~:)
 delstring=: 4 : ';(x E.r) <@((#x)&}.) ;.1 r=. x,y'
