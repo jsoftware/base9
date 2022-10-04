@@ -11,6 +11,7 @@ NB.   1   soft tab width (0=hard tab)
 NB.   2   if remove multiple spaces in code
 NB.   3   if indent explicit definition
 NB.   4   if indent select
+NB.   5   if indent blank line
 NB.
 NB. returns:
 NB.      new text
@@ -19,7 +20,7 @@ NB. or   line number;error message
 pplint=: 3 : 0
 dat=. y  NB. ucp y
 
-'fmt wid rms exp sel'=. Format_j_
+'fmt wid rms exp sel blk'=. 6 {. Format_j_
 if. wid=0 do. spc=. TAB else. spc=. wid#' ' end.
 
 NB. ---------------------------------------------------------
@@ -135,6 +136,13 @@ NB. indent explicit definitions
 if. exp do.
   msk=. (dat=<,')') < maskexps dat
   dat=. msk (([ # spc"_),]) each dat
+end.
+
+NB. ---------------------------------------------------------
+NB. do not indent blank lines
+if. -.blk do.
+  ndx=. I. (maskexps dat) *. ' ' *./ . = &> dat
+  dat=. (<'') ndx} dat
 end.
 
 NB. ---------------------------------------------------------

@@ -1,18 +1,7 @@
 NB. test0
+NB.
+NB. try Format settings
 
-OLD=: jpath '~Main\pp\test2.ijs'
-NEW=: jpath '~temp\testpp.ijs'
+Format_j_=: 1 2 1 0 0 0
 
-dbg 1
-dbstops''
-
-NB. =========================================================
-t0=: 3 : 0
-(pplint_jpp_ freads OLD) fwrites NEW
-wdview (freads NEW),LF,fcompare OLD;NEW
-)
-
-dbg 1
-dbstops ''
-(freads OLD) fwrites NEW
-open NEW
+textview pplint_jpp_ freads '~Main/pp/test1.ijs'

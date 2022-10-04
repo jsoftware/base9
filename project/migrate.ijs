@@ -96,4 +96,3 @@ dbg 1
 dbstops''
 NB. smoutput fixproj jpath '~Project7'
 NB. smoutput migrate '~Main/pacman'
-
