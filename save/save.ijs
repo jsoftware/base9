@@ -38,6 +38,7 @@ compare
 )
 
 dat=. ; freads each (<jpath '~Main/release/') ,each F , each <'.ijs'
+dat=. dat, freads '~addons/dev/eformat/eformat.ijs'
 dat=. dat, freads '~addons/dev/fold/foldr.ijs'
 dat=. dat, 'cocurrent <''base'''
 
