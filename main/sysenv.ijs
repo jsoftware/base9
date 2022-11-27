@@ -29,6 +29,7 @@ NB.*IFWOW64       n if running J32 on a 64 bit o/s
 NB.*JLIB          n J library version
 NB.*UNAME         n name of UNIX o/s
 NB.*FHS           n filesystem hierarchy: 0=not used  1=linux and installed under /usr/...
+NB.*RUNJSCRIPT    n if running jconsole with the -jscript parameter
 
 18!:4 <'z'
 
@@ -92,6 +93,11 @@ end.
 NB. ---------------------------------------------------------
 if. notdef 'FHS' do.
   FHS=: IFUNIX>'/'e.LIBFILE
+end.
+
+NB. ---------------------------------------------------------
+if. notdef 'RUNJSCRIPT' do.
+  RUNJSCRIPT=: 0
 end.
 
 NB. ---------------------------------------------------------
