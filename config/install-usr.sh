@@ -26,6 +26,7 @@ cd -
 if [ "Darwin" = "$(uname)" ]; then
 EXT=dylib
 VEXT=9.04.dylib
+GEXT=dylib
 if [ "arm64" = "$cpu" ]; then
  BIN=/opt/homebrew/bin
  ETC=/opt/homebrew/etc
@@ -40,6 +41,7 @@ fi
 else
 EXT=so
 VEXT=so.9.04
+GEXT=so.10
 BIN=/usr/bin
 ETC=/etc
 SHR=/usr/share
@@ -86,12 +88,12 @@ echo "cd ~ && $BIN/ijconsole \"$@\"" >> ijconsole.sh
 mv ijconsole.sh $BIN/.
 chmod 755 $BIN/ijconsole.sh
 if [ -f "$BIN/ijconsole-9.04" ] ; then
-mv "$BIN/ijconsole-9.04" /tmp/ijconsole-9.04.old
+mv "$BIN/ijconsole-9.04" /tmp/ijconsole-9.04.old.$$
 fi
 cp jconsole $BIN/ijconsole-9.04
 chmod 755 $BIN/ijconsole-9.04
 if [ -f "$BIN/ijconsole" ] ; then
-mv "$BIN/ijconsole" /tmp/ijconsole.old
+mv "$BIN/ijconsole" /tmp/ijconsole.old.$$
 fi
 if [ "Linux" = "$(uname)" ]; then
 update-alternatives --install $BIN/ijconsole ijconsole $BIN/ijconsole-9.04 904
@@ -101,10 +103,15 @@ fi
 
 if [ -d "$LIB" ] ; then
 if [ -f "$LIB/libj.$VEXT" ] ; then
-mv "$LIB/libj.$VEXT" /tmp/libj.$VEXT.old
+mv "$LIB/libj.$VEXT" /tmp/libj.$VEXT.old.$$
 fi
 cp libj.$EXT "$LIB/libj.$VEXT"
 chmod 755 "$LIB/libj.$VEXT"
+if [ -f "$LIB/libjgmp.$GEXT" ] ; then
+mv "$LIB/libjgmp.$GEXT" /tmp/libjgmp.$GEXT.old.$$
+fi
+cp libgmp.$GEXT "$LIB/libjgmp.$GEXT"
+chmod 755 "$LIB/libjgmp.$GEXT"
 fi
 
 if [ "Linux" = "$(uname)" ]; then
