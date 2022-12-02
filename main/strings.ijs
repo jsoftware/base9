@@ -19,6 +19,7 @@ NB. joinstring     join boxed list y with x; see splitstring
 NB. ljust          left justify
 NB. rjust          right justify
 NB. rplc           replace in string
+NB. rplci          replace in string (case insensitive)
 NB. splitnostring  split y by non-overlapping substrings x
 NB. splitstring    split y by substring x
 NB. ss             string search for x in y
@@ -32,6 +33,7 @@ NB. quote          quote text
 NB. dquote         double quote text
 NB.
 NB. stringreplace  replace in string
+NB. stringreplacei replace in string (case insensitive)
 NB. fstringreplace replace in file
 
 NB. For example:
@@ -231,6 +233,15 @@ NB.+hallowed
 rplc=: stringreplace~
 
 NB. =========================================================
+NB.*rplci v replace characters in text string (case insensitive)
+NB.-This is [stringreplace](#stringreplace) but
+NB.-with arguments reversed.
+NB.-example:
+NB.+   'hello' rplci 'e';'a';'o';'owed'
+NB.+hallowed
+rplci=: stringreplacei~
+
+NB. =========================================================
 NB.*fstringreplace v file string replace
 NB.-Replace strings in file
 NB.-syntax:
@@ -310,6 +321,91 @@ if. *./ 1 = oldlen do.
 else.
 
   hit=. old I. @ E. each <txt
+  cnt=. # &> hit
+
+  if. 0 = +/ cnt do. txt return. end.
+
+  bgn=. set=. ''
+
+  pick=. > @ {
+  diff=. }. - }:
+
+  for_i. I. 0 < cnt do.
+    ln=. i pick oldlen
+    cx=. (i pick hit) -. set, ,bgn -/ i.ln
+    while. 0 e. b=. 1, <:/\ ln <: diff cx do. cx=. b#cx end.
+    hit=. (<cx) i} hit
+    bgn=. bgn, cx
+    set=. set, ,cx +/ i.ln
+  end.
+
+  cnt=. # &> hit
+  msk=. 0 < cnt
+  exp=. (#txt) $ 1
+  del=. newlen - oldlen
+
+  if. #add=. I. msk *. del > 0 do.
+    exp=. (>: (add{cnt) # add{del) (;add{hit) } exp
+  end.
+
+  if. #sub=. I. msk *. del < 0 do.
+    sbx=. ; (;sub{hit) + each (sub{cnt) # i. each sub{del
+    exp=. 0 sbx } exp
+  end.
+
+  hit=. ; hit
+  ind=. /: (#hit) $ 1 2 3
+  hnx=. (/: ind { hit) { ind
+  bgn=. (hnx { hit) + +/\ 0, }: hnx { cnt # del
+
+end.
+
+ind=. ; bgn + each hnx { cnt # i.each newlen
+rep=. ; hnx { cnt # new
+rep ind} exp # txt
+)
+
+NB. =========================================================
+NB.*stringreplacei v replace characters in text string (case insensitive)
+NB.-
+NB.-syntax:
+NB.+oldnew stringreplacei text
+NB.-oldnew is a 2-column boxed matrix of `old ,. new`
+NB.-or a vector of same
+NB.-
+NB.-stringreplacei priority is the same order as oldnew
+NB.-
+NB.-example:
+NB.-
+NB.+    ('aba';'XYZT';'ba';'+') stringreplacei 'ababa'
+NB.+ XYZT+
+NB.+
+NB.+    ('ba';'+';'aba';'XYZT') stringreplacei 'ababa'
+NB.+ a++
+stringreplacei=: 4 : 0
+
+txt=. ,y
+t=. _2 [\ ,x
+old=. {."1 t
+new=. {:"1 t
+oldlen=. # &> old
+newlen=. # &> new
+
+if. *./ 1 = oldlen do.
+
+  hit=. (;old) i.&tolower txt
+  ndx=. I. hit < #old
+
+  if. 0 e. $ndx do. txt return. end.
+
+  cnt=. 1
+  exp=. hit { newlen,1
+  hnx=. ndx { hit
+  bgn=. ndx + +/\ 0, (}: hnx) { newlen - 1
+
+else.
+
+  hit=. old (I. @ E.)&tolower each <txt
   cnt=. # &> hit
 
   if. 0 = +/ cnt do. txt return. end.
