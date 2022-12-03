@@ -10,10 +10,12 @@ NB.- 'qtide'     - install/upgrade the Qt IDE
 NB.- 'full'      - install the full Qt IDE
 NB.- 'slim'      - install the slim Qt IDE
 NB.- 'all'       - install all addon packages
+NB.- 'gmp'       - install libgmp binary
 NB.-  other      - install those packages, i.e. 'install' jpkg other
 NB.- gitrepo:name/repo
 do_install=: 3 : 0
 if. -. checkaccess_jpacman_ '' do. return. end.
+if. y -: 'gmp' do. do_getgmpbin '' return. end.
 if. ':' e. y do. install_gitrepo y return. end.
 'update' jpkg ''
 if. y -: 'addons' do. y=. 'all' end.
@@ -153,6 +155,77 @@ if. #1!:0 tgt do.
 else.
   m=. 'Unable to install Qt library.',LF
   m=. m,'check that you have write permission for: ',LF,IFWIN{::tgt;jpath'~bin'
+end.
+smoutput m
+
+)
+
+NB. =========================================================
+NB. do_getgmpbin v get libgmp binaries
+do_getgmpbin=: 3 : 0
+
+if. IFIOS +. UNAME-:'Android' do.
+  smoutput 'not available on the platform' return.
+end.
+
+bin=. (IFUNIX{::'mpir';'gmp'),' binary.'
+
+suffix=. IFUNIX{::'dll';('Darwin'-:UNAME){::'so';'dylib'
+libname=. IFUNIX{::('mpir.',suffix);'libgmp.',suffix
+libjname=. IFUNIX{::('mpir.',suffix);'libjgmp.',suffix
+
+NB. ---------------------------------------------------------
+if. ''-:1!:46'' do.
+  if. FHS do.
+    if. 'Darwin'-:UNAME do.
+      dest=. (({.~ i:&'/')BINPATH),'/lib/'
+    elseif. IFRASPI do.
+      dest=. (({.~ i:&'/')BINPATH),IF64{::'/lib/arm-linux-gnueabihf/';'/lib/aarch64-linux-gnu/'
+    elseif. do.
+      if. -.fexist dest=. (({.~ i:&'/')BINPATH),IF64{::'/lib/i386-linux-gnu/';'/lib/x86_64-linux-gnu/' do.
+        dest=. (({.~ i:&'/')BINPATH),IF64{::'/lib/';'/lib64/'
+      end.
+    end.
+  else.
+    dest=. BINPATH,'/'
+  end.
+else.
+  dest=. (1!:46''),'/'
+end.
+if. fexist f=. dest, FHS{::libname;libjname do.
+  smoutput f,' already exists' return.
+end.
+
+NB. ---------------------------------------------------------
+smoutput 'Installing ',bin,'..'
+if. 'Linux'-:UNAME do.
+  if. IFRASPI do.
+    z=. libname,~ IF64{::'linux/arm/';'linux/aarch64/'
+  elseif. do.
+    z=. libname,~ IF64{::'linux/i386/';'linux/x86_64/'
+  end.
+elseif. IFWIN do.
+  z=. libname,~ IF64{::'windows/win32/';'windows/x64/'
+elseif. do.
+  z=. libname,~ 'apple/macos/'
+end.
+'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/jengine/mpir/',z
+if. rc do.
+  smoutput 'unable to download: ',z return.
+end.
+echo 'install ',(FHS{::libname;libjname),' to ',dest
+if. IFWIN do.
+  (dest,libname) fcopynew p
+else.
+  (dest,FHS{::libname;libjname) fcopynew p
+  hostcmd_jpacman_ ::0: 'chmod 755 ',dquote (dest,FHS{::libname;libjname)
+end.
+ferase p
+if. fexist (dest,FHS{::libname;libjname) do.
+  m=. 'Finished install of ',bin
+else.
+  m=. 'Unable to install ',bin,LF
+  m=. m,'check that you have write permission for: ',LF,dest
 end.
 smoutput m
 
