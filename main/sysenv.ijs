@@ -108,8 +108,7 @@ NB.'libc.so.6 setlocale > x i *c'&(15!:0) ::(0:@(15!:10)@(''"_))^:(UNAME-:'Linux
 NB. ---------------------------------------------------------
 if. notdef 'IFRASPI' do.
   if. UNAME -: 'Linux' do.
-    cpu=. 2!:0 ::(''"_) 'cat /proc/cpuinfo'
-    IFRASPI=: (1 e. 'BCM2708' E. cpu) +. (1 e. 'BCM2709' E. cpu) +. (1 e. 'BCM2710' E. cpu) +. 1 e. 'BCM2711' E. cpu
+    IPRASPI=: (<9!:56'cpu') e. 'arm';'arm64'
   else.
     IFRASPI=: 0
   end.
