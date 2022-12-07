@@ -31,6 +31,7 @@ NB. taketo         take to x in y
 NB.
 NB. quote          quote text
 NB. dquote         double quote text
+NB. dquotex        double quote text using \"
 NB.
 NB. stringreplace  replace in string
 NB. stringreplacei replace in string (case insensitive)
@@ -200,6 +201,17 @@ NB.-example:
 NB.+   dquote 'Pete"s Place'
 NB.+"Pete""s Place"
 dquote=: ('"'&,@(,&'"'))@ (#~ >:@(=&'"'))
+
+NB. =========================================================
+NB.*dquotex v double quote text using \"
+NB.-example:
+NB.+   dquotex 'Pete"s Place'
+NB.+"Pete\"s Place"
+dquotex=: 3 : 0
+s=. y#~ >: m=. (=&'"') y            NB. escape using repeated double quote
+p=. (i.#y)#~>: m                    NB. index of each character in s
+('"'&,@(,&'"')) '\' (p i.(I.m))}s   NB. replace the leading escape double quote in s
+)
 
 NB. =========================================================
 NB.*dtbs v delete multiple trailing blanks in text
