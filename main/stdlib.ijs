@@ -154,8 +154,8 @@ NB.*dfh v decimal from hex
 NB.*hfd v hex from decimal
 H=. '0123456789ABCDEF'
 h=. '0123456789abcdef'
-dfh=: 16 #. 16 | (H,h) i. ]
-hfd=: h {~ 16 #.^:_1 ]
+dfh=: (16 #. 16 | (H,h) i. ]) :.hfd
+hfd=: (h {~ 16 #.^:_1 ]) :.dfh
 4!:55 'H';'h'
 
 NB. =========================================================
