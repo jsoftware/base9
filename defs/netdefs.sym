@@ -7,6 +7,9 @@
 #ifdef sun
 <inet/tcp.h>
 #endif
+#if defined(__OpenBSD__)
+#include <sys/select.h>
+#endif
 <netdb.h>
 <netinet/in.h>
 <arpa/inet.h>
