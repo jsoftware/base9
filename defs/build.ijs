@@ -13,6 +13,7 @@ hostdefs_sunos
 hostdefs_win_64
 hostdefs_win
 hostdefs_openbsd_64
+hostdefs_freebsd_64
 netdefs_aix
 netdefs_android_64
 netdefs_android
@@ -24,6 +25,7 @@ netdefs_sunos
 netdefs_win_64
 netdefs_win
 netdefs_openbsd_64
+netdefs_freebsd_64
 )
 
 cp=. 3 : 0

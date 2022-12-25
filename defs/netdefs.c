@@ -7,7 +7,7 @@
 #ifdef sun
 #include <inet/tcp.h>
 #endif
-#if defined(__OpenBSD__)
+#if defined(__OpenBSD__)||defined(__FreeBSD__)
 #include <sys/select.h>
 #endif
 #include <netdb.h>
