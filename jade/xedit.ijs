@@ -27,10 +27,10 @@ if. UNAME-:'Android' do.
   end.
   EMPTY return.
 end.
-editor=. (Editor_j_;Editor_nox_j_){::~ nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
+editor=. (Editor_j_;Editor_nox_j_){::~ nox=. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') *. (0;'') e.~ <2!:5 'DISPLAY'
 if. 0=#editor do. EMPTY return. end.
-nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
-if. (UNAME-:'Linux')>nox do.
+nox=. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') *. (0;'') e.~ <2!:5 'DISPLAY'
+if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD')>nox do.
   if. 1 e. r=. 'term' E. editor do.
     if. '-e ' -: 3{. editor=. dlb (}.~ i.&' ') ({.I.r)}.editor do.
       editor=. TermEmu, (('gnome-terminal'-:TermEmu){::' -e ';' -- '), dlb 3}.editor
@@ -86,8 +86,8 @@ NB. =========================================================
 NB. dflttermemu ''
 NB.     return default TermEmu, or ''
 dflttermemu=: verb define
-nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
-if. ((UNAME-:'Linux') > nox) *. ''-: te=. nox{::TermEmu_j_;TermEmu_nox_j_ do.
+nox=. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') *. (0;'') e.~ <2!:5 'DISPLAY'
+if. (((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') > nox) *. ''-: te=. nox{::TermEmu_j_;TermEmu_nox_j_ do.
   for_t. linux_terminal do.
     try. 2!:0'which ',(>t),' 2>/dev/null'
       te=. >t

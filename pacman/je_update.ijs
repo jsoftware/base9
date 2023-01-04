@@ -53,7 +53,7 @@ else.
     2!:0 'chmod 755 "',DLL,'"'
     if. 'root'-: user=. 2!:5'user' do.
       2!:0 'chown ',user,':',user,' "',DLL,'"'
-      2!:0^:('Linux'-:UNAME) 'ldconfig'
+      2!:0^:((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') 'ldconfig'
     end.
   end.
 end.

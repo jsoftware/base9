@@ -92,7 +92,7 @@ main(){
 	printf ("rm_eo_off=: %d\n",offset(regmatch_t,rm_eo));
 	printf ("rm_eo_sz=: %d\n",sizeof(((regmatch_t*)0)->rm_eo));
 	puts("");
-#ifdef linux
+#if defined(__linux__)
 #define fds_bits __fds_bits
 #endif
 	puts("");

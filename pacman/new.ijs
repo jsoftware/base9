@@ -29,7 +29,8 @@ i.0 0
 
 NB. shortcut 'jc' or 'jhs' or 'jqt' - create desktop launch icon
 shortcut=: 3 : 0
-try. ".UNAME,' y' catchd. echo 'create ',y,' launch icon failed' end.
+if. ((<UNAME)e.'OpenBSD';'FreeBSD') do. uname=. 'Linux' else. uname=. UNAME end.
+try. ".uname,' y' catchd. echo 'create ',y,' launch icon failed' end.
 )
 
 defaults=: 3 : 0
@@ -38,7 +39,7 @@ L=:   hostpathsep jpath'~/Desktop/'
 W=:   hostpathsep jpath'~'
 I=:   hostpathsep jpath'~bin/icons/'
 N=:   (1 2 3{9!:14''),;IF64{'-32';''
-DS=:  ;(('Win';'Linux';'Darwin')i.<UNAME){'.lnk';'.desktop';'.app'
+DS=:  ;(('Win';'Linux';'OpenBSD';'FreeBSD';'Darwin')i.<UNAME){'.lnk';'.desktop';'.desktop';'.desktop';'.app'
 LIB=: ''
 )
 

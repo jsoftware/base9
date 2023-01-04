@@ -14,7 +14,7 @@ elseif. IFIOS do.
   jh '<a href="',(file2url cmd),'"</a>'
   EMPTY return.
 end.
-nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
+nox=. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') *. (0;'') e.~ <2!:5 'DISPLAY'
 ImageViewer=. nox{::ImageViewer_j_;ImageViewer_nox_j_
 select. UNAME
 case. 'Win' do.
@@ -34,7 +34,7 @@ case. do.
     if. 0 = #browser do.
       browser=. dfltbrowser''
     end.
-    browser=. dquote (browser;Browser_nox_j_){::~ nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
+    browser=. dquote (browser;Browser_nox_j_){::~ nox=. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') *. (0;'') e.~ <2!:5 'DISPLAY'
   else.
     browser=. dquote ImageViewer
   end.

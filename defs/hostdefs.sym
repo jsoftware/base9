@@ -60,7 +60,7 @@ f	rm_eo
 ; select(2) support.
 ; This is beyond posix.1, but the following definitions are pretty
 ; universal now.  Linux apparently requires some special treatment.
-#ifdef linux
+#if defined(__linux__)
 #define fds_bits __fds_bits
 #endif
 

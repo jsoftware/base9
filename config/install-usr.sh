@@ -2,9 +2,9 @@
 
 echo "this script will install j system on /usr"
 
-[ "Linux" = "$(uname)" ] || [ "Darwin" = "$(uname)" ] || { echo "$(uname) not supported" ; exit 1; }
+[ "Linux" = "$(uname)" ] || "OpenBSD" = "$(uname)" ] || "FreeBSD" = "$(uname)" ] || [ "Darwin" = "$(uname)" ] || { echo "$(uname) not supported" ; exit 1; }
 
-if [ "$(uname -m)" = "x86_64" ] ; then
+if [ "$(uname -m)" = "x86_64" ] || [ "$(uname -m)" = "amd64" ] ; then
  cpu="x86_64"
 elif [ "$(uname -m)" = "i386" ] || [ "$(uname -m)" = "i686" ] ; then
  cpu="i686"

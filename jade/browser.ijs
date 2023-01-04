@@ -38,7 +38,7 @@ case. do.
   if. 0 = #browser do.
     browser=. dfltbrowser''
   end.
-  browser=. dquote (browser;Browser_nox_j_){::~ nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
+  browser=. dquote (browser;Browser_nox_j_){::~ nox=. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') *. (0;'') e.~ <2!:5 'DISPLAY'
   cmd=. browser,' ',dquote cmd
   try.
     2!:1 cmd, (0=nox)#' >/dev/null 2>&1 &'

@@ -64,8 +64,8 @@ case. 'Win' do. ''
 case. 'Android' do. ''
 case. 'Darwin' do. 'open'
 case. do.
-  nox=. (UNAME-:'Linux') *. (0;'') e.~ <2!:5 'DISPLAY'
-  if. ((UNAME-:'Linux') > nox) *. ''-: te=. nox{::PDFReader_j_;PDFReader_nox_j_ do.
+  nox=. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') *. (0;'') e.~ <2!:5 'DISPLAY'
+  if. (((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') > nox) *. ''-: te=. nox{::PDFReader_j_;PDFReader_nox_j_ do.
     for_t. linux_pdfreader do.
       try. 2!:0'which ',(>t),' 2>/dev/null'
         te=. >t
