@@ -115,7 +115,7 @@ chmod 755 "$LIB/libjgmp.$GEXT"
 fi
 
 if [ "Linux" = "$(uname)" ]; then
-ldconfig
+/sbin/ldconfig
 fi
 
 echo "done"
