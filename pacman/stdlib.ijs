@@ -40,7 +40,7 @@ NB. =========================================================
 qt_ldd_test=: 3 : 0
 ldd=. ('Darwin'-:UNAME){::'ldd';'otool -L'
 suffix=. ('Darwin'-:UNAME){::'so';'dylib'
-vsuffix=. ('Darwin'-:UNAME){::*('so.',JQTVERSION);(JQTVERSION,'.dylib')
+vsuffix=. ('Darwin'-:UNAME){::('so.',JQTVERSION);(JQTVERSION,'.dylib')
 if. FHS*.IFUNIX do.
   d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-9.04'
   d=. d,<;._2 hostcmd_jpacman_ ldd,' ',y,'/libjqt.',vsuffix
@@ -65,21 +65,21 @@ suffix=. IFUNIX{::'dll';('Darwin'-:UNAME){::'so';'dylib'
 vsuffix=. IFUNIX{::(JQTVERSION,'.dll');('Darwin'-:UNAME){::('so.',JQTVERSION);(JQTVERSION,'.dylib')
 NB. ---------------------------------------------------------
 smoutput 'Installing ',bin,'..'
-if. 'Linux'-:UNAME do.
+arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'32';'64';'x86';'x64'
+if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
   if. IFRASPI do.
-    z=. 'jqt-',((y-:'slim') pick 'raspi';'raspislim'),'-',(IF64 pick '32';'64'),'.tar.gz'
-  elseif. 0 [ fexist '/etc/redhat-release' do.
-NB. provision for jqt-rhel7-x64.tar.gz jqt-rhel7slim-x64.tar.gz
-    z=. 'jqt-',((y-:'slim') pick 'rhel7';'rhel7slim'),'-',(IF64 pick '32';'64'),'.tar.gz'
+    z=. 'jqt-raspi',((y-:'slim')#'slim'),'-',arch,'.tar.gz'
+  elseif. 'Linux'-:UNAME do.
+    z=. 'jqt-',((y-.@-:'slim')#tolower UNAME),((y-:'slim')#'slim'),'-',arch,'.tar.gz'
   elseif. do.
-    z=. 'jqt-',((y-:'slim') pick 'linux';'slim'),'-',(IF64 pick 'x86';'x64'),'.tar.gz'
+    z=. 'jqt-',(tolower UNAME),((y-:'slim')#'slim'),'-',arch,'.tar.gz'
   end.
   z1=. 'libjqt.',suffix
 elseif. IFWIN do.
-  z=. 'jqt-win',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
+  z=. 'jqt-win',((y-:'slim')#'slim'),'-',arch,'.zip'
   z1=. 'jqt.',suffix
 elseif. do.
-  z=. 'jqt-mac',((y-:'slim')#'slim'),'-',(IF64 pick 'x86';'x64'),'.zip'
+  z=. 'jqt-mac',((y-:'slim')#'slim'),'-',arch,'.zip'
   z1=. 'libjqt.',suffix
 end.
 'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j904/qtide/',z
@@ -91,7 +91,7 @@ if. IFWIN do.
   unzip_jpacman_ p;d
 else.
   if. FHS do.
-    if. 'Darwin'-:UNAME do.
+    if. (<UNAME)e.'Darwin';'OpenBSD';'FreeBSD' do.
       d1=. (({.~ i:&'/')BINPATH),'/lib/'
     elseif. IFRASPI do.
       d1=. (({.~ i:&'/')BINPATH),IF64{::'/lib/arm-linux-gnueabihf/';'/lib/aarch64-linux-gnu/'
@@ -134,10 +134,11 @@ tgt=. jpath IFWIN{::'~install/Qt';'~bin/Qt6Core.dll'
 y=. (*#y){::0;y
 
 smoutput 'Installing Qt library...'
+arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'32';'64';'x86';'x64'
 if. IFWIN do.
-  z=. 'qt62-win-',((y-:'slim')#'slim-'),(IF64 pick 'x86';'x64'),'.zip'
+  z=. 'qt62-win-',((y-:'slim')#'slim-'),arch,'.zip'
 else.
-  z=. 'qt62-mac-',((y-:'slim')#'slim-'),(IF64 pick 'x86';'x64'),'.zip'
+  z=. 'qt62-mac-',((y-:'slim')#'slim-'),arch,'.zip'
 end.
 'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j904/qtlib/',z
 if. rc do.
@@ -177,7 +178,7 @@ libjname=. IFUNIX{::('mpir.',suffix);'libjgmp.',suffix
 NB. ---------------------------------------------------------
 if. ''-:1!:46'' do.
   if. FHS do.
-    if. 'Darwin'-:UNAME do.
+    if. (<UNAME)e.'Darwin';'OpenBSD';'FreeBSD' do.
       dest=. (({.~ i:&'/')BINPATH),'/lib/'
     elseif. IFRASPI do.
       dest=. (({.~ i:&'/')BINPATH),IF64{::'/lib/arm-linux-gnueabihf/';'/lib/aarch64-linux-gnu/'
@@ -198,12 +199,9 @@ end.
 
 NB. ---------------------------------------------------------
 smoutput 'Installing ',bin,'..'
-if. 'Linux'-:UNAME do.
-  if. IFRASPI do.
-    z=. libname,~ IF64{::'linux/arm/';'linux/aarch64/'
-  elseif. do.
-    z=. libname,~ IF64{::'linux/i386/';'linux/x86_64/'
-  end.
+if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
+  arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'arm';'aarch64';'i386';'x86_64'
+  z=. libname,~ (tolower UNAME),'/',arch,'/'
 elseif. IFWIN do.
   z=. libname,~ IF64{::'windows/win32/';'windows/x64/'
 elseif. do.

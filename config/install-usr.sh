@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 echo "this script will install j system on /usr"
 
@@ -9,9 +10,9 @@ if [ "$(uname -m)" = "x86_64" ] || [ "$(uname -m)" = "amd64" ] ; then
 elif [ "$(uname -m)" = "i386" ] || [ "$(uname -m)" = "i686" ] ; then
  cpu="i686"
 elif [ "$(uname -m)" = "aarch64" ] || [ "$(uname -m)" = "arm64" ] ; then
- cpu="arm64"
+ cpu="aarch64"
 elif [ "$(uname -m)" = "armv6l" ] ; then
- cpu="arm32"
+ cpu="arm"
 else
  echo "platform $(uname -m) not supported"
  exit 1
@@ -27,7 +28,7 @@ if [ "Darwin" = "$(uname)" ]; then
 EXT=dylib
 VEXT=9.04.dylib
 GEXT=dylib
-if [ "arm64" = "$cpu" ]; then
+if [ "aarch64" = "$cpu" ]; then
  BIN=/opt/homebrew/bin
  ETC=/opt/homebrew/etc
  SHR=/opt/homebrew/share
@@ -42,12 +43,14 @@ else
 EXT=so
 VEXT=so.9.04
 GEXT=so.10
+if [ "Linux" = "$(uname)" ]; then
+# Linux Raspberry
 BIN=/usr/bin
 ETC=/etc
 SHR=/usr/share
-if [ "arm64" = "$cpu" ]; then
+if [ "aarch64" = "$cpu" ]; then
  LIB=/usr/lib/aarch64-linux-gnu
-elif [ "arm32" = "$cpu" ]; then
+elif [ "arm" = "$cpu" ]; then
  LIB=/usr/lib/arm-linux-gnueabihf
 elif [ "x86_64" = "$cpu" ]; then
  if [ -d /usr/lib/x86_64-linux-gnu ]; then
@@ -64,6 +67,14 @@ else
  LIB=/usr/lib
  fi
 fi
+else
+# OpenBSD FreeBSD
+BIN=/usr/local/bin
+ETC=/usr/local/etc
+SHR=/usr/local/share
+LIB=/usr/local/lib
+fi
+
 fi
 mkdir -p $SHR/j/9.04/addons/ide || { echo "can not create directory" ; exit 1; }
 chmod 755 $SHR/j || { echo "can not set permission" ; exit 1; }
@@ -114,7 +125,7 @@ cp libgmp.$GEXT "$LIB/libjgmp.$GEXT"
 chmod 755 "$LIB/libjgmp.$GEXT"
 fi
 
-if [ "Linux" = "$(uname)" ]; then
+if [ "Darwin" != "$(uname)" ]; then
 /sbin/ldconfig
 fi
 

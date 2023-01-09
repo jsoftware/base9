@@ -15,20 +15,20 @@ NEW=. hostpathsep jpath bname,'.new'
 if. 1~:ftype bname do. log'upgrade not supported for this type of install' return. end.
 
 if. IF64 > IFRASPI do.
- t=. httpget path,plat,'/j64'
- if. 1=;{.t do. log'upgrade - read jengine folder failed' return end.
- a=. fread '~temp/j64'
- i=. >:((;(UNAME-:'Win'){'>libj';'>j') E. a)#i.#a
- a=. i}.each (#i)#<a
- a=. (a i.each'<'){.each a NB. hardware binaries available
- a=. a}.~each a i.each 'j'
- a=. }.each a{.~each a i.each '.'
- try. t7=. 2!:7'' catch. t7=. '' end.
- a=. 'j',;{:(a e. ;:t7)#a NB. best of those we can run
- i=. name i.'.'
- name=. <(}:i{.name),a,i}.name
+  t=. httpget path,plat,'/j64'
+  if. 1=;{.t do. log'upgrade - read jengine folder failed' return end.
+  a=. fread '~temp/j64'
+  i=. >:((;(UNAME-:'Win'){'>libj';'>j') E. a)#i.#a
+  a=. i}.each (#i)#<a
+  a=. (a i.each'<'){.each a NB. hardware binaries available
+  a=. a}.~each a i.each 'j'
+  a=. }.each a{.~each a i.each '.'
+  try. t7=. 2!:7'' catch. t7=. '' end.
+  a=. 'j',;{:(a e. ;:t7)#a NB. best of those we can run
+  i=. name i.'.'
+  name=. <(}:i{.name),a,i}.name
 else.
- name=. <name
+  name=. <name
 end.
 
 arg=. (<jxxx),(<br),(<platform),(<3{.jbithw),name
@@ -42,10 +42,10 @@ r fwrite NEW
 
 if. UNAME-:'Win' do.
   if. fexist OLD do.
-   if. -.ferase OLD do. log'upgrade failed - ferase j.dll.old - exit all J sessions and try again' return. end.
+    if. -.ferase OLD do. log'upgrade failed - ferase j.dll.old - exit all J sessions and try again' return. end.
   end.
- if. -.OLD frename DLL do. log'upgrade failed - rename j.dll to j.dll.old' return. end.
- if. -.DLL frename NEW do. log'upgrade failed - rename j.dll.new to j.dll' return. end.
+  if. -.OLD frename DLL do. log'upgrade failed - rename j.dll to j.dll.old' return. end.
+  if. -.DLL frename NEW do. log'upgrade failed - rename j.dll.new to j.dll' return. end.
 else.
   if. -.ferase DLL do. log'upgrade failed - ferase libj.so.old - exit all J sessions and try again' return. end.
   if. -.DLL frename NEW do. log'upgrade failed - rename libj.so.new to libj.so' return. end.

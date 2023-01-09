@@ -5,9 +5,9 @@ echo '*** next step updates addons and base library'
 'upgrade'jpkg'all'
 'install'jpkg {."1'shownotinstalled'jpkg''
 if. IFIOS +. UNAME-:'Android' do.
- echo LF,'ALL DONE!',LF,'exit this J session and start new session'
- i.0 0
- return.
+  echo LF,'ALL DONE!',LF,'exit this J session and start new session'
+  i.0 0
+  return.
 end.
 echo '*** next step updates Jqt ide'
 do_install'qtide'
@@ -15,13 +15,13 @@ echo '*** next step updates JE'
 'upgrade'jpkg'jengine'
 echo '*** next step creates desktop J launch icons'
 if. 2~:ftype jpath'~/Desktop' do.
- echo '~/Desktop folder does not exist for shortcuts'
- echo 'perhaps create ~/Desktop as link to your Desktop folder and rerun'
- assert 0
+  echo '~/Desktop folder does not exist for shortcuts'
+  echo 'perhaps create ~/Desktop as link to your Desktop folder and rerun'
+  assert 0
 else.
- shortcut'jc'
- shortcut'jhs'
- shortcut'jqt'
+  shortcut'jc'
+  shortcut'jhs'
+  shortcut'jqt'
 end.
 echo LF,'ALL DONE!',LF,'exit this J session and start new session with double click',LF,'of desktop icon to run J with the corresponding user interface'
 i.0 0
@@ -34,12 +34,12 @@ try. ".uname,' y' catchd. echo 'create ',y,' launch icon failed' end.
 )
 
 defaults=: 3 : 0
-A=:   ' ~addons/ide/jhs/config/jhs.cfg'
-L=:   hostpathsep jpath'~/Desktop/'
-W=:   hostpathsep jpath'~'
-I=:   hostpathsep jpath'~bin/icons/'
-N=:   (1 2 3{9!:14''),;IF64{'-32';''
-DS=:  ;(('Win';'Linux';'OpenBSD';'FreeBSD';'Darwin')i.<UNAME){'.lnk';'.desktop';'.desktop';'.desktop';'.app'
+A=: ' ~addons/ide/jhs/config/jhs.cfg'
+L=: hostpathsep jpath'~/Desktop/'
+W=: hostpathsep jpath'~'
+I=: hostpathsep jpath'~bin/icons/'
+N=: (1 2 3{9!:14''),;IF64{'-32';''
+DS=: ;(('Win';'Linux';'OpenBSD';'FreeBSD';'Darwin')i.<UNAME){'.lnk';'.desktop';'.desktop';'.desktop';'.app'
 LIB=: ''
 )
 
@@ -62,18 +62,18 @@ Winx y
 Winx=: 3 : 0
 select. y
 case.'jc' do.
- win'jc' ;'jconsole';'jgray.ico';LIB
+  win'jc' ;'jconsole';'jgray.ico';LIB
 case. 'jhs' do.
- win'jhs';'jconsole';'jblue.ico';LIB,A
+  win'jhs';'jconsole';'jblue.ico';LIB,A
 case. 'jqt' do.
- win'jqt';'jqt'     ;'jgreen.ico';LIB
+  win'jqt';'jqt' ;'jgreen.ico';LIB
 case. do.
- assert 0
+  assert 0
 end.
 )
 
 win=: 3 : 0
-'type bin icon arg'=.y
+'type bin icon arg'=. y
 f=. jpath '~temp/shortcut.vbs'
 n=. L,type,N,DS
 c=. hostpathsep jpath '~bin/',bin
@@ -130,56 +130,56 @@ Linuxx y
 Linuxx=: 3 : 0
 select. y
 case.'jc' do.
- linux'jc' ;'jconsole';'jgray.png';LIB
+  linux'jc' ;'jconsole';'jgray.png';LIB
 case. 'jhs' do.
- linux'jhs';'jconsole';'jblue.png';LIB,A
+  linux'jhs';'jconsole';'jblue.png';LIB,A
 case. 'jqt' do.
- linux'jqt';'jqt'     ;'jgreen.png';LIB
+  linux'jqt';'jqt' ;'jgreen.png';LIB
 case. do.
- assert 0
+  assert 0
 end.
 i.0 0
 )
 
 linux=: 3 : 0
-'type bin icon arg'=.y
+'type bin icon arg'=. y
 n=. type,N
 f=. L,type,N,DS
 c=. hostpathsep jpath '~bin/',bin
 rh=. 1<#fread '/etc/redhat-release'
 if. rh do.
- if. type-:'jqt' do.
-  e=. c
- else.
-  e=. c,' ',arg
- end.
-else.
- if. type-:'jqt' do.
-  e=. '"',c,'"'
- else.
-  if. 'gnome-terminal' -: TermEmu=. get_terminal'' do.
-   e=. '<T> -- "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+  if. type-:'jqt' do.
+    e=. c
   else.
-   e=. '<T> -e "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+    e=. c,' ',arg
   end.
- end.
+else.
+  if. type-:'jqt' do.
+    e=. '"',c,'"'
+  else.
+    if. 'gnome-terminal' -: TermEmu=. get_terminal'' do.
+      e=. '<T> -- "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+    else.
+      e=. '<T> -e "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+    end.
+  end.
 end.
 
 if. rh do.
- r=. desktoprh rplc '<N>';n
- r=. r rplc '<E>';e
- r=. r rplc '<W>';W
- r=. r rplc '<I>';I,icon
- r=. r rplc '<TT>';(type-:'jc'){'false';'true'
- r fwrite f
- 2!:0'chmod +x ',f
+  r=. desktoprh rplc '<N>';n
+  r=. r rplc '<E>';e
+  r=. r rplc '<W>';W
+  r=. r rplc '<I>';I,icon
+  r=. r rplc '<TT>';(type-:'jc'){'false';'true'
+  r fwrite f
+  2!:0'chmod +x ',f
 else.
- r=. desktop rplc '<N>';n
- r=. r rplc '<E>';e
- r=. r rplc '<W>';W
- r=. r rplc '<I>';I,icon
- r fwrite f
- 2!:0'chmod +x ',f
+  r=. desktop rplc '<N>';n
+  r=. r rplc '<E>';e
+  r=. r rplc '<W>';W
+  r=. r rplc '<I>';I,icon
+  r fwrite f
+  2!:0'chmod +x ',f
 end.
 )
 
@@ -208,31 +208,31 @@ Darwinx y
 Darwinx=: 3 : 0
 select. y
 case.'jc' do.
- darwin'jc' ;'jconsole';'jgray.icns';LIB
+  darwin'jc' ;'jconsole';'jgray.icns';LIB
 case. 'jhs' do.
- darwin'jhs';'jconsole';'jblue.icns';LIB,A
+  darwin'jhs';'jconsole';'jblue.icns';LIB,A
 case. 'jqt' do.
- darwin'jqt';'jqt'     ;'jgreen.icns';LIB
+  darwin'jqt';'jqt' ;'jgreen.icns';LIB
 case. do.
- assert 0
+  assert 0
 end.
 i.0 0
 )
 
 NB. 1 jhs - 0 jconsole
 darwin=: 3 : 0
-'type bin icon arg'=.y
+'type bin icon arg'=. y
 n=. type,N
 f=. L,type,N,DS
 c=. hostpathsep jpath '~bin/',bin
 select. type
 case.'jc' do.
- NB. r=. '#!/bin/sh',LF,'open "',c,'"'
- r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB
+NB. r=. '#!/bin/sh',LF,'open "',c,'"'
+  r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB
 case. 'jhs' do.
- r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB,A
+  r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB,A
 case. 'jqt' do.
- r=.'#!/bin/sh',LF,'"',c,'.command" ',LIB
+  r=. '#!/bin/sh',LF,'"',c,'.command" ',LIB
 end.
 fpathcreate f,'/Contents/MacOS'
 fpathcreate f,'/Contents/Resources'
