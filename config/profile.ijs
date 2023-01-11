@@ -58,4 +58,5 @@ md snap
 md temp
 
 NB. boot up J and load startup.ijs if it exists
+0 0$1!:2&2 ^: (*@#@(1!:0)@<) system,'/util/boot.ijs'
 0!:0 <jpathsep (4!:55 (;:'systype fhs isroot userx ids md omitversion'), ids)]system,'/util/boot.ijs'
