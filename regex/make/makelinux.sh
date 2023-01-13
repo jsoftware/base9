@@ -19,7 +19,6 @@ rm -f src/*.o
  --disable-debug \
  --disable-jit \
  --disable-static \
- --disable-unicode \
  --enable-bsr-anycrlf \
  --enable-newline-is-anycrlf
 make

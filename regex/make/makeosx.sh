@@ -17,7 +17,6 @@ rm -f $R/*.dylib src/*.o
  --disable-pcre2-32 \
  --disable-debug \
  --disable-jit \
- --disable-unicode \
  --enable-bsr-anycrlf \
  --enable-newline-is-anycrlf \
 
