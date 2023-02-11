@@ -51,9 +51,17 @@ if. 6>+/v='/' do.
   r=. 'Engine: ',v
   f=. 'www.jsoftware.com'
 else.
-  'a b c d e f g'=. 7 {. <;._1 '/',v
-  r=. 'Engine: ', a,'/',b,'/',c
-  r=. r,LF,(toupper {.d),(}.d),': ',e,'/',g
+  if. '.' e. (v i. '/') {. v do.
+    'a b c d e f g h'=. 8 {. <;._1 '/',v
+    r=. 'Engine: ', a,'/',b,'/',c
+    r=. r,LF,('Build: '),d,'/',f,'/',g,'/',h
+    contact=. e
+  else.
+    'a b c d e f g'=. 7 {. <;._1 '/',v
+    r=. 'Engine: ', a,'/',b,'/',c
+    r=. r,LF,(toupper {.d),(}.d),': ',e,'/',g
+    contact=. f
+  end.
 end.
 r=. r,LF,'Library: ',JLIB
 if. IFQT do.
@@ -74,7 +82,7 @@ else.
 end.
 r=. r,LF,'Installer: ',LF -.~ 1!:1 :: ('unknown'"_) <jpath'~bin/installer.txt'
 r=. r,LF,'InstallPath: ',jpath '~install'
-r=. r,LF,'Contact: ',f
+r=. r,LF,'Contact: ',contact
 JVERSION=: toJ r
 
 NB. ---------------------------------------------------------
