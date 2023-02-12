@@ -50,17 +50,20 @@ v=. 9!:14''
 if. 6>+/v='/' do.
   r=. 'Engine: ',v
   f=. 'www.jsoftware.com'
+  JVERSION_NUMBER=: 10000 * {. 0". }.({.~ i.&'/')v
 else.
   if. '.' e. (v i. '/') {. v do.
     'a b c d e f g h'=. 8 {. <;._1 '/',v
     r=. 'Engine: ', a,'/',b,'/',c
     r=. r,LF,('Build: '),d,'/',f,'/',g,'/',h
     contact=. e
+    JVERSION_NUMBER=: 100 #. {.@(0&".)&> 4{. '.' splitstring ('-beta';'.') rplc~ }.a
   else.
     'a b c d e f g'=. 7 {. <;._1 '/',v
     r=. 'Engine: ', a,'/',b,'/',c
     r=. r,LF,(toupper {.d),(}.d),': ',e,'/',g
     contact=. f
+    JVERSION_NUMBER=: 10000 * {. 0". }.a
   end.
 end.
 r=. r,LF,'Library: ',JLIB
