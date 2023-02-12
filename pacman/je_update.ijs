@@ -77,7 +77,7 @@ name=. ;i{'j.dll';'libj.dylib';'libj.so'
 bname=. '~bin/',name
 if. FHS*.IFUNIX do.
   v=. ({.~i.&'/')}.9!:14''
-  sub=. '.',({.v),'.',}.v    NB. x j904 -> libj.so.9.04
+  sub=. '.',({.v),'.',}.v    NB. x j904 -> libj.so.9.4
   if. 'Darwin'-:UNAME do.
     d1=. (({.~ i:&'/')BINPATH),'/lib/'
   elseif. IFRASPI do.

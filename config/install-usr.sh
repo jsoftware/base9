@@ -26,7 +26,7 @@ cd -
 
 if [ "Darwin" = "$(uname)" ]; then
 EXT=dylib
-VEXT=9.04.dylib
+VEXT=9.4.dylib
 GEXT=dylib
 if [ "aarch64" = "$cpu" ]; then
  BIN=/opt/homebrew/bin
@@ -41,7 +41,7 @@ else
 fi
 else
 EXT=so
-VEXT=so.9.04
+VEXT=so.9.4
 GEXT=so.10
 if [ "Linux" = "$(uname)" ]; then
 # Linux Raspberry
@@ -76,40 +76,40 @@ LIB=/usr/local/lib
 fi
 
 fi
-mkdir -p $SHR/j/9.04/addons/ide || { echo "can not create directory" ; exit 1; }
+mkdir -p $SHR/j/9.4/addons/ide || { echo "can not create directory" ; exit 1; }
 chmod 755 $SHR/j || { echo "can not set permission" ; exit 1; }
-mkdir -p $ETC/j/9.04 || { echo "can not create directory" ; exit 1; }
+mkdir -p $ETC/j/9.4 || { echo "can not create directory" ; exit 1; }
 chmod 755 $ETC/j || { echo "can not set permission" ; exit 1; }
-rm -rf $SHR/j/9.04/system
-cp -r ../system $SHR/j/9.04/.
-rm -rf $SHR/j/9.04/tools
-cp -r ../tools $SHR/j/9.04/.
-rm -rf $SHR/j/9.04/icons
-cp -r icons $SHR/j/9.04/.
-rm -rf $SHR/j/9.04/addons/ide/jhs
-cp -r ../addons/ide/jhs $SHR/j/9.04/addons/ide/.
-find $SHR/j/9.04 -type d -exec chmod a+rx {} \+
-find $SHR/j/9.04 -type f -exec chmod a+r {} \+
-cp profile.ijs $ETC/j/9.04/.
-cp profilex_template.ijs $ETC/j/9.04/.
-find $ETC/j/9.04 -type d -exec chmod a+rx {} \+
-find $ETC/j/9.04 -type f -exec chmod a+r {} \+
+rm -rf $SHR/j/9.4/system
+cp -r ../system $SHR/j/9.4/.
+rm -rf $SHR/j/9.4/tools
+cp -r ../tools $SHR/j/9.4/.
+rm -rf $SHR/j/9.4/icons
+cp -r icons $SHR/j/9.4/.
+rm -rf $SHR/j/9.4/addons/ide/jhs
+cp -r ../addons/ide/jhs $SHR/j/9.4/addons/ide/.
+find $SHR/j/9.4 -type d -exec chmod a+rx {} \+
+find $SHR/j/9.4 -type f -exec chmod a+r {} \+
+cp profile.ijs $ETC/j/9.4/.
+cp profilex_template.ijs $ETC/j/9.4/.
+find $ETC/j/9.4 -type d -exec chmod a+rx {} \+
+find $ETC/j/9.4 -type f -exec chmod a+r {} \+
 echo "#!/bin/sh" > ijconsole.sh
 echo "cd ~ && $BIN/ijconsole \"$@\"" >> ijconsole.sh
 mv ijconsole.sh $BIN/.
 chmod 755 $BIN/ijconsole.sh
-if [ -f "$BIN/ijconsole-9.04" ] ; then
-mv "$BIN/ijconsole-9.04" /tmp/ijconsole-9.04.old.$$
+if [ -f "$BIN/ijconsole-9.4" ] ; then
+mv "$BIN/ijconsole-9.4" /tmp/ijconsole-9.4.old.$$
 fi
-cp jconsole $BIN/ijconsole-9.04
-chmod 755 $BIN/ijconsole-9.04
+cp jconsole $BIN/ijconsole-9.4
+chmod 755 $BIN/ijconsole-9.4
 if [ -f "$BIN/ijconsole" ] ; then
 mv "$BIN/ijconsole" /tmp/ijconsole.old.$$
 fi
 if [ "Linux" = "$(uname)" ]; then
-update-alternatives --install $BIN/ijconsole ijconsole $BIN/ijconsole-9.04 904
+update-alternatives --install $BIN/ijconsole ijconsole $BIN/ijconsole-9.4 904
 else
-(cd $BIN && ln -sf ijconsole-9.04 ijconsole)
+(cd $BIN && ln -sf ijconsole-9.4 ijconsole)
 fi
 
 if [ -d "$LIB" ] ; then
