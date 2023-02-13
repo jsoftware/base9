@@ -1,13 +1,13 @@
 NB. update JE in place - updates JE (beta or release) to latest version at web site
 NB. je_update_jpacman_''
 
+NB. =========================================================
 NB. should have been called je_upgrade
 je_update=: 3 : 0
 if. IFIOS+.UNAME-:'Android' do. log'upgrade not supported for this platform' return. end.
-'jxxx jbithw platform br comm web dt'=. 7 {. <;._1 '/',9!:14''
-if. -.(comm-:'commercial')*.web-:'www.jsoftware.com' do. log'upgrade not possible for this install' return. end.
-br=. (br i.'-'){.br
-path=. 'http://www.jsoftware.com/download/jengine/',jxxx,'-',br,'/'
+'jvno jxxx jbithw platform lic web dt'=. 7 {. revinfo_j_''
+if. -.(lic-:'GPL3')*.web-:'www.jsoftware.com' do. log'upgrade not possible for this install' return. end.
+path=. je_dlpath jvno
 'plat name bname'=. je_sub''
 DLL=. hostpathsep jpath bname
 OLD=. hostpathsep jpath bname,'.old'
@@ -31,8 +31,7 @@ else.
   name=. <name
 end.
 
-arg=. (<jxxx),(<br),(<platform),(<3{.jbithw),name
-r=. je_get arg
+r=. je_get jxxx;platform;(3{.jbithw);name
 if. _1=r do. log'upgrade file not found' return. end.
 if. r-:fread DLL do. log'upgrade not required - already current' return. end.
 
@@ -60,24 +59,34 @@ end.
 'upgrade installed - exit, restart J, and check JVERSION'
 )
 
-NB. y is 'j904';'beta';'linux';'j64';'libjavx.so'
+NB. =========================================================
+NB. download name for j engine
+je_dlpath=: 3 : 0
+'a b c d'=. 100 #.inv JVERSION_NUMBER
+p=. 'j',(":a),_2{.'0',":b
+p=. p,'-',(d=0) pick 'beta';'release'
+'http://www.jsoftware.com/download/jengine/',p,'/'
+)
+
+NB. =========================================================
+NB. y is 'j9.4.0-beta11';'linux';'j64';'libjavx.so'
 NB. https://www.jsoftware.com/download/jengine/j904-beta/linux/j64/libj.so
 je_get=: 3 : 0
-'jxxx br plat bits name'=. y
-arg=. 'http://www.jsoftware.com/download/jengine/',jxxx,'-',br,'/',plat,'/',bits,'/',name
+'jvno plat bits name'=. y
+arg=. (je_dlpath''),plat,'/',bits,'/',name
 ferase'~temp/',name
 httpget arg
 fread '~temp/',name
 )
 
+NB. =========================================================
 je_sub=: 3 : 0
 i=. ('Win';'Darwin')i.<UNAME
 plat=. ;i{'windows';'darwin';IFRASPI{::'linux';'raspberry'
 name=. ;i{'j.dll';'libj.dylib';'libj.so'
 bname=. '~bin/',name
 if. FHS*.IFUNIX do.
-  v=. ({.~i.&'/')}.9!:14''
-  sub=. '.',({.v),'.',}.v    NB. x j904 -> libj.so.9.4
+  sub=. ; ('.',":) each 2 {. 100 #.inv JVERSION_NUMBER
   if. 'Darwin'-:UNAME do.
     d1=. (({.~ i:&'/')BINPATH),'/lib/'
   elseif. IFRASPI do.
@@ -92,6 +101,7 @@ end.
 plat;name;bname
 )
 
+NB. =========================================================
 NB. get 9!:14'' result from JE file
 jengine_version=: 3 : 0
 d=. fread y

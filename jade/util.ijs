@@ -190,6 +190,36 @@ s=. '\',.}.1 ": 8 (#.^:_1) 255,n{x
 s ((n+3*i.#n)+/i.4)} (>:3*m)#t
 )
 
+NB. =========================================================
+NB. vno;vst;architecture;OS;license;builder;date;compiler;<[otheroptions]
+NB. vno is 100 #. major;minor;revision;subrevision
+NB. vst is in form: '9.4.0-beta11' or '9.4.1'
+revinfo=: 3 : 0
+v=. 9!:14''
+if. '.' e. (v i. '/') {. v do.
+  res=. 8 {. <;._1 '/',v
+  a=. 0 pick res
+  ndx=. a i. '-'
+  beta=. {. 0 ". (ndx+5) }. a
+  vno=. 100 #. (0 ".&> <;._1 '.' 0} ndx {. a), beta
+  vno;res
+else.
+  res=. 9 {. <;._1 '/',v
+  'a b'=. 0 3 { res
+  res=. (<<<0 3) {res
+  res=. (('www.jsoftware.com' -: 3 pick res){'na';'GPL3') 2} res
+  'm n'=. ": each ver=. 0 100 #: 0 ". }. a
+  num=. _97 + a.i. {:b
+  if. 'r' = {. b do.
+    rev=. (num+1),0
+    vst=. 'j',m,'.',n,'.',":num+1
+  else.
+    rev=. 0,num
+    vst=. 'j',m,'.',n,'.0-beta',":num
+  end.
+  (100 #.ver,rev);vst;res
+end.
+)
 
 NB. =========================================================
 NB. remove single directory

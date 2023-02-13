@@ -321,6 +321,12 @@ end.
 )
 
 NB. =========================================================
+NB. get J version number in old form j904
+getJverold=: 3 : 0
+'j', ": 100 #. 2 {. 100 #.inv 0 pick revinfo_j_''
+)
+
+NB. =========================================================
 NB. read version from jqt binary
 getjqtversion=: 3 : 0
 suffix=. (IFUNIX>'/'e.LIBFILE)#'-9.4'  NB. deb install

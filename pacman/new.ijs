@@ -38,7 +38,7 @@ A=: ' ~addons/ide/jhs/config/jhs.cfg'
 L=: hostpathsep jpath'~/Desktop/'
 W=: hostpathsep jpath'~'
 I=: hostpathsep jpath'~bin/icons/'
-N=: (1 2 3{9!:14''),;IF64{'-32';''
+N=: (}.getJverold''),;IF64{'-32';''
 DS=: ;(('Win';'Linux';'OpenBSD';'FreeBSD';'Darwin')i.<UNAME){'.lnk';'.desktop';'.desktop';'.desktop';'.app'
 LIB=: ''
 )
