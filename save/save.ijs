@@ -3,7 +3,6 @@ NB.
 NB. ~install should be writable by the current user
 
 require 'pacman'
-'install'jpkg'dev/eformat'
 
 cocurrent 'jpsave'
 rmdir_j_ jpath '~Main/release'
@@ -38,7 +37,6 @@ compare
 )
 
 dat=. ; freads each (<jpath '~Main/release/') ,each F , each <'.ijs'
-dat=. dat, freads '~addons/dev/eformat/eformat.ijs'
 dat=. dat, 'cocurrent <''base'''
 
 dat fwritenew jpath '~Main/release/install/system/main/stdlib.ijs'
