@@ -70,7 +70,7 @@ p=. p,'-',(d=0) pick 'beta';'release'
 
 NB. =========================================================
 NB. y is 'j9.4.0-beta11';'linux';'j64';'libjavx.so'
-NB. https://www.jsoftware.com/download/jengine/j904-beta/linux/j64/libj.so
+NB. https://www.jsoftware.com/download/jengine/j9.4-beta/linux/j64/libj.so
 je_get=: 3 : 0
 'jvno plat bits name'=. y
 arg=. (je_dlpath''),plat,'/',bits,'/',name

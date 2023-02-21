@@ -19,7 +19,7 @@ else
 fi
 
 cd ..
-[ "j904" = ${PWD##*/} ] || { echo "directory not j904" ; exit 1; }
+[ "j9.4" = ${PWD##*/} ] || { echo "directory not j9.4" ; exit 1; }
 cd -
 
 [ "Darwin" = "$(uname)" ] || [ "$(id -u)" = "0" ] || { echo "need sudo" ; exit 1; }
@@ -107,7 +107,7 @@ if [ -f "$BIN/ijconsole" ] ; then
 mv "$BIN/ijconsole" /tmp/ijconsole.old.$$
 fi
 if [ "Linux" = "$(uname)" ]; then
-update-alternatives --install $BIN/ijconsole ijconsole $BIN/ijconsole-9.4 904
+update-alternatives --install $BIN/ijconsole ijconsole $BIN/ijconsole-9.4 9.4
 else
 (cd $BIN && ln -sf ijconsole-9.4 ijconsole)
 fi

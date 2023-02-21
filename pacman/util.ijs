@@ -322,6 +322,7 @@ end.
 
 NB. =========================================================
 NB. get J version number in old form j904
+NB. only used in http://www.jsoftware.com/jal/...  and desktop shortcut
 getJverold=: 3 : 0
 'j', ": 100 #. 2 {. 100 #.inv 0 pick revinfo_j_''
 )
