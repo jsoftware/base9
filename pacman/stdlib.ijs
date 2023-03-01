@@ -65,8 +65,8 @@ suffix=. IFUNIX{::'dll';('Darwin'-:UNAME){::'so';'dylib'
 vsuffix=. IFUNIX{::(JQTVERSION,'.dll');('Darwin'-:UNAME){::('so.',JQTVERSION);(JQTVERSION,'.dylib')
 NB. ---------------------------------------------------------
 smoutput 'Installing ',bin,'..'
-arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'32';'64';'x86';'x64'
 if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
+  arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'32';'64';'x86';'x64'
   if. IFRASPI do.
     z=. 'jqt-raspi',((y-:'slim')#'slim'),'-',arch,'.tar.gz'
   elseif. 'Linux'-:UNAME do.
@@ -76,9 +76,11 @@ if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
   end.
   z1=. 'libjqt.',suffix
 elseif. IFWIN do.
+  arch=. IF64{::'x86';'x64'
   z=. 'jqt-win',((y-:'slim')#'slim'),'-',arch,'.zip'
   z1=. 'jqt.',suffix
 elseif. do.
+  arch=. IF64{::'x86';'x64'
   z=. 'jqt-mac',((y-:'slim')#'slim'),'-',arch,'.zip'
   z1=. 'libjqt.',suffix
 end.
@@ -134,7 +136,7 @@ tgt=. jpath IFWIN{::'~install/Qt';'~bin/Qt6Core.dll'
 y=. (*#y){::0;y
 
 smoutput 'Installing Qt library...'
-arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'32';'64';'x86';'x64'
+arch=. IF64{::'x86';'x64'
 if. IFWIN do.
   z=. 'qt62-win-',((y-:'slim')#'slim-'),arch,'.zip'
 else.
