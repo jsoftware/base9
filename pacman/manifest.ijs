@@ -60,7 +60,7 @@ if. #PLATFORMS do.
 end.
 if. #RELEASE do.
   rel=. <./0 ". 'j' -.~ RELEASE
-  ver=. 100 #. 2 {. 100 #.inv 0 pick revinfo_j_''
+  ver=. 100 #. 2 {. 100 #.inv JVERSION_NUMBER
   if. rel > ver do.
     0[echo 'Release not supported for this addon: ',9!:14'' return.
   end.

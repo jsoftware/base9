@@ -322,15 +322,15 @@ end.
 
 NB. =========================================================
 NB. get J version number in old form j904
-NB. only used in http://www.jsoftware.com/jal/...  and desktop shortcut
+NB. only used for jal, e.g. https://www.jsoftware.com/jal/...
 getJverold=: 3 : 0
-'j', ": 100 #. 2 {. 100 #.inv 0 pick revinfo_j_''
+'j', ": 100 #. 2 {. 100 #.inv JVERSION_NUMBER
 )
 
 NB. =========================================================
 NB. read version from jqt binary
 getjqtversion=: 3 : 0
-suffix=. (IFUNIX>'/'e.LIBFILE)#'-9.4'  NB. deb install
+suffix=. (IFUNIX>'/'e.LIBFILE)#'-',RELNO  NB. deb install
 dat=. fread '~bin/jqt',suffix,IFWIN#'.exe'
 if. dat-:_1 do. '' return. end.
 ndx=. I. 'jqtversion:' E. dat

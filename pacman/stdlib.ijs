@@ -42,7 +42,7 @@ ldd=. ('Darwin'-:UNAME){::'ldd';'otool -L'
 suffix=. ('Darwin'-:UNAME){::'so';'dylib'
 vsuffix=. ('Darwin'-:UNAME){::('so.',JQTVERSION);(JQTVERSION,'.dylib')
 if. FHS*.IFUNIX do.
-  d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-9.4'
+  d=. <;._2 hostcmd_jpacman_ ldd,' ',BINPATH,'/jqt-',RELNO
   d=. d,<;._2 hostcmd_jpacman_ ldd,' ',y,'/libjqt.',vsuffix
 else.
   d=. <;._2 hostcmd_jpacman_ ldd,' ',jpath'~bin/jqt'
@@ -65,26 +65,24 @@ suffix=. IFUNIX{::'dll';('Darwin'-:UNAME){::'so';'dylib'
 vsuffix=. IFUNIX{::(JQTVERSION,'.dll');('Darwin'-:UNAME){::('so.',JQTVERSION);(JQTVERSION,'.dylib')
 NB. ---------------------------------------------------------
 smoutput 'Installing ',bin,'..'
+
 if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
-  arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'32';'64';'x86';'x64'
   if. IFRASPI do.
-    z=. 'jqt-raspi',((y-:'slim')#'slim'),'-',arch,'.tar.gz'
-  elseif. 'Linux'-:UNAME do.
-    z=. 'jqt-',((y-.@-:'slim')#tolower UNAME),((y-:'slim')#'slim'),'-',arch,'.tar.gz'
-  elseif. do.
-    z=. 'jqt-',(tolower UNAME),((y-:'slim')#'slim'),'-',arch,'.tar.gz'
+    z=. 'jqt-raspi',((y-:'slim')#'slim'),'.tar.gz'
+  else.
+    z=. 'jqt-',(tolower UNAME),((y-:'slim')#'-slim'),'.tar.gz'
   end.
   z1=. 'libjqt.',suffix
 elseif. IFWIN do.
-  arch=. IF64{::'x86';'x64'
-  z=. 'jqt-win',((y-:'slim')#'slim'),'-',arch,'.zip'
+  z=. 'jqt-win',((y-:'slim')#'-slim'),'.zip'
   z1=. 'jqt.',suffix
 elseif. do.
-  arch=. IF64{::'x86';'x64'
-  z=. 'jqt-mac',((y-:'slim')#'slim'),'-',arch,'.zip'
+  z=. 'jqt-mac',((y-:'slim')#'-slim'),'.zip'
   z1=. 'libjqt.',suffix
 end.
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j9.4/qtide/',z
+
+www=. 'https://www.jsoftware.com/download/j',RELNO
+'rc p'=. httpget_jpacman_ www,'/qtide/',z
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
@@ -104,11 +102,11 @@ else.
     end.
     echo 'install libjqt.',suffix,' to ',d1
     hostcmd_jpacman_ 'rm -f ',BINPATH,'/jqt'
-    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.4 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD')#' && /sbin/ldconfig'
-    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-9.4 && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD')#' && /sbin/ldconfig'
+    echo 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-',RELNO,' && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD')#' && /sbin/ldconfig'
+    hostcmd_jpacman_ 'cd ',(dquote jpath '~temp'),' && tar --no-same-owner --no-same-permissions -xzf ',(dquote p), ' && chmod 755 jqt && mv jqt ',BINPATH,'/jqt-',RELNO,' && cp libjqt.',suffix,' ',d1,'/libjqt.',vsuffix,' && chmod 755 ',d1,'/libjqt.',vsuffix, ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD')#' && /sbin/ldconfig'
     if. 'Linux'-:UNAME do.
-      echo 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.4 9.4'
-      hostcmd_jpacman_ 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-9.4 9.4'
+      echo 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-',RELNO,' ',RELNO
+      hostcmd_jpacman_ 'update-alternatives --install ',BINPATH,'/jqt jqt ',BINPATH,'/jqt-',RELNO,' ',RELNO
     end.
   else.
     hostcmd_jpacman_ 'cd ',(dquote d),' && tar xzf ',(dquote p)
@@ -142,7 +140,7 @@ if. IFWIN do.
 else.
   z=. 'qt62-mac-',((y-:'slim')#'slim-'),arch,'.zip'
 end.
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/j9.4/qtlib/',z
+'rc p'=. httpget_jpacman_ www,'/qtlib/',z
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
@@ -209,7 +207,7 @@ elseif. IFWIN do.
 elseif. do.
   z=. libname,~ 'apple/macos/'
 end.
-'rc p'=. httpget_jpacman_ 'http://www.jsoftware.com/download/jengine/mpir/',z
+'rc p'=. httpget_jpacman_ 'https://www.jsoftware.com/download/jengine/mpir/',z
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.

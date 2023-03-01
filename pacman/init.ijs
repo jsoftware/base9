@@ -73,6 +73,7 @@ NB. =========================================================
 3 : 0''
 HTTPCMD=: ''
 nc=. '--no-cache'
+RELNO=: ,'0,p<.>0' (8!:2) 2 {. 100 #.inv JVERSION_NUMBER
 if. IFUNIX do.
   IFWGET=. IFCURL=. 0
   if. -. IFIOS +. UNAME-:'Android' do.
@@ -105,12 +106,12 @@ setfiles=: 3 : 0
 ADDCFG=: jpath '~addons/config/'
 makedir ADDCFG
 ADDCFGIJS=: ADDCFG,'config.ijs'
-JRELEASE=: getJverold ''
+JRELEASE=: getJverold ''  NB. for jal
 LIBTREE=: readtree''
 if. IFIOS do.
   WWW=: '/jal/',JRELEASE,'/'
 else.
-  WWW=: 'http://www.jsoftware.com/jal/',JRELEASE,'/'
+  WWW=: 'https://www.jsoftware.com/jal/',JRELEASE,'/'
 end.
 )
 

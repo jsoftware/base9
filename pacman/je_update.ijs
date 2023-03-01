@@ -62,15 +62,11 @@ end.
 NB. =========================================================
 NB. download name for j engine
 je_dlpath=: 3 : 0
-'a b c d'=. 100 #.inv JVERSION_NUMBER
-p=. 'j',(":a),_2{.'0',":b
-p=. p,'-',(d=0) pick 'beta';'release'
-'http://www.jsoftware.com/download/jengine/',p,'/'
+'https://www.jsoftware.com/download/jengine/j',RELNO,'/'
 )
 
 NB. =========================================================
 NB. y is 'j9.4.0-beta11';'linux';'j64';'libjavx.so'
-NB. https://www.jsoftware.com/download/jengine/j9.4-beta/linux/j64/libj.so
 je_get=: 3 : 0
 'jvno plat bits name'=. y
 arg=. (je_dlpath''),plat,'/',bits,'/',name
@@ -86,7 +82,7 @@ plat=. ;i{'windows';'darwin';IFRASPI{::'linux';'raspberry'
 name=. ;i{'j.dll';'libj.dylib';'libj.so'
 bname=. '~bin/',name
 if. FHS*.IFUNIX do.
-  sub=. ; ('.',":) each 2 {. 100 #.inv JVERSION_NUMBER
+  sub=. '.',RELNO
   if. 'Darwin'-:UNAME do.
     d1=. (({.~ i:&'/')BINPATH),'/lib/'
   elseif. IFRASPI do.

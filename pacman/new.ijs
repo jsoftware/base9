@@ -38,7 +38,7 @@ A=: ' ~addons/ide/jhs/config/jhs.cfg'
 L=: hostpathsep jpath'~/Desktop/'
 W=: hostpathsep jpath'~'
 I=: hostpathsep jpath'~bin/icons/'
-N=: (}.getJverold''),;IF64{'-32';''
+N=: RELNO
 DS=: ;(('Win';'Linux';'OpenBSD';'FreeBSD';'Darwin')i.<UNAME){'.lnk';'.desktop';'.desktop';'.desktop';'.app'
 LIB=: ''
 )
@@ -186,7 +186,7 @@ end.
 NB. Darwin
 plist=: 0 : 0
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
 <key>CFBundleExecutable</key><string>apprun</string>
 <key>CFBundleIconFile</key><string>i.icns</string>
