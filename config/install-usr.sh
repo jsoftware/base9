@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+cd "$(dirname "$0")"
+
 echo "this script will install j system on /usr"
 
 [ "Linux" = "$(uname)" ] || "OpenBSD" = "$(uname)" ] || "FreeBSD" = "$(uname)" ] || [ "Darwin" = "$(uname)" ] || { echo "$(uname) not supported" ; exit 1; }
