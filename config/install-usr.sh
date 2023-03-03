@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 
 echo "this script will install j system on /usr"
 
-[ "Linux" = "$(uname)" ] || "OpenBSD" = "$(uname)" ] || "FreeBSD" = "$(uname)" ] || [ "Darwin" = "$(uname)" ] || { echo "$(uname) not supported" ; exit 1; }
+[ "Linux" = "$(uname)" ] || [ "OpenBSD" = "$(uname)" ] || [ "FreeBSD" = "$(uname)" ] || [ "Darwin" = "$(uname)" ] || { echo "$(uname) not supported" ; exit 1; }
 
 if [ "$(uname -m)" = "x86_64" ] || [ "$(uname -m)" = "amd64" ] ; then
  cpu="x86_64"
