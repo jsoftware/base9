@@ -49,10 +49,10 @@ else.
   if. -.ferase DLL do. log'upgrade failed - ferase libj.so.old - exit all J sessions and try again' return. end.
   if. -.DLL frename NEW do. log'upgrade failed - rename libj.so.new to libj.so' return. end.
   if. FHS*.IFUNIX do.
-    2!:0 'chmod 755 "',DLL,'"'
+    2!:0 ::0: 'chmod 755 "',DLL,'"'
     if. 'root'-: user=. 2!:5'user' do.
-      2!:0 'chown ',user,':',user,' "',DLL,'"'
-      2!:0^:((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') '/sbin/ldconfig'
+      2!:0 ::0: 'chown ',user,':',user,' "',DLL,'"'
+      2!:0 ::0: ^:((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') '/sbin/ldconfig'
     end.
   end.
 end.

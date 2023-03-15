@@ -172,14 +172,14 @@ if. rh do.
   r=. r rplc '<I>';I,icon
   r=. r rplc '<TT>';(type-:'jc'){'false';'true'
   r fwrite f
-  2!:0'chmod +x ',f
+  2!:0 ::0: 'chmod +x ',f
 else.
   r=. desktop rplc '<N>';n
   r=. r rplc '<E>';e
   r=. r rplc '<W>';W
   r=. r rplc '<I>';I,icon
   r fwrite f
-  2!:0'chmod +x ',f
+  2!:0 ::0: 'chmod +x ',f
 end.
 )
 
@@ -239,7 +239,7 @@ fpathcreate f,'/Contents/Resources'
 plist fwrite f,'/Contents/info.plist'
 r fwrite f,'/Contents/MacOS/apprun'
 (fread '~bin/icons/',icon) fwrite f,'/Contents/Resources/i.icns'
-2!:0'chmod -R +x ',f
+2!:0 ::0: 'chmod -R +x ',f
 )
 
 new_launch=: 0 : 0
