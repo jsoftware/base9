@@ -7,7 +7,7 @@ je_update=: 3 : 0
 if. IFIOS+.UNAME-:'Android' do. log'upgrade not supported for this platform' return. end.
 'jvno jxxx jbithw platform comm web dt'=. 7 {. revinfo_j_''
 if. -.(comm-:'commercial')*.web-:'www.jsoftware.com' do. log'upgrade not possible for this install' return. end.
-path=. je_dlpath jvno
+path=. je_dlpath''
 'plat name bname'=. je_sub''
 DLL=. hostpathsep jpath bname
 OLD=. hostpathsep jpath bname,'.old'
@@ -24,7 +24,8 @@ if. IF64 > IFRASPI do.
   a=. a}.~each a i.each 'j'
   a=. }.each a{.~each a i.each '.'
   try. t7=. 2!:7'' catch. t7=. '' end.
-  a=. 'j',;{:(a e. ;:t7)#a NB. best of those we can run
+  t7=. (;:t7) -. ;: 'avx avx512'
+  a=. 'j',;{:(a e. t7)#a NB. best of those we can run
   i=. name i.'.'
   name=. <(}:i{.name),a,i}.name
 else.
