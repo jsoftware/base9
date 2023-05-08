@@ -39,7 +39,9 @@ jobs:
       ls -l release || true
       mkdir -p release/bin
       cp config/profile* release/bin/.
-      tar -czf base9.tar.gz .
+      cd release
+      tar -czf ../base9.tar.gz install
+      cd -
 
    - name: Release
      uses: ncipollo/release-action@v1
