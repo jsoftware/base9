@@ -37,8 +37,8 @@ jobs:
       cat bld.ijs
       ~/j9.5/bin/jconsole bld.ijs
       ls -l release || true
-      mkdir -p release/bin
-      cp config/profile* release/bin/.
+      mkdir -p release/install/bin
+      cp config/profile* release/install/bin/.
       cd release
       tar -czf ../base9.tar.gz install
       cd -
