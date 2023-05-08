@@ -1,0 +1,65 @@
+name: BASE9
+
+on:
+ push:
+  branches:
+   - '**'
+
+# trigger workflow on file change
+#on:
+# push:
+#  paths:
+#   - 'version.txt'
+
+# if: ${{ false }}
+
+jobs:
+
+# base9 --------------------------------------------------------------
+ base9:
+  name: BASE9
+  runs-on: ubuntu-20.04
+  steps:
+   - name: Checkout Git repository
+     uses: actions/checkout@v2
+
+   - name: Build BASE9
+     run: |
+      wget https://www.jsoftware.com/download/j9.5/install/j9.5_linux64.tar.gz
+      cd ~/
+      tar -xzf j9.5_linux64.tar.gz
+      cd -
+      echo "UserFolders_j_=: ~. UserFolders_j_,'Main';'`pwd`'" > bld.ijs
+      echo "load '~Main/save/build.ijs'" >> bld.ijs
+      echo "exit 0" >> bld.ijs
+      cat bld.ijs
+      ~/j9.5/bin/jconsole bld.ijs
+      ls -l release || true
+      mkdir -p release/bin
+      cp config/profile* release/bin/.
+      tar -czf base9.tar.gz .
+
+   - name: Release
+     uses: ncipollo/release-action@v1
+     with:
+      tag: build
+      artifacts: "base9.tar.gz"
+      token: ${{ secrets.GITHUB_TOKEN }}
+      allowUpdates: true
+      replacesArtifacts: true
+
+# webhook --------------------------------------------------------------
+ webhook:
+  name: Run Webhook
+# remove the following line to run
+  if: ${{ false }}
+  runs-on: ubuntu-20.04
+  needs: base9
+  steps:
+   - name: update server
+     uses: distributhor/workflow-webhook@v2
+     env:
+      webhook_url: ${{ secrets.WEBHOOK_URL }}
+      webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+      data: '{ "id": "base9" }'
+
