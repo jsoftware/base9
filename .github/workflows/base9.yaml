@@ -35,8 +35,7 @@ jobs:
       echo "load '~Main/save/build.ijs'" >> bld.ijs
       echo "exit 0" >> bld.ijs
       cat bld.ijs
-      ~/j9.5/bin/jconsole bld.ijs
-      ls -l release || true
+      ~/j9.5/bin/jconsole bld.ijs || exit 1
       mkdir -p release/install/bin
       cp config/profile* release/install/bin/.
       cd release
