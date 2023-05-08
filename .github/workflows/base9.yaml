@@ -26,12 +26,12 @@ jobs:
 
    - name: Build BASE9
      run: |
-      echo "`pwd`"
       cd ~/
       wget https://www.jsoftware.com/download/j9.5/install/j9.5_linux64.tar.gz
       tar -xzf j9.5_linux64.tar.gz
       cd -
       echo "UserFolders_j_=: ~. UserFolders_j_,'Main';'`pwd`'" > bld.ijs
+      echo "load 'project'" >> bld.ijs
       echo "load '~Main/save/build.ijs'" >> bld.ijs
       echo "exit 0" >> bld.ijs
       cat bld.ijs
