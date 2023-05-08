@@ -3,7 +3,8 @@ name: BASE9
 on:
  push:
   branches:
-   - '**'
+   - master
+   - main
 
 # trigger workflow on file change
 #on:
@@ -25,8 +26,9 @@ jobs:
 
    - name: Build BASE9
      run: |
-      wget https://www.jsoftware.com/download/j9.5/install/j9.5_linux64.tar.gz
+      echo "`pwd`"
       cd ~/
+      wget https://www.jsoftware.com/download/j9.5/install/j9.5_linux64.tar.gz
       tar -xzf j9.5_linux64.tar.gz
       cd -
       echo "UserFolders_j_=: ~. UserFolders_j_,'Main';'`pwd`'" > bld.ijs
