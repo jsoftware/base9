@@ -11,7 +11,7 @@ end.
 if. IFJHS do.
   redirecturl_jijxm_=: file2url cmd
   EMPTY return.
-elseif. IFIOS do.
+elseif. IFIOS>IFQT do.
   jh '<a href="',(file2url cmd),'"</a>'
   EMPTY return.
 end.

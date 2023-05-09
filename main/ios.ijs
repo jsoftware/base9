@@ -8,7 +8,7 @@ NB.-Definitions are loaded into the z locale.
 NB. ---------------------------------------------------------
 NB. JVERSION_z_ (for ios)
 3 : 0''
-if. IFIOS do.
+if. IFIOS>IFQT do.
   r=. 'Engine: ',9!:14''
   r=. r,LF,'Library: ',JLIB
   r=. r,LF,'J/iOS Version: ',VERSION

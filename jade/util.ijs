@@ -46,7 +46,7 @@ NB. =========================================================
 NB. platform-dependant
 3 : 0''
 if. UNAME-:'Darwin' do.
-  filecase=: tolower
+  filecase=: tolower`]@.IFIOS
   isroot=: '/' = {.
 elseif. IFUNIX do.
   filecase=: ]

@@ -62,7 +62,7 @@ media/wav
 )
 
 Ignore=: 3 : 0''
-if. IFIOS do.
+if. IFIOS>IFQT do.
   <;._2 IgnoreIOS
 else.
   <'ide/ios'
