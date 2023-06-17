@@ -41,12 +41,14 @@ jobs:
       cd release
       tar -czf ../base9.tar.gz install
       cd -
+      cp config/version.txt .
+      ls -l
 
    - name: Release
      uses: ncipollo/release-action@v1
      with:
       tag: build
-      artifacts: "base9.tar.gz"
+      artifacts: "base9.tar.gz,version.txt"
       token: ${{ secrets.GITHUB_TOKEN }}
       allowUpdates: true
       replacesArtifacts: true
@@ -65,4 +67,3 @@ jobs:
       webhook_url: ${{ secrets.WEBHOOK_URL }}
       webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
       data: '{ "id": "base9" }'
-
