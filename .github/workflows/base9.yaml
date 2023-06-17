@@ -57,7 +57,7 @@ jobs:
  webhook:
   name: Run Webhook
 # remove the following line to run
-  if: ${{ false }}
+#  if: ${{ false }}
   runs-on: ubuntu-20.04
   needs: base9
   steps:
