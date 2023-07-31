@@ -136,7 +136,7 @@ y=. (*#y){::0;y
 smoutput 'Installing Qt library...'
 arch=. IF64{::'x86';'x64'
 if. IFWIN do.
-  z=. 'qt62-win-',((y-:'slim')#'slim-'),arch,'.zip'
+  z=. 'qt65-win-',((y-:'slim')#'slim-'),arch,'.zip'
 else.
   z=. 'qt62-mac-',((y-:'slim')#'slim-'),arch,'.zip'
 end.

@@ -289,7 +289,7 @@ case. 'Darwin' do.
   zps=. (~: 3 {."1 zps) # zps
 end.
 
-bit=. IF64 pick '64';'32'
+bit=. IF64 pick '32';'64'
 pfm=. 3 {"1 zps
 exc=. (1 e. bit&E.) &> pfm
 zps=. zps \: exc
