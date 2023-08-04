@@ -134,11 +134,10 @@ tgt=. jpath IFWIN{::'~install/Qt';'~bin/Qt6Core.dll'
 y=. (*#y){::0;y
 
 smoutput 'Installing Qt library...'
-arch=. IF64{::'x86';'x64'
 if. IFWIN do.
-  z=. 'qt65-win-',((y-:'slim')#'slim-'),arch,'.zip'
+  z=. 'qt65-win',((y-:'slim')#'-slim'),'.zip'
 else.
-  z=. 'qt62-mac-',((y-:'slim')#'slim-'),arch,'.zip'
+  z=. 'qt65-mac',((y-:'slim')#'-slim'),'.zip'
 end.
 'rc p'=. httpget_jpacman_ www,'/qtlib/',z
 if. rc do.
