@@ -93,7 +93,17 @@ if. IFUNIX do.
   end.
 else.
   bbx=. '"','"',~jpath '~tools/ftp/busybox.exe'
-  HTTPCMD=: bbx,' wget -q -O %O %U'
+  IFCURL=. 0
+  if. 1=ftype f=. (2!:5'SystemRoot'),'\System32\curl.exe' do. NB. inside C:\Windows\System32 for windows 10 or newer
+    IFCURL=. 1
+  elseif. 1=ftype f=. jpath '~addons/web/gethttp/bin/curl.exe' do.
+    IFCURL=. 1
+  end.
+  if. IFCURL do.
+    HTTPCMD=: (dquote winpathsep f),' -L -o %O --stderr %L -f -s -S %U'
+  else.
+    HTTPCMD=: bbx,' wget -q -O %O %U'
+  end.
   UNZIP=: bbx,' unzip -q -o '
 end.
 )
