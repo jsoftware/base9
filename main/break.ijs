@@ -3,7 +3,7 @@ NB.%break.ijs - break utilities
 NB.-This script defines break utilities and is included in the J standard library.
 NB.-Definitions are loaded into the z locale.
 NB.-
-NB.-`setbreak 'default'` is done by profile for Jqt. JHS and jconsole can use ctrl+c. 
+NB.-`setbreak 'default'` is done by profile for Jqt. JHS and jconsole can use ctrl+c.
 NB.-
 NB.-setbreak creates file `~break/Pid.Class` and writes 0 to the first byte.
 NB.-

@@ -35,4 +35,3 @@ NB. smoutput C
 a=. AS,LF,BS,LF,A compare B
 clipwrite a
 smoutput a
-
