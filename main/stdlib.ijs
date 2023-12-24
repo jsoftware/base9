@@ -133,11 +133,19 @@ if. 1 < #$y do. <"_1 y return. end.
 NB. =========================================================
 NB.*datatype v noun datatype
 NB.-unicode/unicode4 are literal2/literal4 in J dictionary
+NB.-5 - integer1 (1-byte signed integer, not yet implemented)
+NB.-6 - integer2 (2-byte signed integer)
+NB.-7 - integer4 (4-byte signed integer)
+NB.-9 - floating2 (half-precision floating point, not yet implemented)
+NB.-10 - floating4 (single-precision floating point, not yet implemented)
+NB.-11 - floating16 (quad-precision floating point)
 datatype=: 3 : 0
 n=. 1 2 4 8 16 32 64 128 1024 2048 4096 8192 16384 32768 65536 131072 262144
+n=. n,5 6 7 9 10 11
 t=. '/boolean/literal/integer/floating/complex/boxed/extended/rational'
 t=. t,'/sparse boolean/sparse literal/sparse integer/sparse floating'
 t=. t,'/sparse complex/sparse boxed/symbol/unicode/unicode4'
+t=. t,'/integer1/integer2/integer4/floating2/floating4/floating16'
 (n i. 3!:0 y) pick <;._1 t
 )
 
