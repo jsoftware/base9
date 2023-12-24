@@ -67,7 +67,7 @@ je_dlpath=: 3 : 0
 )
 
 NB. =========================================================
-NB. y is 'j9.5.0-beta1';'linux';'j64';'libjavx2.so'
+NB. y is 'j9.6.0-beta1';'linux';'j64';'libjavx2.so'
 je_get=: 3 : 0
 'jvno plat bits name'=. y
 arg=. (je_dlpath''),plat,'/',bits,'/',name

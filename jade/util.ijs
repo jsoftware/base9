@@ -193,7 +193,7 @@ s ((n+3*i.#n)+/i.4)} (>:3*m)#t
 NB. =========================================================
 NB. vno;vst;architecture;OS;license;builder;date;compiler;<[otheroptions]
 NB. vno is 100 #. major;minor;revision;subrevision
-NB. vst is in form: '9.5.0-beta11' or '9.5.1'
+NB. vst is in form: '9.6.0-beta11' or '9.6.1'
 revinfo=: 3 : 0
 v=. 9!:14''
 if. '.' e. (v i. '/') {. v do.
