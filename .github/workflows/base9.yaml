@@ -21,15 +21,15 @@ jobs:
    - name: Build BASE9
      run: |
       cd ~/
-      wget https://www.jsoftware.com/download/j9.6/install/j9.6_linux64.tar.gz
-      tar -xzf j9.6_linux64.tar.gz
+      wget https://www.jsoftware.com/download/j9.5/install/j9.5_linux64.tar.gz
+      tar -xzf j9.5_linux64.tar.gz
       cd -
       echo "UserFolders_j_=: ~. UserFolders_j_,'Main';'`pwd`'" > bld.ijs
       echo "load 'project'" >> bld.ijs
       echo "load '~Main/save/build.ijs'" >> bld.ijs
       echo "exit 0" >> bld.ijs
       cat bld.ijs
-      ~/j9.6/bin/jconsole bld.ijs || exit 1
+      ~/j9.5/bin/jconsole bld.ijs || exit 1
       mkdir -p release/install/bin
       cp config/profile* release/install/bin/.
       cd release
