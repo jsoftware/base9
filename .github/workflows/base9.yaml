@@ -2,9 +2,7 @@ name: BASE9
 
 on:
  push:
-  branches:
-   - master
-   - main
+  branches: [ 9.5 ]
 
 # if: ${{ false }}
 
@@ -41,7 +39,7 @@ jobs:
    - name: Release
      uses: ncipollo/release-action@v1
      with:
-      tag: build
+      tag: build95
       artifacts: "base9.tar.gz,version.txt"
       token: ${{ secrets.GITHUB_TOKEN }}
       allowUpdates: true
