@@ -122,8 +122,8 @@ if. y do.
   if. _1 = 4!:0 <'jdb_open_jdebug_' do.
     0!:0 <jpath '~addons/ide/qt/debugs.ijs'
   end.
-  jdb_open_jdebug_''
-  13!:0 [ 1
+  jdb_open_jdebug_ y
+  13!:0 y
 else.
   jdb_close_jdebug_ :: ] ''
   13!:15 ''
