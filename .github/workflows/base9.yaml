@@ -2,9 +2,8 @@ name: BASE9
 
 on:
  push:
-  branches:
-   - master
-   - main
+  branches: [ master ]
+ workflow_dispatch:
 
 # if: ${{ false }}
 
