@@ -31,7 +31,7 @@ NB.*UNAME         n name of UNIX o/s
 NB.*FHS           n filesystem hierarchy: 0=not used  1=linux and installed under /usr/...
 NB.*RUNJSCRIPT    n if running jconsole with the -jscript parameter
 
-18!:4 <'z'
+cocurrent <'z'
 
 NB. =========================================================
 3 : 0 ''

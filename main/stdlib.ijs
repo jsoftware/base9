@@ -3,7 +3,7 @@ NB.%stdlib.ijs - core utilities
 NB.-This script defines core utilities for the J standard library.
 NB.-Definitions are loaded into the z locale.
 
-18!:4 <'z'
+cocurrent <'z'
 
 NB. =========================================================
 NB.*TAB n tab character

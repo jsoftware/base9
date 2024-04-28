@@ -3,11 +3,11 @@ NB.%colib.ijs - class/object library
 NB.-This script defines the class/object library and is included in the J standard library.
 NB.-Definitions are loaded into the z locale.
 
-18!:4 <'z'
+cocurrent <'z'
 
 NB. =========================================================
 NB.*coclass v set class/object class
-coclass=: 18!:4 @ boxxopen
+coclass=: 18!:4 @ boxxopen f.
 
 NB. =========================================================
 NB.*cocreate v create object
@@ -15,7 +15,7 @@ cocreate=: 18!:3
 
 NB. =========================================================
 NB.*cocurrent v set current locale
-cocurrent=: 18!:4 @ boxxopen
+cocurrent=: 18!:4 @ boxxopen f.
 
 NB. =========================================================
 NB.*codestroy v destroy current object

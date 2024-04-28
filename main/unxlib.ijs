@@ -3,7 +3,7 @@ NB.%unxlib.ijs - common shared library for UNIX
 NB.-This script defines the common shared library for UNIX and is included in the J standard library.
 NB.-Definitions are loaded into the z locale.
 
-18!:4 <'z'
+cocurrent <'z'
 
 NB. =========================================================
 NB.*UNXLIB n table of common shared libraries

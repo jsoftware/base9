@@ -3,7 +3,7 @@ NB.%ios.ijs - ios utilities
 NB.-This script defines ios utilities and is included in the J standard library.
 NB.-Definitions are loaded into the z locale.
 
-18!:4 <'z'
+cocurrent <'z'
 
 NB. ---------------------------------------------------------
 NB. JVERSION_z_ (for ios)

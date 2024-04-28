@@ -1,6 +1,6 @@
 NB. dummy configure
 
-18!:4 <'j'
+cocurrent <'j'
 
 setjdefs=: 4 : 'if. _1=4!:0 y do. (>y)=: x end.'
 
@@ -44,4 +44,4 @@ end.
 
 4!:55 <'setjdefs'
 
-18!:4 <'z'
+cocurrent <'z'

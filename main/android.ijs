@@ -3,7 +3,7 @@ NB.%android.ijs - android utilities
 NB.-This script defines android utilities and is included in the J standard library.
 NB.-Definitions are loaded into the z locale.
 
-18!:4 <'z'
+cocurrent <'z'
 
 NB. =========================================================
 NB.*anddf v android download file
