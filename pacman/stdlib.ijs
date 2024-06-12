@@ -86,7 +86,7 @@ www=. 'https://www.jsoftware.com/download/j',RELNO
 if. rc do.
   smoutput 'unable to download: ',z return.
 end.
-d=. jpath '~bin'
+d1=. d=. jpath '~bin'
 if. IFWIN do.
   unzip_jpacman_ p;d
 else.
