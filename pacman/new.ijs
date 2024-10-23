@@ -141,6 +141,8 @@ end.
 i.0 0
 )
 
+NB. linux desktop exec quote rule did not change (mint 20 to 22)
+NB. but enforcement did so now \" must be \\" 
 linux=: 3 : 0
 'type bin icon arg'=. y
 n=. type,N
@@ -158,9 +160,9 @@ else.
     e=. '"',c,'"'
   else.
     if. 'gnome-terminal' -: TermEmu=. get_terminal'' do.
-      e=. '<T> -- "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+      e=. '<T> -- "\\"<C>\\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
     else.
-      e=. '<T> -e "\"<C>\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
+      e=. '<T> -e "\\"<C>\\"<A>"'rplc '<T>';TermEmu;'<C>';c;'<A>';arg
     end.
   end.
 end.
