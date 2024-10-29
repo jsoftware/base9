@@ -22,6 +22,7 @@ NB.*IFJHS         n if jhs libraries loaded
 NB.*IFQT          n if Qt libraries loaded
 NB.*IFRASPI       n if Raspberry Pi or Linux arm64
 NB.*IFUNIX        n if UNIX
+NB.*IFWA64        n if Windows arm64
 NB.*IFWIN         n if Windows (2000 and up)
 NB.*IFWINCE       n if Windows CE
 NB.*IFWINE        n if Wine (Wine Is Not an Emulator)
@@ -51,6 +52,7 @@ IFBE=: 'a'~:{.2 (3!:4) a.i.'a'
 'IFUNIX IFWIN IFWINCE'=: 5 6 7 = 9!:12''
 IFJHS=: 0
 IFWINE=: (0 ~: 'ntdll wine_get_version >+ x'&(15!:0)) ::(0:@(15!:10))`0:@.IFUNIX ''
+IFWA64=: IFWIN*.'arm64'-:9!:56'cpu'
 
 NB. ---------------------------------------------------------
 if. notdef 'IFIOS' do.

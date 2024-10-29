@@ -202,7 +202,7 @@ if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
   arch=. (#.IF64,~'x86'-:3{.9!:56'cpu'){::'arm';'aarch64';'i386';'x86_64'
   z=. libname,~ (tolower UNAME),'/',arch,'/'
 elseif. IFWIN do.
-  z=. libname,~ IF64{::'windows/win32/';'windows/x64/'
+  z=. libname,~ (IF64+IFWA64){::'windows/x86/';'windows/x64/';'windows/arm64/'
 elseif. do.
   z=. libname,~ 'apple/macos/'
 end.
