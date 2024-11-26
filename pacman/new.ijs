@@ -142,7 +142,7 @@ i.0 0
 )
 
 NB. linux desktop exec quote rule did not change (mint 20 to 22)
-NB. but enforcement did so now \" must be \\" 
+NB. but enforcement did so now \" must be \\"
 linux=: 3 : 0
 'type bin icon arg'=. y
 n=. type,N
