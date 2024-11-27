@@ -28,7 +28,7 @@ tar
 task
 )
 
-f each Source
+f &> Source
 
 F=. cutopen 0 : 0
 main
