@@ -415,8 +415,8 @@ rows=: "1
 NB. =========================================================
 NB.*script v load script, cover for 0!:0
 NB.*scriptd v load script with display, cover for 0!:1
-script=: [: 3 : '0!:0 y [ 4!:55<''y''' jpath_z_ &.: >
-scriptd=: [: 3 : '0!:1 y [ 4!:55<''y''' jpath_z_ &.: >
+script=: [: 3 : '0!:0 y_:' jpath_z_ &.: >
+scriptd=: [: 3 : '0!:1 y_:' jpath_z_ &.: >
 
 NB. =========================================================
 NB.*stdout v name for 1!:2&4
