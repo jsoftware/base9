@@ -34,21 +34,26 @@ NB.gh v allocate header
 NB.fh v free header
 NB.*symget v get address of locale entry for name
 NB.*symset v set array as address
-NB.*symdat v get address of data for name
-NB. 15!:6  - get address of locale entry for name
+NB.*symdad v get address of data for name
+NB.*memhad v get address of header for name
+NB. 15!:6  - get address of locale entry for name (deprecated)
 NB. 15!:7  - set array as address
 NB. 15!:8  - allocate header
 NB. 15!:9  - free header
-NB. 15!:12 - mmblks return 3 col integer matrix
+NB. 15!:12 - get address of header for name
 NB. 15!:14 - get address of data for name
 NB. 15!:16 - toggle native front end (nfe) state
 NB. 15!:17 - return x callback arguments
-NB. 15!:18 - return last jsto output
+NB. 15!:18 - copy to aligned data block
+NB. 15!:19 - get address of header for noun
+NB. 15!:20 - boxed character string identifying the DLL
 NB. gh=. 15!:8
 NB. fh=. 15!:9
-symget=: 15!:6
+NB. symget=: 15!:6 NB. deprecated and removed
 symset=: 15!:7
-symdat=: 15!:14
+symdad=: 15!:14
+symdat=: 15!:14    NB. legacy
+memhad=: 15!:12
 
 NB.*cdcb v callback address
 cdcb=: 15!:13
