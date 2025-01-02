@@ -53,7 +53,7 @@ NB. symget=: 15!:6 NB. deprecated and removed
 symset=: 15!:7
 symdad=: 15!:14
 symdat=: 15!:14    NB. legacy
-memhad=: 15!:12
+memhad=: (15!:12)@<
 
 NB.*cdcb v callback address
 cdcb=: 15!:13
