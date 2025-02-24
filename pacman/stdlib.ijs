@@ -129,7 +129,7 @@ NB. install Qt library:
 if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
   qt_ldd_test d1
   smoutput 'If libjqt cannot be loaded, see this guide for installing the Qt library'
-  smoutput 'https://code.jsoftware.com/wiki/Guides/Linux_Installation'
+  smoutput 'https://code.jsoftware.com/wiki/Guides/Qt_IDE/Install'
   return.
 end.
 
