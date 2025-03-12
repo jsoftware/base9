@@ -12,7 +12,7 @@ jobs:
 # base9 --------------------------------------------------------------
  base9:
   name: BASE9
-  runs-on: ubuntu-20.04
+  runs-on: ubuntu-latest
   steps:
    - name: Checkout Git repository
      uses: actions/checkout@v3
@@ -20,15 +20,15 @@ jobs:
    - name: Build BASE9
      run: |
       cd ~/
-      wget https://www.jsoftware.com/download/j9.6/install/j9.6_linux64.tar.gz
-      tar -xzf j9.6_linux64.tar.gz
+      wget https://www.jsoftware.com/download/j9.7/install/j9.7_linux64.tar.gz
+      tar -xzf j9.7_linux64.tar.gz
       cd -
       echo "UserFolders_j_=: ~. UserFolders_j_,'Main';'`pwd`'" > bld.ijs
       echo "load 'project'" >> bld.ijs
       echo "load '~Main/save/build.ijs'" >> bld.ijs
       echo "exit 0" >> bld.ijs
       cat bld.ijs
-      ~/j9.6/bin/jconsole bld.ijs || exit 1
+      ~/j9.7/bin/jconsole bld.ijs || exit 1
       mkdir -p release/install/bin
       cp config/profile* release/install/bin/.
       cd release
@@ -51,7 +51,7 @@ jobs:
   name: Run Webhook
 # remove the following line to run
 #  if: ${{ false }}
-  runs-on: ubuntu-20.04
+  runs-on: ubuntu-latest
   needs: base9
   steps:
    - name: update server
