@@ -321,7 +321,7 @@ end.
 )
 
 NB. =========================================================
-NB. get J version number in old form j906
+NB. get J version number in old form j907
 NB. only used for jal, e.g. https://www.jsoftware.com/jal/...
 getJverold=: 3 : 0
 'j', ": 100 #. 2 {. 100 #.inv >{.revinfo_j_''
