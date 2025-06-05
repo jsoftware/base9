@@ -73,6 +73,7 @@ je_get=: 3 : 0
 'jvno plat bits name'=. y
 arg=. (je_dlpath''),plat,'/',bits,'/',name
 ferase'~temp/',name
+echo 'get: ', arg
 httpget arg
 fread '~temp/',name
 )
