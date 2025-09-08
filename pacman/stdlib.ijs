@@ -126,7 +126,11 @@ smoutput m
 
 NB. ---------------------------------------------------------
 NB. install Qt library:
-if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
+
+NB. linux aio has Qt installed in J folder from j9.7 beta7
+linuxaio=. (UNAME -: 'Linux') *. 907 <: VERNO
+
+if. linuxaio < (<UNAME)e.'Linux';'OpenBSD';'FreeBSD' do.
   qt_ldd_test d1
   smoutput 'If libjqt cannot be loaded, see this guide for installing the Qt library'
   smoutput 'https://code.jsoftware.com/wiki/Guides/Qt_IDE/Install'
@@ -139,6 +143,8 @@ y=. (*#y){::0;y
 smoutput 'Installing Qt library...'
 if. IFWA64 do.
   z=. 'qt68-win-arm64-slim.zip'
+elseif. linuxaio do.
+  z=. 'qt68-linux',((y-:'slim')#'-slim'),'.tar.gz'
 elseif. IFWIN do.
   z=. 'qt68-win',((y-:'slim')#'-slim'),'.zip'
 elseif. do.
@@ -149,7 +155,7 @@ if. rc do.
   smoutput 'unable to download: ',z return.
 end.
 d=. jpath IFWIN{::'~install';'~bin'
-if. IFWIN do.
+if. IFWIN +. linuxaio do.
   unzip_jpacman_ p;d
 else.
   hostcmd_jpacman_ 'unzip -o ',(dquote p),' -d ',dquote d

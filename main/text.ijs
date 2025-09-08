@@ -73,6 +73,7 @@ NB.+
 NB.+three
 topara=: 3 : 0
 if. 0=#y do. '' return. end.
+y=. toJ y
 b=. y=LF
 c=. b +. y=' '
 b=. b > (1,}:b) +. }.c,0

@@ -73,7 +73,10 @@ NB. =========================================================
 3 : 0''
 HTTPCMD=: ''
 nc=. '--no-cache'
-RELNO=: ,'0,p<.>0' (8!:2) 2 {. 100 #.inv >{.revinfo_j_''
+NB. e.g. RELNO = '9.7', VERNO = 907
+n=. 2 {. 100 #.inv >{.revinfo_j_''
+RELNO=: ,'0,p<.>0' (8!:2) n
+VERNO=: 100 #. n
 if. IFUNIX do.
   IFWGET=. IFCURL=. 0
   if. -. IFIOS +. UNAME-:'Android' do.
