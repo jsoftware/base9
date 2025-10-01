@@ -341,7 +341,7 @@ NB.-        if empty use: 0 1 2 3.
 NB.-  mp:   optional matching pattern. If mp contains '*', list names
 NB.-        containing mp, otherwise list names starting mp. If mp
 NB.-        contains '~', list names that do not match.
-NB.-        if mp contains '_', list names with the locale name
+NB.-        if mp starts with '_', list names with the locale name
 NB.-
 NB.- e.g. 'f' nl 3      - list verbs that begin with 'f'
 NB.-      '*com nl ''   - list names containing 'com'
@@ -360,8 +360,9 @@ end.
 if. 0 e. #nms do. return. end.
 
 if. #t=. x -. ' ' do.
-  'n s l'=. '~*_' e. t
-  t=. t -. '~*_'
+  'n s'=. '~*' e. t
+  l=. '_' = {.t
+  t=. }.^:l t -. '~*'
   b=. t&E. &> nms
   if. s do. b=. +./"1 b
   else. b=. {."1 b end.
