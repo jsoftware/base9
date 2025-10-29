@@ -1,7 +1,7 @@
 NB. stdlib definitions
 NB.-This definitions are called from the standard library
 
-JQTVERSION=: '2.0.3'
+JQTVERSION=: '2.5.12'
 
 NB. =========================================================
 NB. do_install v install from jal
@@ -142,13 +142,13 @@ y=. (*#y){::0;y
 
 smoutput 'Installing Qt library...'
 if. IFWA64 do.
-  z=. 'qt68-win-arm64-slim.zip'
+  z=. 'qt610-win-arm64-slim.zip'
 elseif. linuxaio do.
-  z=. 'qt68-linux',((y-:'slim')#'-slim'),'.tar.gz'
+  z=. 'qt610-linux',((y-:'slim')#'-slim'),'.tar.gz'
 elseif. IFWIN do.
-  z=. 'qt68-win',((y-:'slim')#'-slim'),'.zip'
+  z=. 'qt610-win',((y-:'slim')#'-slim'),'.zip'
 elseif. do.
-  z=. 'qt68-mac',((y-:'slim')#'-slim'),'.zip'
+  z=. 'qt610-mac',((y-:'slim')#'-slim'),'.zip'
 end.
 'rc p'=. httpget_jpacman_ www,'/qtlib/',z
 if. rc do.
