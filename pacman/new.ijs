@@ -27,7 +27,7 @@ echo LF,'ALL DONE!',LF,'exit this J session and start new session with double cl
 i.0 0
 )
 
-NB. shortcut 'jc' or 'jhs' or 'jqt' - create desktop launch icon
+NB. shortcut 'jbreak' or 'jc' or 'jhs' or 'jqt' - create desktop launch icon
 shortcut=: 3 : 0
 if. ((<UNAME)e.'OpenBSD';'FreeBSD') do. uname=. 'Linux' else. uname=. UNAME end.
 try. ".uname,' y' catchd. echo 'create ',y,' launch icon failed' end.
@@ -129,6 +129,8 @@ Linuxx y
 
 Linuxx=: 3 : 0
 select. y
+case.'jbreak' do.
+  linux'jbreak' ;'jbrk';'jyellow.png';LIB
 case.'jc' do.
   linux'jc' ;'jconsole';'jgray.png';LIB
 case. 'jhs' do.

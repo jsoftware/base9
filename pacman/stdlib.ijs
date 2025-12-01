@@ -6,6 +6,7 @@ JQTVERSION=: '2.5.12'
 NB. =========================================================
 NB. do_install v install from jal
 NB. y is one of:
+NB.- 'system ..' - called by system install script
 NB.- 'qtide'     - install/upgrade the Qt IDE
 NB.- 'full'      - install the full Qt IDE
 NB.- 'slim'      - install the slim Qt IDE
@@ -14,6 +15,7 @@ NB.- 'gmp'       - install libgmp binary
 NB.-  other      - install those packages, i.e. 'install' jpkg other
 NB.- gitrepo:name/repo
 do_install=: 3 : 0
+if. 'system' -: 6 {. y do. jinstall y return. end.
 if. -. checkaccess_jpacman_ '' do. return. end.
 if. y -: 'gmp' do. do_getgmpbin '' return. end.
 if. ':' e. y do. install_gitrepo y return. end.

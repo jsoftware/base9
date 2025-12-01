@@ -10,6 +10,7 @@ depend.ijs
 gitrepo.ijs
 httpget.ijs
 install.ijs
+jinstall.ijs
 new.ijs
 manifest.ijs
 show.ijs
