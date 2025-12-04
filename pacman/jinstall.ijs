@@ -29,14 +29,16 @@ echo 'Installing ', 1 pick revinfo_j_''
 echo 'Updating J engine...'
 je_update''
 
-if. 2~:ftype jpath'~/Desktop' do.
-  echo 'No Desktop folder, so shortcuts not installed'
-else.
-  echo 'Installing shortcuts...'
-  shortcut'jbreak'
-  shortcut'jc'
-  shortcut'jhs'
-  if. ifide do. shortcut'jqt' end.
+if. -. 'Darwin'-:UNAME do.
+  if. 2~:ftype jpath'~/Desktop' do.
+    echo 'No Desktop folder, so shortcuts not installed'
+  else.
+    echo 'Installing shortcuts...'
+    shortcut'jbreak'
+    shortcut'jc'
+    shortcut'jhs'
+    if. ifide do. shortcut'jqt' end.
+  end.
 end.
 
 if. ifide do.

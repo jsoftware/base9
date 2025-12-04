@@ -31,7 +31,7 @@ many=. 1 < num
 msg=. 'Installing ',(":num),' package',many#'s'
 log msg
 installdo pkgs
-log 'Done.'
+if. -. JINSTALL do. log 'Done.' end.
 readlocal''
 pacman_init ''
 checkstatus''
