@@ -1,7 +1,7 @@
 NB. stdlib definitions
 NB.-This definitions are called from the standard library
 
-JQTVERSION=: '2.5.12'
+JQTVERSION=: '2.6.1'
 
 NB. =========================================================
 NB. do_install v install from jal
@@ -129,10 +129,10 @@ smoutput m
 NB. ---------------------------------------------------------
 NB. install Qt library:
 
-NB. linux aio has Qt installed in J folder from j9.7 beta7
-linuxaio=. (UNAME -: 'Linux') *. 907 <: VERNO
+NB. linux has Qt installed in J folder from j9.7 beta7
+linux=. (UNAME -: 'Linux') *. 907 <: VERNO
 
-if. linuxaio < (<UNAME)e.'Linux';'OpenBSD';'FreeBSD' do.
+if. linux < (<UNAME)e.'Linux';'OpenBSD';'FreeBSD' do.
   qt_ldd_test d1
   smoutput 'If libjqt cannot be loaded, see this guide for installing the Qt library'
   smoutput 'https://code.jsoftware.com/wiki/Guides/Qt_IDE/Install'
@@ -145,7 +145,7 @@ y=. (*#y){::0;y
 smoutput 'Installing Qt library...'
 if. IFWA64 do.
   z=. 'qt610-win-arm64-slim.zip'
-elseif. linuxaio do.
+elseif. linux do.
   z=. 'qt610-linux',((y-:'slim')#'-slim'),'.tar.gz'
 elseif. IFWIN do.
   z=. 'qt610-win',((y-:'slim')#'-slim'),'.zip'
@@ -157,7 +157,7 @@ if. rc do.
   smoutput 'unable to download: ',z return.
 end.
 d=. jpath IFWIN{::'~install';'~bin'
-if. IFWIN +. linuxaio do.
+if. IFWIN +. linux do.
   unzip_jpacman_ p;d
 else.
   hostcmd_jpacman_ 'unzip -o ',(dquote p),' -d ',dquote d
