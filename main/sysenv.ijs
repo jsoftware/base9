@@ -94,6 +94,8 @@ end.
 NB. ---------------------------------------------------------
 if. notdef 'LIBFILE' do.
   LIBFILE=: BINPATH,'/',IFUNIX{::'j.dll';(UNAME-:'Darwin'){::'libj.so';'libj.dylib'
+else.
+  LIBFILE=: jpathsep LIBFILE
 end.
 
 NB. ---------------------------------------------------------
