@@ -15,10 +15,10 @@ NB. pcre2 library is in bin or tools/regex
 3 : 0''
 select. UNAME
 case. 'Android' do. pcre2dll=: 'libjpcre2.so' return.
-case. 'Darwin' do. t0=. 'libpcre2' [ ext=. '.dylib' [ arch=. ''
-case. 'Win' do. t0=. 'pcre2' [ ext=. '.dll' [ arch=. ((-.IF64)#<'-32'),(('arm64'-:9!:56'cpu')#<'-a64')
+case. 'Darwin' do. t0=. 'libjpcre2' [ ext=. '.dylib' [ arch=. ''
+case. 'Win' do. t0=. 'jpcre2' [ ext=. '.dll' [ arch=. ((-.IF64)#<'-32'),(('arm64'-:9!:56'cpu')#<'-a64')
 case. do.
-  t0=. 'libpcre2' [ ext=. '.so'
+  t0=. 'libjpcre2' [ ext=. '.so'
   if. IFRASPI do.
     arch=. ((-.IF64)#<'-32')
   else.
@@ -45,7 +45,7 @@ end.
 
 NB. fall back one more time
 if. -.found do.
-  if. IFUNIX do. f=. unxlib 'pcre2' else. f=. t0,ext end.
+  if. IFUNIX do. f=. unxlib 'pcre2' else. f=. 'pcre2-8',ext end.
 end.
 
 pcre2dll=: f
