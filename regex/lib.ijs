@@ -16,13 +16,13 @@ NB. pcre2 library is in bin or tools/regex
 select. UNAME
 case. 'Android' do. pcre2dll=: 'libjpcre2.so' return.
 case. 'Darwin' do. t0=. 'libjpcre2' [ ext=. '.dylib' [ arch=. ''
-case. 'Win' do. t0=. 'jpcre2' [ ext=. '.dll' [ arch=. ((-.IF64)#<'-32'),(('arm64'-:9!:56'cpu')#<'-a64')
+case. 'Win' do. t0=. 'jpcre2' [ ext=. '.dll' [ arch=. ((-.IF64)#<'_32'),(('arm64'-:9!:56'cpu')#<'_arm64')
 case. do.
   t0=. 'libjpcre2' [ ext=. '.so'
   if. IFRASPI do.
-    arch=. ((-.IF64)#<'-32')
+    arch=. ((-.IF64)#<'_32')
   else.
-    arch=. ((-.IF64)#<'-32'),(('arm64'-:9!:56'cpu')#<'-a64')
+    arch=. ((-.IF64)#<'_32'),(('arm64'-:9!:56'cpu')#<'_arm64')
   end.
 end.
 
