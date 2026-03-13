@@ -25,6 +25,7 @@ NB.-   to  fcopynew fls   copy files (if changed)
 NB.-       fdir           file directory
 NB.-       ferase fl      erase file
 NB.-       fexist fl      return 1 if file exists
+NB.-       fmakex fl      make file executable
 NB.-       fpathname      split file path into path;name
 NB.-   opt fread fl       read file
 NB.-   opt freadblock fl  read lines of file in blocks
