@@ -5,7 +5,8 @@ NB. jinstall v initial J install
 NB. called by system installation script
 NB.
 NB.  ide is none/slim/full  - Qt IDE selection
-NB.  addons is none/all     - Addons selection
+NB.  addons is none/all
+NB.  shortcuts is true/false
 NB.
 NB. does:
 NB.  JE update
@@ -18,10 +19,11 @@ jinstall=: 3 : 0
 
 JINSTALL=: 1
 
-'j ide addons'=. 3 {. ;: y
+'j ide addons shorts'=. 4 {. ;: y
 
 ifide=. -. ide -: 'none'
 ifaddons=. -. addons -: 'none'
+ifshorts=. -. shorts -: 'false'
 
 echo 'Installing ', 1 pick revinfo_j_''
 
@@ -29,7 +31,7 @@ echo 'Installing ', 1 pick revinfo_j_''
 echo 'Updating J engine...'
 je_update''
 
-if. -. 'Darwin'-:UNAME do.
+if. ifshorts *. -. 'Darwin'-:UNAME do.
   if. 2~:ftype jpath'~/Desktop' do.
     echo 'No Desktop folder, so shortcuts not installed'
   else.
