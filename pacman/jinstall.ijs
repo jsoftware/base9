@@ -13,6 +13,7 @@ NB.  JE update
 NB.  Jqt install selected
 NB.  Addons install selected
 NB.  desktop shortcuts (if ~/Desktop folder)
+NB.  update macOS JHS app
 
 NB. =========================================================
 jinstall=: 3 : 0
@@ -31,7 +32,9 @@ echo 'Installing ', 1 pick revinfo_j_''
 echo 'Updating J engine...'
 je_update''
 
-if. ifshorts *. -. 'Darwin'-:UNAME do.
+if. 'Darwin'-:UNAME do.
+  darwinjhs''
+elseif. ifshorts do.
   if. 2~:ftype jpath'~/Desktop' do.
     echo 'No Desktop folder, so shortcuts not installed'
   else.

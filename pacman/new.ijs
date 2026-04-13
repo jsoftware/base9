@@ -231,7 +231,6 @@ f=. L,type,N,DS
 c=. hostpathsep jpath '~bin/',bin
 select. type
 case.'jc' do.
-NB. r=. '#!/bin/sh',LF,'open "',c,'"'
   r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB
 case. 'jhs' do.
   r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB,A
@@ -243,6 +242,16 @@ fpathcreate f,'/Contents/Resources'
 plist fwrite f,'/Contents/info.plist'
 r fwrite f,'/Contents/MacOS/apprun'
 (fread '~bin/icons/',icon) fwrite f,'/Contents/Resources/i.icns'
+2!:0 ::0: 'chmod -R +x ',f
+)
+
+NB. darwin update jhs apprun
+darwinjhs=: 3 : 0
+defaults''
+p=. jpath '~install'
+r=. new_launch rplc '<COM>';COM;'<C>';(p,'/bin/jconsole');'<A>';LIB,A
+f=. p,'/jhs.app/Contents/MacOS/apprun'
+r fwrite f
 2!:0 ::0: 'chmod -R +x ',f
 )
 
