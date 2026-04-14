@@ -245,16 +245,6 @@ r fwrite f,'/Contents/MacOS/apprun'
 2!:0 ::0: 'chmod -R +x ',f
 )
 
-NB. darwin update jhs apprun
-darwinjhs=: 3 : 0
-defaults''
-p=. jpath '~install'
-r=. new_launch rplc '<COM>';COM;'<C>';(p,'/bin/jconsole');'<A>';LIB,A
-f=. p,'/jhs.app/Contents/MacOS/apprun'
-r fwrite f
-2!:0 ::0: 'chmod -R +x ',f
-)
-
 new_launch=: 0 : 0
 #!/bin/sh
 echo '#!/bin/sh' > "<COM>"

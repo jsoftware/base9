@@ -32,9 +32,7 @@ echo 'Installing ', 1 pick revinfo_j_''
 echo 'Updating J engine...'
 je_update''
 
-if. 'Darwin'-:UNAME do.
-  darwinjhs''
-elseif. ifshorts do.
+if. ifshorts *. -. 'Darwin'-:UNAME do.
   if. 2~:ftype jpath'~/Desktop' do.
     echo 'No Desktop folder, so shortcuts not installed'
   else.
