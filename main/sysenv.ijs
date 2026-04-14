@@ -115,7 +115,7 @@ NB.'libc.so.6 setlocale > x i *c'&(15!:0) ::(0:@(15!:10)@(''"_))^:(UNAME-:'Linux
 
 NB. ---------------------------------------------------------
 if. notdef 'IFRASPI' do.
-  if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
+  if. ((<UNAME)e.<'Linux') do.
     IFRASPI=: (<9!:56'cpu') e. 'arm';'arm64'
   else.
     IFRASPI=: 0

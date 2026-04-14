@@ -146,7 +146,11 @@ smoutput 'Installing Qt library...'
 if. IFWA64 do.
   z=. 'qt610-win-arm64-slim.zip'
 elseif. linux do.
-  z=. 'qt610-linux',((y-:'slim')#'-slim'),'.tar.gz'
+  if. IFRASPI do.
+    z=. 'qt610-raspi',((y-:'slim')#'-slim'),'.tar.gz'
+  else.
+    z=. 'qt610-linux',((y-:'slim')#'-slim'),'.tar.gz'
+  end.
 elseif. IFWIN do.
   z=. 'qt610-win',((y-:'slim')#'-slim'),'.zip'
 elseif. do.
