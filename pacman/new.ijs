@@ -28,7 +28,13 @@ i.0 0
 )
 
 NB. shortcut 'jbreak' or 'jc' or 'jhs' or 'jqt' - create desktop launch icon
+NB. shortcut '' NB. create all icons
 shortcut=: 3 : 0
+if. ''-:y do.
+ shortcut each 'jc';'jqt';'jhs';'jbreak'
+ i.0 0
+ return.
+end. 
 if. ((<UNAME)e.'OpenBSD';'FreeBSD') do. uname=. 'Linux' else. uname=. UNAME end.
 try. ".uname,' y' catchd. echo 'create ',y,' launch icon failed' end.
 )
@@ -61,6 +67,8 @@ Winx y
 
 Winx=: 3 : 0
 select. y
+case.'jbreak' do.
+  win'jbreak' ;'jbreak.bat';'jyellow.ico';LIB
 case.'jc' do.
   win'jc' ;'jconsole';'jgray.ico';LIB
 case. 'jhs' do.
@@ -211,6 +219,8 @@ Darwinx y
 
 Darwinx=: 3 : 0
 select. y
+case.'jbreak' do.
+  darwin'jbreak' ;'jbrk';'jyellow.png';LIB
 case.'jc' do.
   darwin'jc' ;'jconsole';'jgray.icns';LIB
 case. 'jhs' do.
@@ -230,6 +240,8 @@ n=. type,N
 f=. L,type,N,DS
 c=. hostpathsep jpath '~bin/',bin
 select. type
+case. 'jbreak' do.
+  r=. '#!/bin/sh',LF,'"',c,'.command" ',LIB
 case.'jc' do.
   r=. new_launch rplc '<COM>';COM;'<C>';(hostpathsep jpath '~bin/jconsole');'<A>';LIB
 case. 'jhs' do.
