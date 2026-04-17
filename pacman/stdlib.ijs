@@ -63,6 +63,8 @@ do_getqtbin=: 3 : 0
 
 bin=. 'JQt ',(((y-:'slim')#'slim ')),'binaries.'
 
+slim=. (y-:'slim')#'-slim'
+
 suffix=. IFUNIX{::'dll';('Darwin'-:UNAME){::'so';'dylib'
 vsuffix=. IFUNIX{::(JQTVERSION,'.dll');('Darwin'-:UNAME){::('so.',JQTVERSION);(JQTVERSION,'.dylib')
 NB. ---------------------------------------------------------
@@ -70,19 +72,19 @@ smoutput 'Installing ',bin,'..'
 
 if. ((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') do.
   if. IFRASPI do.
-    z=. 'jqt-raspberry',((-.IF64)#'-arm32'),((y-:'slim')#'-slim'),'.tar.gz'
+    z=. 'jqt-raspberry',((-.IF64)#'-arm32'),slim,'.tar.gz'
   else.
-    z=. 'jqt-',(tolower UNAME),(('arm64'-:9!:56'cpu')#'-arm64'),((y-:'slim')#'-slim'),'.tar.gz'
+    z=. 'jqt-',(tolower UNAME),(('arm64'-:9!:56'cpu')#'-arm64'),slim,'.tar.gz'
   end.
   z1=. 'libjqt.',suffix
 elseif. IFWA64 do.
-  z=. 'jqt-win-arm64-slim.zip'
+  z=. 'jqt-win-arm64',slim,'.zip'
   z1=. 'jqt.',suffix
 elseif. IFWIN do.
-  z=. 'jqt-win',((y-:'slim')#'-slim'),'.zip'
+  z=. 'jqt-win',slim,'.zip'
   z1=. 'jqt.',suffix
 elseif. do.
-  z=. 'jqt-mac',((y-:'slim')#'-slim'),'.zip'
+  z=. 'jqt-mac',slim,'.zip'
   z1=. 'libjqt.',suffix
 end.
 
@@ -147,14 +149,14 @@ if. IFWA64 do.
   z=. 'qt610-win-arm64-slim.zip'
 elseif. linux do.
   if. IFRASPI do.
-    z=. 'qt610-raspi',((y-:'slim')#'-slim'),'.tar.gz'
+    z=. 'qt610-raspi',slim,'.tar.gz'
   else.
-    z=. 'qt610-linux',((y-:'slim')#'-slim'),'.tar.gz'
+    z=. 'qt610-linux',slim,'.tar.gz'
   end.
 elseif. IFWIN do.
-  z=. 'qt610-win',((y-:'slim')#'-slim'),'.zip'
+  z=. 'qt610-win',slim,'.zip'
 elseif. do.
-  z=. 'qt610-mac',((y-:'slim')#'-slim'),'.zip'
+  z=. 'qt610-mac',slim,'.zip'
 end.
 'rc p'=. httpget_jpacman_ www,'/qtlib/',z
 if. rc do.

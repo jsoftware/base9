@@ -34,7 +34,7 @@ if. ''-:y do.
  shortcut each 'jc';'jqt';'jhs';'jbreak'
  i.0 0
  return.
-end. 
+end.
 if. ((<UNAME)e.'OpenBSD';'FreeBSD') do. uname=. 'Linux' else. uname=. UNAME end.
 try. ".uname,' y' catchd. echo 'create ',y,' launch icon failed' end.
 )
