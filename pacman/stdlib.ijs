@@ -131,7 +131,7 @@ smoutput m
 NB. ---------------------------------------------------------
 NB. install Qt library:
 
-NB. linux has Qt installed in J folder from j9.7 beta7
+NB. linux has Qt installed in J folder from j9.8
 linux=. (UNAME -: 'Linux') *. 907 <: VERNO
 
 if. linux < (<UNAME)e.'Linux';'OpenBSD';'FreeBSD' do.
