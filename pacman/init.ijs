@@ -74,7 +74,7 @@ NB. =========================================================
 3 : 0''
 HTTPCMD=: ''
 nc=. '--no-cache'
-NB. e.g. RELNO = '9.7', VERNO = 907
+NB. e.g. RELNO = '9.8', VERNO = 908
 n=. 2 {. 100 #.inv >{.revinfo_j_''
 RELNO=: ,'0,p<.>0' (8!:2) n
 VERNO=: 100 #. n
