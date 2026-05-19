@@ -20,8 +20,8 @@ jobs:
    - name: Build BASE9
      run: |
       cd ~/
-      wget https://www.jsoftware.com/download/j9.8/install/j9.8_linux64.tar.gz
-      tar -xzf j9.8_linux64.tar.gz
+      wget https://www.jsoftware.com/download/j9.8/install/j9.8_linux.tar.gz
+      tar -xzf j9.8_linux.tar.gz
       cd -
       echo "UserFolders_j_=: ~. UserFolders_j_,'Main';'`pwd`'" > bld.ijs
       echo "load 'project'" >> bld.ijs
