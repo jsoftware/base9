@@ -55,7 +55,7 @@ else.
     2!:0 ::0: 'chmod 755 "',DLL,'"'
     if. 'root'-: user=. 2!:5'user' do.
       2!:0 ::0: 'chown ',user,':',user,' "',DLL,'"'
-      2!:0 ::0: ^:((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') '/sbin/ldconfig'
+      2!:0 ::0: ^:((<UNAME)e.'Linux';'OpenBSD';'FreeBSD') '/usr/sbin/ldconfig'
     end.
   end.
 end.
