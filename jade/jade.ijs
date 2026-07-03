@@ -34,7 +34,7 @@ load=: 3 : 0
 0 load y
 :
 fls=. getscripts_j_ y
-fn=. ('script',x#'d')~
+fn=. 3 : ('0!:',(":x),' <&> y_:')
 for_fl. fls do.
   if. Displayload_j_ do. smoutput > fl end.
   if. -. fexist fl do.

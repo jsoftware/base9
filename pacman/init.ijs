@@ -78,6 +78,7 @@ NB. e.g. RELNO = '9.8', VERNO = 908
 n=. 2 {. 100 #.inv >{.revinfo_j_''
 RELNO=: ,'0,p<.>0' (8!:2) n
 VERNO=: 100 #. n
+if. UNAME -: 'Wasm' do. EMPTY return. end.
 if. IFUNIX do.
   IFWGET=. IFCURL=. 0
   if. -. IFIOS +. UNAME-:'Android' do.

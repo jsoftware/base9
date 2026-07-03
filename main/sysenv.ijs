@@ -123,7 +123,7 @@ if. notdef 'IFRASPI' do.
 end.
 
 NB. ---------------------------------------------------------
-if. IF64 +. IFIOS do.
+if. IF64 +. IFIOS +. UNAME -: 'Wasm' do.
   IFWOW64=: 0
 else.
   if. IFUNIX do.
