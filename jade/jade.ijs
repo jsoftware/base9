@@ -34,14 +34,13 @@ load=: 3 : 0
 0 load y
 :
 fls=. getscripts_j_ y
-fn=. x {{ 0!:m y_: }}
+fn=. x & {{ 0!:x_: y_: }}
 for_fl. fls do.
   if. Displayload_j_ do. smoutput > fl end.
   if. -. fexist fl do.
     smoutput 'not found: ',>fl
   end.
   fn fl
-  Loaded_j_=: ~. Loaded_j_,fl
 end.
 empty''
 )
@@ -58,7 +57,7 @@ NB. =========================================================
 NB.*require v load scripts if not already loaded
 NB.-load scripts if not already loaded
 require=: 3 : 0
-fls=. Loaded_j_ -.~ getscripts_j_ y
+fls=. (getscripts_j_ y) -. 4!:3''
 if. # fls do. load fls else. empty'' end.
 )
 

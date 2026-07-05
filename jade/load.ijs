@@ -1,6 +1,5 @@
 NB. load
 
-Loaded=: ''
 Public=: i. 0 2
 UserFolders=: i. 0 2
 
