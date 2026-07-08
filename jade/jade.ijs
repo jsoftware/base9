@@ -57,7 +57,7 @@ NB. =========================================================
 NB.*require v load scripts if not already loaded
 NB.-load scripts if not already loaded
 require=: 3 : 0
-fls=. (getscripts_j_ y) -. 4!:3''
+fls=. (getscripts_j_ y) -. jpathsep&.> 4!:3''
 if. # fls do. load fls else. empty'' end.
 )
 
