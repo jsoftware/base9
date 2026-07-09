@@ -6,7 +6,7 @@ UserFolders=: i. 0 2
 NB. =========================================================
 getignore=: 3 : 0
 r=. ' colib compare convert coutil dates dir dll files libpath strings text gl2 graphics/gl2'
-Ignore=: <;._1 r
+Ignore=: (<;._1 r), ((-.IFQT)#<'ide/qt'), ((-.IFJA)#<'ide/ja'), ((-.IFWIN)#<'ide/jnet'), ((IFQT+.IFJA+.IFJNET)#<'ide/jhs')
 )
 
 getignore''
