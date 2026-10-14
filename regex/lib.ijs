@@ -14,7 +14,13 @@ NB. =========================================================
 NB. pcre2 library is in bin or tools/regex
 3 : 0''
 select. UNAME
-case. 'Android' do. pcre2dll=: 'libjpcre2.so' return.
+case. 'Android' do.
+  if. fexist f=. '/data/local/tmp/jlibrary/bin/libjpcre2.so' do.
+    pcre2dll=: f    NB. if running jconsole
+  else.
+    pcre2dll=: 'libjpcre2.so'
+  end.
+  return.
 case. 'Darwin' do. t0=. 'libjpcre2' [ ext=. '.dylib' [ arch=. ''
 case. 'Win' do. t0=. 'jpcre2' [ ext=. '.dll' [ arch=. ((-.IF64)#<'_32'),(('arm64'-:9!:56'cpu')#<'_arm64')
 case. do.
